@@ -21,6 +21,7 @@ export const registerUser = async (req, res) => {
     });
 
     res.status(201).json({
+      message: "User created. Please log in",
       _id: user._id,
       name: user.name,
       email: user.email,
@@ -62,4 +63,5 @@ export const loginUser = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+  
 };

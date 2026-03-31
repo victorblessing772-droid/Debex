@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lumen &amp; Lead | Precision Luminescence</title>
+
+  <script>
+    // 🔐 AUTH GUARD (must be first)
+    if (localStorage.getItem("loggedIn") !== "true") {
+        window.location.href = "login.html";
+    }
+  </script>
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;500;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-bright": "#f8f9fa",
+              "primary-fixed-dim": "#ffba43",
+              "on-background": "#191c1d",
+              "primary-fixed": "#ffddaf",
+              "on-secondary-fixed": "#1b1c1c",
+              "on-error-container": "#93000a",
+              "on-secondary": "#ffffff",
+              "inverse-surface": "#2e3132",
+              "tertiary-container": "#00d0fe",
+              "secondary-container": "#e3e2e2",
+              "secondary-fixed-dim": "#c7c6c6",
+              "tertiary-fixed": "#b7eaff",
+              "error": "#ba1a1a",
+              "outline": "#847560",
+              "on-tertiary-fixed-variant": "#004e60",
+              "on-primary-container": "#6a4700",
+              "on-tertiary-fixed": "#001f28",
+              "on-secondary-container": "#646464",
+              "on-primary-fixed": "#281800",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-container": "#00556a",
+              "on-surface": "#191c1d",
+              "background": "#f8f9fa",
+              "surface-container-low": "#f3f4f5",
+              "on-surface-variant": "#524533",
+              "surface-container-high": "#e7e8e9",
+              "primary": "#805600",
+              "on-error": "#ffffff",
+              "tertiary": "#00677f",
+              "error-container": "#ffdad6",
+              "tertiary-fixed-dim": "#4cd6ff",
+              "surface-dim": "#d9dadb",
+              "surface-container-highest": "#e1e3e4",
+              "on-tertiary": "#ffffff",
+              "inverse-on-surface": "#f0f1f2",
+              "secondary": "#5e5e5e",
+              "outline-variant": "#d7c4ac",
+              "on-primary": "#ffffff",
+              "surface-container": "#edeeef",
+              "secondary-fixed": "#e3e2e2",
+              "on-secondary-fixed-variant": "#464747",
+              "inverse-primary": "#ffba43",
+              "surface": "#f8f9fa",
+              "surface-variant": "#e1e3e4",
+              "primary-container": "#ffb000",
+              "surface-tint": "#805600",
+              "on-primary-fixed-variant": "#614000"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Manrope"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filament-gradient {
+            background: linear-gradient(135deg, #d97706 0%, #fbbf24 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md shadow-sm border-b border-zinc-100 dark:border-zinc-800/50">
+<div class="flex justify-between items-center px-8 h-16 max-w-full mx-auto font-['Manrope'] antialiased">
+<div class="flex items-center gap-12">
+<span class="text-xl font-extrabold tracking-tighter text-zinc-900 dark:text-zinc-100 uppercase">Lumen &amp; Lead</span>
+<div class="hidden md:flex gap-8 tracking-tight text-sm font-medium">
+<a class="text-amber-700 dark:text-amber-400 border-b-2 border-amber-500 pb-1 transition-colors duration-200" href="#">Lighting</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="#">Power &amp; Switches</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="#">Professional Tools</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="#">Infrastructure</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block">
+<input class="bg-surface-container-low border-none rounded-lg px-4 py-2 text-sm w-64 focus:ring-2 focus:ring-amber-500/20 placeholder:text-zinc-400" placeholder="Search systems..." type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 text-lg">search</span>
+</div>
+<div class="flex items-center gap-4 text-zinc-600">
+<button class="scale-95 active:scale-90 transition-transform hover:text-amber-600">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</button>
+<button class="scale-95 active:scale-90 transition-transform hover:text-amber-600">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<main class="pt-16">
+<!-- Hero Editorial Section -->
+<section class="relative h-[870px] overflow-hidden bg-inverse-surface">
+<div class="absolute inset-0 opacity-60">
+<img alt="Architectural lighting detail" class="w-full h-full object-cover" data-alt="Close-up of a high-end architectural filament bulb glowing with warm amber light against a dark, moody industrial background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGZp3wJ_6SxiG1JPRATepk_xaRiCL35GLIHNj1gFI4IIkc4NQBozkRPppEfpbIOncdZB4Ti7EWJbAIuJU1KV-ltCd7Pu3gjrEPsRYivrfWxjh1PYm5crgkRj6L0ODTovBEDmsbLisXpeJFFS1hvsSIAp7ISnSoLsfJ8e2SPOpV7avB91gdEjTELCYqg4iuDe6P7AcMHqfig2z4NiaZ8Mtt5QoQy_lzPk13i8byHSbPn1EnXPxZyeU2XVJ2_IwhVN-3Uco36iDjx1E"/>
+</div>
+<div class="relative z-10 h-full flex flex-col justify-center px-12 md:px-24 max-w-screen-2xl mx-auto">
+<span class="font-label text-primary-fixed uppercase tracking-widest text-sm mb-6 block">The Master Catalog</span>
+<h1 class="font-headline text-5xl md:text-8xl font-extrabold text-white tracking-tighter leading-none mb-8 max-w-4xl">
+                    Precision <br/><span class="text-primary-container">Luminescence.</span>
+</h1>
+<p class="font-body text-xl text-slate-300 max-w-xl mb-12 leading-relaxed">
+                    Lumen &amp; Lead provides industrial-grade components for architectural artifacts. Engineering the invisible threads of light that define modern space.
+                </p>
+<div class="flex gap-4">
+<button class="filament-gradient text-white px-8 py-4 font-bold rounded-lg shadow-xl hover:brightness-110 transition-all flex items-center gap-2">
+                        Shop Catalog
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-4 font-bold rounded-lg hover:bg-white/20 transition-all">
+                        Technical Specs
+                    </button>
+</div>
+</div>
+</section>
+<!-- Category Bento Grid -->
+<section class="px-8 py-24 max-w-screen-2xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[800px]">
+<!-- Lighting -->
+<div class="md:col-span-8 bg-surface-container-low relative group overflow-hidden rounded-xl">
+<img alt="Lighting Collection" class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="Modern geometric lighting fixtures in a minimalist concrete gallery space with sharp shadows and warm accent glows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDo2NUREWXl7n_9hkuBVEx0rc0Z9kL8X_AbNljFm1QJUtlojpeO_drvEDfGdAKtin_tiVuYRP7Nztbmn0peiiK-T_m7wqVNI3mpLCYYzHjnySE8iSjyExye0BSjiN-tE8M3Y0t1UBndv1QUCMOvwhTvmWlsepxhWA8ez01tUpYIPMAS0kHZML4Z5uD4cHu6fjyOsiUYRtr5bOB8eoOvWmhHhyGRbLLjWDvb-oUbFGW022W0he7hr6buKl2DKCmggoJw85bmJLlWZ6M"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-background/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-10 left-10 text-white">
+<h3 class="font-headline text-3xl font-bold mb-2">Lighting</h3>
+<p class="text-slate-300 font-label uppercase text-xs tracking-widest mb-4">Filaments • Architectural • Industrial</p>
+<a class="text-primary-container font-bold hover:underline flex items-center gap-2" href="#">Explore Collection <span class="material-symbols-outlined text-sm">north_east</span></a>
+</div>
+</div>
+<!-- Power & Switches -->
+<div class="md:col-span-4 bg-surface-container-high relative group overflow-hidden rounded-xl">
+<img alt="Power &amp; Switches" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Close up of a premium brushed brass electrical socket on a dark marble wall with dramatic side lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqAZVnDR4iOWS9-JOQHVi7UQXgg7r1nt6_pa3ODeQ1FCMXO8Xm4iGT5zfWMWurKuLUSR-WPKNJ1-sb1JvtcYvCTjbJI6LLGFklRk6f4bZP0al2x5sn6TPZ9qJ1qiCVUNLUpY9ajtDtH5xLmnAwDxUIj9Iux49qm8D2FFsZF2oQ3BXAwzJnrD3T-ap2M0Ded1qFA-DR4wizPdnzIbX43k6AFQzYfB1QjkEpRO5uLRduzhA8HhuBp3c18oMhomqAvIfvkfhxz0ulujE"/>
+<div class="absolute inset-0 bg-on-background/40"></div>
+<div class="absolute inset-0 flex flex-col justify-end p-10 text-white">
+<h3 class="font-headline text-2xl font-bold mb-2">Power &amp; Switches</h3>
+<p class="text-slate-200 text-sm mb-6">Interface systems for sophisticated environments.</p>
+<button class="bg-white text-on-background px-6 py-3 font-bold text-sm rounded-lg w-fit">Browse Power</button>
+</div>
+</div>
+<!-- Professional Tools -->
+<div class="md:col-span-4 bg-surface-container-highest relative group overflow-hidden rounded-xl">
+<img alt="Professional Tools" class="absolute inset-0 w-full h-full object-cover opacity-80" data-alt="A clean top-down view of professional electrician tools laid out neatly on a technical drawing surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBB56bDj3wPWe_4msnWsVINTY84z96kunAzYS3dG9osAVQj7h4psGOXQfTGOtlQlRhpFBNU7xpbDtDS8B-GIU07F5zQtAiCDnR_hFmd87-NPgBlwRJS0HehXb_HVJ--mDVSoOSChbg9gQH1bnP7Xb0QUZPiGLeJDs6_Lz3UCXttfmZMsivVucM-9KbvXj4t9_uIbl3p29n1d0BerNyKdqxdVPMSZI47s0zEEMFgtei356cRt-Pw0UXc1rK8vL7kVhMrXbYKL3RMvXQ"/>
+<div class="absolute inset-0 bg-primary/20"></div>
+<div class="absolute inset-0 flex flex-col justify-end p-10 text-white">
+<h3 class="font-headline text-2xl font-bold mb-2 text-white">Professional Tools</h3>
+<a class="text-white hover:text-primary-container transition-colors" href="#"><span class="material-symbols-outlined text-4xl">engineering</span></a>
+</div>
+</div>
+<!-- Infrastructure -->
+<div class="md:col-span-8 bg-surface-container-low relative group overflow-hidden rounded-xl">
+<img alt="Infrastructure Systems" class="absolute inset-0 w-full h-full object-cover group-hover:opacity-90 transition-opacity" data-alt="Grand crystal chandelier hanging in a modern dark-walled library with atmospheric lighting and golden highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKKWYiEJVxt8O5B8voT8wDjqQUGlU-uM_E3_yjrGGpYt_dSfifjaeyo4dt7xVQ17uhlfVgFIotaVAujYqqmDHu-5PXYTRSP1RQJeYlPGwZSPurOtMwTnVM2UqKL2YkuvSR_-tcbmaQLjEEz64MY-10Ajr-cfDCjN6wIkXWPjhi67HSKO9ogzd6YIaBWgE_4DKxGwwsOexY_PZRbM2c6-cMU61-ycBLZf9r6hvPFDYvh2x07qZd8ERiifxKZmr0iHzrOYmFOHDYj_0"/>
+<div class="absolute inset-0 bg-gradient-to-r from-on-background/60 to-transparent"></div>
+<div class="absolute inset-0 flex flex-col justify-center p-12 text-white max-w-md">
+<h3 class="font-headline text-4xl font-bold mb-4 leading-tight">Infrastructure</h3>
+<p class="text-slate-200 mb-8 font-light leading-relaxed">Conduits, mounting, and structural lighting frameworks.</p>
+<button class="border border-primary-container text-primary-container px-8 py-3 font-bold rounded-lg hover:bg-primary-container hover:text-on-primary transition-all w-fit">The Core Series</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Precision Hardware -->
+<section class="bg-surface-container-low py-24">
+<div class="max-w-screen-2xl mx-auto px-8">
+<div class="flex justify-between items-end mb-16">
+<div>
+<span class="font-label text-primary uppercase text-xs font-bold tracking-[0.2em] mb-4 block">Engineered Components</span>
+<h2 class="font-headline text-4xl font-extrabold tracking-tight">Featured Hardware</h2>
+</div>
+<a class="text-sm font-bold border-b border-primary text-primary pb-1" href="#">Full Pro Catalog</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<!-- Product Card 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm hover:shadow-md transition-all group">
+<div class="aspect-square bg-surface-container mb-6 overflow-hidden rounded-md relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="High quality carbon filament vintage light bulb" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbHKw4uEGSIJQuCpWY7W6-GvSO3OIIYa5d3mG3ls_9SduHRTlkkxrh-ZWtksVB61U_pafyPtp8ld175Vzq76Q9rUE2Nb6YyCDidFxz4oLWH5l6Xd_l81kH_AR5Kob9j1Ij7dMd6hIk1FKSrSQaSfyhHB8Nd1S9MiTVCNGWag8xlQvRmKgL5UhkZm2cQjEYfL0-_2zfWXZ37I3gXAUHnZFPAjcDktGsbMS08KlG9ca4R6X-JfLGjIBEDa81HBKJr_yl0wVbiE1ZfiY"/>
+<div class="absolute top-4 right-4 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded">NEW</div>
+</div>
+<span class="font-label text-[10px] text-secondary uppercase tracking-widest block mb-2">Lighting / Bulbs</span>
+<h4 class="font-headline font-bold text-lg mb-1">Titan Filament G125</h4>
+<p class="font-label text-xs text-secondary mb-4">120V / 40W / 2200K Warm</p>
+<div class="flex justify-between items-center">
+<span class="font-bold text-primary text-xl">$48.00</span>
+<button class="bg-surface-container-highest text-on-surface p-2 rounded-full hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">add_shopping_cart</span>
+</button>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm hover:shadow-md transition-all group">
+<div class="aspect-square bg-surface-container mb-6 overflow-hidden rounded-md">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Modern matte black wall dimmer switch" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9o0AONtQV_YBWZl5W8jyNuNhacuzuL5DAH01m4rVcrczQEAYS0LUvv_fTPxiSBvNCYfXIqP65ndpLooJjWzM_3Z9HCItYMaxSYUOxtXjCYHVJhNrP7ujza1wTwypwteDcTZvA7FjBvhYKxWV7w5mUQ455sOchhWjAb8Turm7HpP7zA1qT8RcY5VnXIAlM24uVpMG0NzmxuLyUP08N38C-W3o2E1t8gxbyzY3Z9NsAvpnR0SZXenyFmLaNobqQU6sb_N_Qwy06gZw"/>
+</div>
+<span class="font-label text-[10px] text-secondary uppercase tracking-widest block mb-2">Power / Interface</span>
+<h4 class="font-headline font-bold text-lg mb-1">Matte Onyx Dimmer</h4>
+<p class="font-label text-xs text-secondary mb-4">Linear Slide / LED Compatible</p>
+<div class="flex justify-between items-center">
+<span class="font-bold text-primary text-xl">$124.00</span>
+<button class="bg-surface-container-highest text-on-surface p-2 rounded-full hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">add_shopping_cart</span>
+</button>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm hover:shadow-md transition-all group">
+<div class="aspect-square bg-surface-container mb-6 overflow-hidden rounded-md">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Industrial style hanging pendant light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDy6ZBnDvZCWaU-dEv29GVAefRJLN_GYONDcnr2Ux4di8UHAVOXZZjN_aXSXy2cN2Cyu9IV8O7PabiiONCi977nhGKQD34fAvnw3yrfnQxHklZupN__YoU4SlEBt-oNCPWEYPjZICDr5GANkLfHP_isoIiDdJiCNM8RCT_NG4h9Kc6pYWJ69zQ1VqYXYEd_o-WMJP9WKHO0ZHoDa4Dc2KRwwqMA0VE3uUxMSI_0be1mDGfYgMJKq4ewrU9MAaO15H9R9bS59PP9AsE"/>
+</div>
+<span class="font-label text-[10px] text-secondary uppercase tracking-widest block mb-2">Infrastructure / Pendant</span>
+<h4 class="font-headline font-bold text-lg mb-1">Industrial Drop Socket</h4>
+<p class="font-label text-xs text-secondary mb-4">E26 / Solid Brass / Braided Cord</p>
+<div class="flex justify-between items-center">
+<span class="font-bold text-primary text-xl">$89.00</span>
+<button class="bg-surface-container-highest text-on-surface p-2 rounded-full hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">add_shopping_cart</span>
+</button>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm hover:shadow-md transition-all group">
+<div class="aspect-square bg-surface-container mb-6 overflow-hidden rounded-md">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A macro shot of a clear glass smart bulb" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBOZnJ8btaUljUAAy80nf6E-GOroEGKmgNJzA3vVIDaNt0rZgVRoDRfD6-3YWA_WvynWRHForb9ksF6ru8qc8cGCe9tBRKJp93KzTUfgSqmET692T499p7aV_j4N3odJYkZZefS3T4iAvtPv0o7hY0BLHlObgk_Pcs7sLHzUOXTJ_WQENPVo8Df16ZBL8YYxGxPe9M1tZAqFTyEv9r7ol4rfhtTnjPDQQ6kh81BCuRvhenOsBwlAFl6dQ9w9R-egHCRmVheBdbEf8"/>
+</div>
+<span class="font-label text-[10px] text-secondary uppercase tracking-widest block mb-2">Smart / Core</span>
+<h4 class="font-headline font-bold text-lg mb-1">Lumen-AI Core</h4>
+<p class="font-label text-xs text-secondary mb-4">Wi-Fi 6 / RGBW / Adaptive Lux</p>
+<div class="flex justify-between items-center">
+<span class="font-bold text-primary text-xl">$65.00</span>
+<button class="bg-surface-container-highest text-on-surface p-2 rounded-full hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Expert Recommendations (Editorial Layout) -->
+<section class="py-32 bg-surface">
+<div class="max-w-screen-2xl mx-auto px-8">
+<div class="flex flex-col lg:flex-row gap-20 items-center">
+<div class="lg:w-1/2 relative">
+<div class="bg-primary-container absolute -top-8 -left-8 w-64 h-64 opacity-10 rounded-full blur-3xl"></div>
+<img alt="Professional Workspace" class="rounded-xl relative z-10 shadow-2xl" data-alt="A professional lighting designer's workspace with sketches" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIzoTfG3GUXLaS8gf1QUVd2xTGfuOHDZ6Qtsq0pmrOAc0er5JmKEJUiRFMFFIdcLcu3sTkV_lgzIJBuMv7Yzx-9KgfZq2F71_qJL-6al16oBgNEnVXhaUqqNNRyhgNEV-GffTfHcADpIuEpgFg53yEXWzsBPKYYmy63g9FygJ9GfcPp9FsnaTOsZw7b5EZ80DQZOmpm1anb2ZeK98l7Nt2UrbwkBMrbC0mqZUskyOiyx9fMhtmqeOp0Uijqe0XIHO1Y-S2u9-Zd1A"/>
+</div>
+<div class="lg:w-1/2">
+<span class="font-label text-primary uppercase text-xs font-bold tracking-[0.2em] mb-4 block">Professional Support</span>
+<h2 class="font-headline text-5xl font-extrabold tracking-tighter mb-8 leading-tight">Masters of Industrial Light.</h2>
+<p class="text-secondary body-lg mb-10 leading-relaxed">
+                            Lumen &amp; Lead curators and engineers provide weekly selections of components that transcend mere function. From matching color temperatures across expansive infrastructure to selecting the correct gauge for industrial power, we provide the technical clarity your project demands.
+                        </p>
+<ul class="space-y-6 mb-12">
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary">verified</span>
+<div>
+<h5 class="font-bold">System Compliance</h5>
+<p class="text-sm text-secondary">Ensure infrastructure meets the latest architectural standards.</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary">settings_input_component</span>
+<div>
+<h5 class="font-bold">Technical Load Analysis</h5>
+<p class="text-sm text-secondary">Expert analysis on circuit capacity for large-scale professional tools.</p>
+</div>
+</li>
+</ul>
+<button class="bg-on-background text-white px-10 py-4 font-bold rounded-lg hover:bg-slate-800 transition-all">Visit Pro Portal</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-16 px-8 mt-auto bg-zinc-50 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800/50">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto font-['Manrope']">
+<div class="space-y-4">
+<div class="text-lg font-bold text-zinc-900 dark:text-zinc-100 uppercase">Lumen &amp; Lead</div>
+<p class="text-zinc-500 dark:text-zinc-400 text-sm">Precision Luminescence for modern architectural environments.</p>
+</div>
+<div>
+<h4 class="text-xs uppercase tracking-widest font-semibold text-amber-600 mb-6">Catalog</h4>
+<div class="flex flex-col gap-3 text-xs tracking-wide uppercase">
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Lighting</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Power &amp; Switches</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Professional Tools</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Infrastructure</a>
+</div>
+</div>
+<div>
+<h4 class="text-xs uppercase tracking-widest font-semibold text-amber-600 mb-6">Resources</h4>
+<div class="flex flex-col gap-3 text-xs tracking-wide uppercase">
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Technical Specs</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Pro Portal</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Compliance</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Supply Chain</a>
+</div>
+</div>
+<div>
+<h4 class="text-xs uppercase tracking-widest font-semibold text-amber-600 mb-6">Connect</h4>
+<div class="flex flex-col gap-3 text-xs tracking-wide uppercase">
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Contact</a>
+<div class="flex gap-4 pt-2">
+<span class="material-symbols-outlined text-zinc-400 cursor-pointer hover:text-amber-500">language</span>
+<span class="material-symbols-outlined text-zinc-400 cursor-pointer hover:text-amber-500">share</span>
+</div>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-800/50 text-center">
+<p class="text-xs uppercase tracking-widest font-semibold text-zinc-500 dark:text-zinc-400">
+                © 2024 Lumen &amp; Lead. Precision Luminescence.
+            </p>
+</div>
+</footer>
+ <!-- LOGOUT SCRIPT -->
+  <script>
+    function logout() {
+        localStorage.removeItem("loggedIn");
+        window.location.href = "login.html";
+    }
+  </script>
+</body></html>

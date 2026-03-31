@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Debex Electronics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#d9dadb",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#e3e2e2",
+                        "surface-bright": "#f8f9fa",
+                        "secondary": "#5e5e5e",
+                        "on-tertiary-fixed": "#001f28",
+                        "surface-container-high": "#e7e8e9",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#ffba43",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-container-low": "#f3f4f5",
+                        "outline": "#847560",
+                        "surface-tint": "#805600",
+                        "secondary-fixed": "#e3e2e2",
+                        "tertiary-fixed-dim": "#4cd6ff",
+                        "on-surface": "#191c1d",
+                        "on-tertiary-container": "#00556a",
+                        "tertiary-fixed": "#b7eaff",
+                        "surface": "#f8f9fa",
+                        "secondary-fixed-dim": "#c7c6c6",
+                        "on-background": "#191c1d",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "on-primary-container": "#6a4700",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#edeeef",
+                        "primary": "#805600",
+                        "primary-fixed-dim": "#ffba43",
+                        "on-secondary-fixed-variant": "#464747",
+                        "outline-variant": "#d7c4ac",
+                        "surface-variant": "#e1e3e4",
+                        "on-primary-fixed": "#281800",
+                        "primary-fixed": "#ffddaf",
+                        "tertiary-container": "#00d0fe",
+                        "on-secondary-container": "#646464",
+                        "tertiary": "#00677f",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#524533",
+                        "on-primary-fixed-variant": "#614000",
+                        "on-tertiary-fixed-variant": "#004e60",
+                        "background": "#f8f9fa",
+                        "primary-container": "#ffb000",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#f0f1f2"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Manrope"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filament-gradient {
+            background: linear-gradient(135deg, #805600 0%, #ffb000 100%);
+        }
+        .glass-panel {
+            background: rgba(248, 249, 250, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        [data-tab-content] { display: none; }
+        [data-tab-content].active { display: block; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Minimalist TopNavBar -->
+<nav class="fixed top-0 w-full z-50 glass-panel border-b border-surface-container-high">
+<div class="flex items-center justify-between px-8 py-6 max-w-screen-2xl mx-auto">
+<a class="text-2xl font-bold tracking-tighter text-stone-900 font-headline" href="/">
+                Debex Electronics
+            </a>
+<div class="hidden md:flex items-center gap-6">
+<span class="text-xs font-label text-secondary uppercase tracking-[0.2em]">Authentication Gateway</span>
+</div>
+</div>
+</nav>
+<main class="min-h-screen flex flex-col md:flex-row pt-20 md:pt-0">
+
+<!-- Left Side: Visual Anchor (60%) -->
+<section class="hidden md:block w-[55%] relative h-screen overflow-hidden bg-inverse-surface">
+<img alt="Modern Architecture" class="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-luminosity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCok5M0QfTBCSZRvtOLW0N913yK-TkeO5bn5_7fnTrtP4wnebLaJbQONoyDhMIcNcqjhPup-3h_9ItKUb19lXrasUWvNeGSvcTUCqr47ehV0Fs69ma3moxisHDIrYozvDgwGbvY4-cD23jOn1OSxXjVpMrstCleZtd21GBChl75fL3sWyCp3FAiJ09u1yFeE7NMbjv0uD0IxpFTnPODkPwaE36uMXmBqRGf7rWskeJ3CZIGalrn0PgPsvJa9O4aOd4MHO-hN2-x_Fg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface via-transparent to-transparent opacity-60"></div>
+<div class="absolute bottom-12 left-12 max-w-xl">
+<h1 class="text-5xl font-extrabold text-white font-headline leading-tight tracking-tighter mb-6">
+                    Precision <br/>Luminescence.
+                </h1>
+<p class="text-lg text-white/80 font-light leading-relaxed mb-8">
+                    Access our curated editorial of architectural lighting and professional electrical components. Designed for those who see light as an artifact.
+                </p>
+<div class="grid grid-cols-2 gap-8 pt-8 border-t border-white/10">
+<div>
+<span class="block text-primary-fixed-dim font-bold mb-2">Technical Specs</span>
+<p class="text-sm text-white/60">Smart design details and accurate lighting data, all in one place.</p>
+</div>
+<div>
+<span class="block text-primary-fixed-dim font-bold mb-2">Trade Pricing</span>
+<p class="text-sm text-white/60">Affordable pricing without compromising on quality.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Side: Dual Authentication Section (40%+) -->
+<section class="w-full md:w-[45%] flex flex-col px-8 md:px-16 py-12 bg-surface overflow-y-auto">
+<div class="w-full max-w-md mx-auto pt-8">
+<!-- Tab Headers -->
+<div class="flex border-b border-surface-container-highest mb-10">
+<button class="flex-1 pb-4 text-sm font-bold uppercase tracking-widest text-primary border-b-2 border-primary transition-all" id="tab-buyer" onclick="switchTab('buyer')">
+                        Buyer Access
+                    </button>
+<button class="flex-1 pb-4 text-sm font-bold uppercase tracking-widest text-secondary hover:text-stone-900 transition-all" id="tab-admin" onclick="switchTab('admin')">
+                        Admin Portal
+                    </button>
+</div>
+<!-- Buyer Sign Up / Sign In Path -->
+<div class="tab-content active space-y-8" id="content-buyer">
+<div>
+<h2 id="form-title" class="text-3xl font-bold text-stone-900 font-headline mb-2">
+  Create Account
+</h2>
+<p class="text-secondary font-label">Join our professional lighting community.</p>
+</div>
+<form id="signup-form" class="space-y-6" onsubmit="handleRegister(event)">
+<!-- Account Type Toggle -->
+<div class="bg-surface-container-low p-1 flex gap-1 rounded-lg">
+<button class="flex-1 py-2 text-sm font-semibold filament-gradient text-on-primary rounded-md shadow-sm transition-all" type="button">
+                                Register 
+                            </button>
+</div>
+<div class="space-y-4">
+<div class="group">
+<label class="block text-[11px] font-bold text-secondary uppercase tracking-widest mb-1.5 ml-1">Full Name</label>
+<input class="w-full bg-surface-container-low border-none focus:ring-0 focus:border-b-2 focus:border-primary px-4 py-3 rounded-md transition-all placeholder:text-stone-400" placeholder="Alexander Mercer" type="text"/>
+</div>
+<div class="group">
+<label class="block text-[11px] font-bold text-secondary uppercase tracking-widest mb-1.5 ml-1">Professional Email</label>
+<input class="w-full bg-surface-container-low border-none focus:ring-0 focus:border-b-2 focus:border-primary px-4 py-3 rounded-md transition-all placeholder:text-stone-400" placeholder="alex@studio-lighting.com" type="email"/>
+</div>
+<div class="group">
+<label class="block text-[11px] font-bold text-secondary uppercase tracking-widest mb-1.5 ml-1">Password</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border-none focus:ring-0 focus:border-b-2 focus:border-primary px-4 py-3 rounded-md transition-all placeholder:text-stone-400" placeholder="••••••••" type="password"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-stone-400 cursor-pointer text-xl">visibility</span>
+</div>
+</div>
+</div>
+<div class="pt-4 space-y-4">
+<button class="w-full filament-gradient text-on-primary font-bold py-4 rounded-md shadow-lg shadow-primary-container/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200" type="submit">
+                                Create Account
+                            </button>
+<p class="text-center text-sm text-secondary">
+                                Already have an account? 
+                               <a class="text-primary font-bold hover:underline underline-offset-4 ml-1" href="#" onclick="showLogin(event)">Sign In</a>
+</div>
+</form>
+</div>
+<!-- Login Form -->
+<form id="login-form" class="space-y-6 hidden" onsubmit="handleLogin(event)">
+  <div class="space-y-4">
+    <div>
+      <label class="block text-[11px] font-bold text-secondary uppercase tracking-widest mb-1.5 ml-1">Email</label>
+      <input class="w-full bg-surface-container-low px-4 py-3 rounded-md" placeholder="Enter your email" type="email"/>
+    </div>
+
+    <div>
+      <label class="block text-[11px] font-bold text-secondary uppercase tracking-widest mb-1.5 ml-1">Password</label>
+      <input class="w-full bg-surface-container-low px-4 py-3 rounded-md" placeholder="••••••••" type="password"/>
+    </div>
+  </div>
+
+  <button class="w-full filament-gradient text-on-primary font-bold py-4 rounded-md">
+    Sign In
+  </button>
+
+  <p class="text-center text-sm text-secondary">
+    Don’t have an account?
+  <a class="text-primary font-bold hover:underline underline-offset-4 ml-1" href="#" onclick="showSignup(event)">Sign Up</a>
+</form>
+<!-- Admin Technical Portal -->
+<div class="tab-content hidden space-y-8" id="content-admin">
+<div class="border-l-4 border-inverse-surface pl-6 py-2">
+<h2 class="text-2xl font-bold text-stone-900 font-headline mb-1">System Administrator</h2>
+<p class="text-sm font-label text-secondary">Authorized personnel access only.</p>
+</div>
+<div class="p-6 bg-surface-container-low border border-surface-container-high rounded-xl">
+<form class="space-y-5">
+<div class="space-y-2">
+<label class="block text-xs font-bold text-stone-600 uppercase tracking-tighter">Admin Identifier</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 text-lg">badge</span>
+<input class="w-full pl-10 pr-4 py-2.5 bg-white border border-surface-container-high focus:border-inverse-surface focus:ring-0 rounded-lg text-sm transition-colors" placeholder="ADM-000-000" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="block text-xs font-bold text-stone-600 uppercase tracking-tighter">Security Key</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 text-lg">lock_open</span>
+<input class="w-full pl-10 pr-4 py-2.5 bg-white border border-surface-container-high focus:border-inverse-surface focus:ring-0 rounded-lg text-sm transition-colors" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<div class="pt-2">
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="w-4 h-4 rounded border-stone-300 text-inverse-surface focus:ring-stone-400" type="checkbox"/>
+<span class="text-xs text-secondary">Maintain session for 12 hours (High Security)</span>
+</label>
+</div>
+<button class="w-full bg-inverse-surface text-white font-bold py-3.5 rounded-lg hover:bg-stone-800 transition-all flex items-center justify-center gap-2" type="submit">
+<span class="material-symbols-outlined text-lg">admin_panel_settings</span>
+                                Authenticate System
+                            </button>
+</form>
+</div>
+
+</section>
+</main>
+<!-- Footer Component -->
+<footer class="w-full py-8 px-8 bg-white border-t border-surface-container-high">
+<div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="font-manrope text-sm tracking-wide text-stone-500">
+                © 2026 Debex Electronics. All rights reserved.
+            </span>
+
+</div>
+</footer>
+       <script>
+//* TAB SWITCH */
+function switchTab(tab) {
+  const buyer = document.getElementById("content-buyer");
+  const admin = document.getElementById("content-admin");
+
+  if (tab === "buyer") {
+    buyer.classList.remove("hidden");
+    admin.classList.add("hidden");
+  } else {
+    admin.classList.remove("hidden");
+    buyer.classList.add("hidden");
+  }
+}
+
+/* SHOW LOGIN */
+function showLogin(e) {
+  e.preventDefault();
+  document.getElementById("signup-form").classList.add("hidden");
+  document.getElementById("login-form").classList.remove("hidden");
+  document.getElementById("form-title").innerText = "Log In";
+}
+
+/* SHOW SIGNUP */
+function showSignup(e) {
+  e.preventDefault();
+  document.getElementById("login-form").classList.add("hidden");
+  document.getElementById("signup-form").classList.remove("hidden");
+  document.getElementById("form-title").innerText = "Create Account";
+}
+
+/* REGISTER */
+async function handleRegister(e) {
+  e.preventDefault();
+
+  const form = document.getElementById("signup-form");
+  const email = form.querySelector('input[type="email"]').value;
+  const password = form.querySelector('input[type="password"]').value;
+
+  if (!email || !password) {
+    alert("Fill all fields");
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:5000/api/users/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.message || "Error");
+      return;
+    }
+
+    alert("Account created!");
+    showLogin(new Event("click"));
+
+  } catch (err) {
+    alert("Server error");
+  }
+}
+
+/* LOGIN */
+async function handleLogin(e) {
+  e.preventDefault();
+
+  const form = document.getElementById("login-form");
+  const email = form.querySelector('input[type="email"]').value;
+  const password = form.querySelector('input[type="password"]').value;
+
+  if (!email || !password) {
+    alert("Fill all fields");
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:5000/api/users/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.message || "Login failed");
+      return;
+    }
+
+    localStorage.setItem("token", data.token);
+
+    alert("Login successful!");
+    window.location.href = "index.html";
+
+  } catch (err) {
+    alert("Server error");
+  }
+}
+
+    </script>
+</body></html>
