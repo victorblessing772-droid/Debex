@@ -82,10 +82,14 @@
             text-shadow: 0 0 8px rgba(255, 176, 0, 0.4);
         }
     </style>
-    <script>
-if (localStorage.getItem("loggedIn") !== "true") {
-  window.location.href = "login.html";
-}
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      window.location.replace("login.html");
+    }
+  });
 </script>
 </head>
 <body class="bg-surface text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
