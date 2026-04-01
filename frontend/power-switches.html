@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container": "#edeeef",
+              "on-secondary-fixed": "#1b1c1c",
+              "secondary-container": "#e3e2e2",
+              "tertiary-fixed-dim": "#4cd6ff",
+              "tertiary-fixed": "#b7eaff",
+              "surface": "#f8f9fa",
+              "secondary-fixed": "#e3e2e2",
+              "on-error": "#ffffff",
+              "on-tertiary-fixed": "#001f28",
+              "on-surface-variant": "#524533",
+              "on-primary": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "on-primary-fixed-variant": "#614000",
+              "surface-container-low": "#f3f4f5",
+              "on-secondary-container": "#646464",
+              "on-background": "#191c1d",
+              "surface-container-lowest": "#ffffff",
+              "surface-variant": "#e1e3e4",
+              "on-primary-fixed": "#281800",
+              "error-container": "#ffdad6",
+              "surface-container-highest": "#e1e3e4",
+              "inverse-surface": "#2e3132",
+              "background": "#f8f9fa",
+              "inverse-primary": "#ffba43",
+              "primary-fixed-dim": "#ffba43",
+              "on-tertiary-fixed-variant": "#004e60",
+              "error": "#ba1a1a",
+              "primary-container": "#ffb000",
+              "outline-variant": "#d7c4ac",
+              "on-error-container": "#93000a",
+              "secondary-fixed-dim": "#c7c6c6",
+              "tertiary": "#00677f",
+              "on-surface": "#191c1d",
+              "surface-dim": "#d9dadb",
+              "tertiary-container": "#00d0fe",
+              "surface-bright": "#f8f9fa",
+              "primary": "#805600",
+              "on-secondary-fixed-variant": "#464747",
+              "surface-tint": "#805600",
+              "primary-fixed": "#ffddaf",
+              "inverse-on-surface": "#f0f1f2",
+              "on-secondary": "#ffffff",
+              "surface-container-high": "#e7e8e9",
+              "on-tertiary-container": "#00556a",
+              "on-primary-container": "#6a4700",
+              "outline": "#847560",
+              "secondary": "#5e5e5e"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Manrope"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #d7c4ac33;
+        border-radius: 10px;
+      }
+      .filament-glow {
+        background: linear-gradient(135deg, #805600 0%, #ffb000 100%);
+      }
+    </style>
+    <script>
+if (localStorage.getItem("loggedIn") !== "true") {
+  window.location.href = "login.html";
+}
+</script>
+</head>
+<body class="bg-surface text-on-background font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Top Navigation Shell -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm dark:shadow-none">
+<nav class="flex items-center justify-between px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="text-xl font-bold tracking-tighter text-slate-900 dark:text-slate-50 uppercase">Debex Electronics</div>
+<div class="hidden md:flex gap-8 tracking-tight text-sm font-medium">
+<a class="text-amber-700 dark:text-amber-400 border-b-2 border-amber-500 pb-1 transition-colors duration-200" href="index.html">Home</a> 
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="lighting.html">Lighting</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="power-switches.html">Power &amp; Switches</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="professional-tools.html">Professional Tools</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-1０ transition-colors duration-2００" href="infrastructure.html">Infrastructure</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-slate-600 hover:bg-slate-50/50 p-2 rounded-full transition-all active:scale-95">shopping_cart</button>
+<button class="material-symbols-outlined text-slate-600 hover:bg-slate-50/50 p-2 rounded-full transition-all active:scale-95">person</button>
+</div>
+</nav>
+<div class="bg-slate-100 dark:bg-slate-800 h-[1px] w-full"></div>
+</header>
+<main class="pt-24 pb-16 px-8 max-w-screen-2xl mx-auto flex flex-col md:flex-row gap-12">
+<!-- Sidebar Filter -->
+<aside class="w-full md:w-64 flex-shrink-0 space-y-10">
+<section>
+<h3 class="font-headline font-bold text-on-background text-lg mb-6 tracking-tight">Refine Collection</h3>
+<!-- Filter Group: Gang -->
+<div class="mb-8">
+<label class="font-label text-xs uppercase tracking-widest text-secondary mb-4 block">Gang Configuration</label>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded-sm border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<span class="font-body text-sm text-on-surface-variant group-hover:text-on-surface transition-colors">1 Gang</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded-sm border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<span class="font-body text-sm text-on-surface-variant group-hover:text-on-surface transition-colors">2 Gang</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded-sm border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<span class="font-body text-sm text-on-surface-variant group-hover:text-on-surface transition-colors">3 Gang</span>
+</label>
+</div>
+</div>
+<!-- Filter Group: Finish -->
+<div class="mb-8">
+<label class="font-label text-xs uppercase tracking-widest text-secondary mb-4 block">Architectural Finish</label>
+<div class="grid grid-cols-2 gap-2">
+<button class="flex items-center justify-center py-2 px-3 bg-surface-container-low hover:bg-surface-container-high transition-colors text-xs font-label rounded-sm border border-transparent hover:border-outline-variant/20">Brass</button>
+<button class="flex items-center justify-center py-2 px-3 bg-surface-container-low hover:bg-surface-container-high transition-colors text-xs font-label rounded-sm border border-transparent hover:border-outline-variant/20">Chrome</button>
+<button class="flex items-center justify-center py-2 px-3 bg-surface-container-low hover:bg-surface-container-high transition-colors text-xs font-label rounded-sm border border-transparent hover:border-outline-variant/20 col-span-2">Matte Black</button>
+</div>
+</div>
+<!-- Filter Group: Voltage -->
+<div>
+<label class="font-label text-xs uppercase tracking-widest text-secondary mb-4 block">Voltage Rating</label>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="border-outline-variant text-primary focus:ring-primary w-4 h-4" name="voltage" type="radio"/>
+<span class="font-body text-sm text-on-surface-variant group-hover:text-on-surface transition-colors">230V Standard</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="border-outline-variant text-primary focus:ring-primary w-4 h-4" name="voltage" type="radio"/>
+<span class="font-body text-sm text-on-surface-variant group-hover:text-on-surface transition-colors">110V Industrial</span>
+</label>
+</div>
+</div>
+</section>
+<!-- Technical Detail Box -->
+<div class="p-6 bg-surface-container-low rounded-lg">
+<span class="material-symbols-outlined text-primary mb-3">precision_manufacturing</span>
+<h4 class="font-headline font-bold text-sm mb-2">Precision Machined</h4>
+<p class="font-body text-xs leading-relaxed text-secondary">All Lumen &amp; Lead hardware is engineered with solid metal faceplates and high-tactile toggle movements for superior feedback.</p>
+</div>
+</aside>
+<!-- Product Content Area -->
+<section class="flex-1">
+<!-- Editorial Header -->
+<div class="mb-12">
+<span class="font-label text-xs uppercase tracking-[0.3em] text-primary mb-4 block">Curated Hardware</span>
+<h1 class="font-headline text-5xl font-extrabold text-on-background tracking-tighter mb-4 leading-none">Switches &amp; Power Sockets</h1>
+<p class="font-body text-lg text-secondary max-w-2xl leading-relaxed">Elevate every interaction. Our range of architectural switches and sockets combines modernist aesthetics with industrial-grade engineering.</p>
+</div>
+<!-- Product Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-12">
+<!-- Product Card 1: 1-Gang Switch -->
+<div class="group">
+<div class="aspect-[4/5] bg-surface-container-low relative overflow-hidden mb-6 rounded-lg flex items-center justify-center p-12 transition-colors duration-500 hover:bg-surface-container-high">
+<img alt="Luxury brass light switch" class="max-w-full h-auto object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-700" data-alt="close-up of a high-end solid brass single gang toggle switch with a brushed finish on a neutral architectural background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGrMG59bskWvjQgOuc-xoKz_KHXWAQmfYu_rdZQhgKLOfwB7kTPKcGGpa_9CDoNw5rJmCSLVBePvVrisU98nGs9JqJvb1KxE5qNb8KkhILRZDTI_zfVtKGOET8kESVE5JIC4LgPrKbHDrSEzWdddNmr86qlb2LAud5F-rh6FqXGJLwq7HnfsRf6a3sK4lABq1hlDF1vYonKlGUiwJpWsqwlvqghjr3IIkylnlNtGnl4o6JDblxY1CTsQPGTsregdxaO-I8TyYGYj4"/>
+<div class="absolute top-6 left-6 flex flex-col gap-2">
+<span class="bg-surface-container-lowest text-on-surface-variant px-3 py-1 text-[10px] font-label uppercase tracking-widest shadow-sm">Bestseller</span>
+</div>
+</div>
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-headline font-bold text-xl tracking-tight text-on-background group-hover:text-primary transition-colors">1-Gang Two-Way Toggle</h3>
+<span class="font-label text-[10px] uppercase tracking-widest text-secondary block mt-1">Ref: LL-SW-01-BR</span>
+</div>
+<span class="font-headline font-bold text-xl text-on-background">£48.00</span>
+</div>
+<p class="font-body text-sm text-secondary mb-6 leading-relaxed">Solid brass construction with a precision-weighted internal mechanism for a definitive tactile click.</p>
+<button class="w-full py-4 filament-glow text-on-primary font-headline font-bold text-sm tracking-widest uppercase rounded-md transition-all active:scale-[0.98] shadow-lg shadow-primary/10">Add to Specification</button>
+</div>
+<!-- Product Card 2: Twin Socket -->
+<div class="group">
+<div class="aspect-[4/5] bg-surface-container-low relative overflow-hidden mb-6 rounded-lg flex items-center justify-center p-12 transition-colors duration-500 hover:bg-surface-container-high">
+<img alt="Matte black twin socket" class="max-w-full h-auto object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-700" data-alt="minimalist matte black double power socket with clean edges and integrated USB-C ports on a light gray surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1rMx7TK7_JX4PLnJtpKvtpvSHgj1yoKOR_U_44IDMiS0kgo1MHPP-JdUfbKB9HQByw_faGrYuqn7B1Kbvz1m811p_xlMtADd2nX3n8eHivGI1flIDDVEJ87WQtgVyJRNk_LRPMVmnFDVuEDbxJrH9__6asOaD6GteWNqVqBzaC8zEosMLaUxcEfQusTcApu9BwqGtSEodQV0fP6iPk_1a9QxtJ2VrqtOiDl4eKnZrfLYJ7EZXdk1Kr9SgXxPISXND_usewsh7dtw"/>
+</div>
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-headline font-bold text-xl tracking-tight text-on-background group-hover:text-primary transition-colors">Twin Switched Socket</h3>
+<span class="font-label text-[10px] uppercase tracking-widest text-secondary block mt-1">Ref: LL-SK-02-MB</span>
+</div>
+<span class="font-headline font-bold text-xl text-on-background">£62.00</span>
+</div>
+<p class="font-body text-sm text-secondary mb-6 leading-relaxed">Matte black finish featuring integrated dual USB-C charging points and child-safe shutter mechanism.</p>
+<button class="w-full py-4 filament-glow text-on-primary font-headline font-bold text-sm tracking-widest uppercase rounded-md transition-all active:scale-[0.98] shadow-lg shadow-primary/10">Add to Specification</button>
+</div>
+<!-- Product Card 3: 3-Gang Switch -->
+<div class="group">
+<div class="aspect-[4/5] bg-surface-container-low relative overflow-hidden mb-6 rounded-lg flex items-center justify-center p-12 transition-colors duration-500 hover:bg-surface-container-high">
+<img alt="Polished chrome 3 gang switch" class="max-w-full h-auto object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-700" data-alt="high-quality polished chrome faceplate with three vertical toggle switches reflecting a clean studio environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmRZYqBoRWxjNpD-imc2COr-t5SIiEmIEfI90t_zSPTuX_YiY8-XT3oxZ9k2Hojon-gMoqTfmt7RXBDO3LBPkqkhmlzjo6WwEzTWgR9wcxrlbBukeG94xZ2K-vxo3pdUvWqj3cWcz7xjIoXLiUmVAjymsAMJO_2f6vjVXCLxQg1uPcSelttaTwWvV65_kVwbVjqxB3ichUDfp8VyLrsX_eBb2EmKnibQprWSTKTBgBGz-GlOx_9JcegYRqIwLYDGqS2wsS8vHfrkQ"/>
+</div>
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-headline font-bold text-xl tracking-tight text-on-background group-hover:text-primary transition-colors">3-Gang Two-Way Toggle</h3>
+<span class="font-label text-[10px] uppercase tracking-widest text-secondary block mt-1">Ref: LL-SW-03-CH</span>
+</div>
+<span class="font-headline font-bold text-xl text-on-background">£84.00</span>
+</div>
+<p class="font-body text-sm text-secondary mb-6 leading-relaxed">Sleek polished chrome for modern interiors. Triple-circuit control from a single architectural plate.</p>
+<button class="w-full py-4 filament-glow text-on-primary font-headline font-bold text-sm tracking-widest uppercase rounded-md transition-all active:scale-[0.98] shadow-lg shadow-primary/10">Add to Specification</button>
+</div>
+<!-- Product Card 4: Isolator Switch -->
+<div class="group">
+<div class="aspect-[4/5] bg-surface-container-low relative overflow-hidden mb-6 rounded-lg flex items-center justify-center p-12 transition-colors duration-500 hover:bg-surface-container-high">
+<img alt="Technical isolator switch" class="max-w-full h-auto object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-700" data-alt="heavy duty industrial style fan isolator switch in a satin metal finish with bold technical typography labels" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB92xLdpaY-Y6oKMQQlpuvoKDIzwsCAXrpb-VPxuiW7ar59bVTU3AznADfyCLMbDgzSJBQJh_8hBhxwYXDP9KTR5VS05Mud8Nxvhkdv0cw9bmh-GPu50QfvHw-j7y7CAfDnFna-69HtfHsp9kmyeDgYcmKVdgSOT7kSbGCFZC9d9OiM6gx-De-ItrH-1xGKuCJePIoa9LhqIXpCugrrS-mC7MmrPTkVmSwCzmmypeNhsoCdSTBSXppQ5Pl0cQfsXJenJFgN_-0a9yA"/>
+<div class="absolute top-6 left-6">
+<span class="bg-secondary text-white px-3 py-1 text-[10px] font-label uppercase tracking-widest shadow-sm">Technical</span>
+</div>
+</div>
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-headline font-bold text-xl tracking-tight text-on-background group-hover:text-primary transition-colors">Fan Isolator Switch</h3>
+<span class="font-label text-[10px] uppercase tracking-widest text-secondary block mt-1">Ref: LL-IS-01-SN</span>
+</div>
+<span class="font-headline font-bold text-xl text-on-background">£54.00</span>
+</div>
+<p class="font-body text-sm text-secondary mb-6 leading-relaxed">Professional-grade safety isolation with a high-torque rotary operation and satin nickel finish.</p>
+<button class="w-full py-4 bg-surface-container-highest text-on-surface font-headline font-bold text-sm tracking-widest uppercase rounded-md hover:bg-surface-container-high transition-all active:scale-[0.98]">Request Quote</button>
+</div>
+</div>
+<!-- Pagination/Footer Context -->
+<div class="mt-20 pt-12 border-t border-surface-container-highest flex justify-between items-center">
+<span class="font-label text-xs text-secondary">Showing 4 of 28 Architectural Hardware Items</span>
+<div class="flex gap-4">
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant/30 text-on-background hover:bg-surface-container-low transition-colors rounded-sm">1</button>
+<button class="w-10 h-10 flex items-center justify-center text-secondary hover:text-on-background transition-colors">2</button>
+<button class="w-10 h-10 flex items-center justify-center text-secondary hover:text-on-background transition-colors">3</button>
+<button class="material-symbols-outlined w-10 h-10 flex items-center justify-center text-on-background">chevron_right</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="bg-slate-100 dark:bg-slate-950 w-full py-12 px-8">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-screen-2xl mx-auto">
+<div class="col-span-2 md:col-span-1">
+<div class="text-lg font-black text-slate-900 dark:text-slate-50 uppercase mb-4 tracking-tighter">Lumen &amp; Lead</div>
+<p class="font-manrope text-xs tracking-widest uppercase text-slate-500 dark:text-slate-500">© 2024 Lumen &amp; Lead Architectural. Precision Luminescence.</p>
+</div>
+<div class="flex flex-col gap-3">
+<h5 class="font-manrope text-xs tracking-widest uppercase text-amber-600 dark:text-amber-500 font-bold mb-2">Technical</h5>
+<a class="font-manrope text-xs tracking-widest uppercase text-slate-500 dark:text-slate-500 hover:text-amber-500 transition-colors opacity-80 hover:opacity-100" href="#">Technical Specs</a>
+<a class="font-manrope text-xs tracking-widest uppercase text-slate-500 dark:text-slate-500 hover:text-amber-500 transition-colors opacity-80 hover:opacity-100" href="#">Pro Portal</a>
+</div>
+<div class="flex flex-col gap-3">
+<h5 class="font-manrope text-xs tracking-widest uppercase text-amber-600 dark:text-amber-500 font-bold mb-2">Support</h5>
+<a class="font-manrope text-xs tracking-widest uppercase text-slate-500 dark:text-slate-500 hover:text-amber-500 transition-colors opacity-80 hover:opacity-100" href="#">Shipping</a>
+<a class="font-manrope text-xs tracking-widest uppercase text-slate-500 dark:text-slate-500 hover:text-amber-500 transition-colors opacity-80 hover:opacity-100" href="#">Returns</a>
+</div>
+<div class="flex flex-col gap-3">
+<h5 class="font-manrope text-xs tracking-widest uppercase text-amber-600 dark:text-amber-500 font-bold mb-2">Company</h5>
+<a class="font-manrope text-xs tracking-widest uppercase text-slate-500 dark:text-slate-500 hover:text-amber-500 transition-colors opacity-80 hover:opacity-100" href="#">Sustainability</a>
+<a class="font-manrope text-xs tracking-widest uppercase text-slate-500 dark:text-slate-500 hover:text-amber-500 transition-colors opacity-80 hover:opacity-100" href="#">About Us</a>
+</div>
+</div>
+</footer>
+</body></html>

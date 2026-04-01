@@ -7,11 +7,9 @@
 
   <script>
     // 🔐 AUTH GUARD (must be first)
-    const token = localStorage.getItem("token");
-
-if (!token) {
-    window.location.href = "login.html";
-}
+    if (localStorage.getItem("loggedIn") !== "true") {
+        window.location.href = "login.html";
+    }
   </script>
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
