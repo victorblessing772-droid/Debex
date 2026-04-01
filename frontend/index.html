@@ -7,9 +7,9 @@
 
   <script>
     // 🔐 AUTH GUARD (must be first)
-    if (localStorage.getItem("loggedIn") !== "true") {
-        window.location.href = "login.html";
-    }
+if (!localStorage.getItem("token")) {
+      window.location.href = "login.html";
+  }
   </script>
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -126,19 +126,12 @@
 <div class="relative z-10 h-full flex flex-col justify-center px-12 md:px-24 max-w-screen-2xl mx-auto">
 <span class="font-label text-primary-fixed uppercase tracking-widest text-sm mb-6 block">The Master Catalog</span>
 <h1 class="font-headline text-5xl md:text-8xl font-extrabold text-white tracking-tighter leading-none mb-8 max-w-4xl">
-                    Precision <br/><span class="text-primary-container">Luminescence.</span>
+                    Debex <br/><span class="text-primary-container">Electronics</span>
 </h1>
 <p class="font-body text-xl text-slate-300 max-w-xl mb-12 leading-relaxed">
-                    Lumen &amp; Lead provides industrial-grade components for architectural artifacts. Engineering the invisible threads of light that define modern space.
-                </p>
+                   Your trusted plug for electronics and hardware solutions
 <div class="flex gap-4">
-<button class="filament-gradient text-white px-8 py-4 font-bold rounded-lg shadow-xl hover:brightness-110 transition-all flex items-center gap-2">
-                        Shop Catalog
-                        <span class="material-symbols-outlined">arrow_forward</span>
-</button>
-<button class="bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-4 font-bold rounded-lg hover:bg-white/20 transition-all">
-                        Technical Specs
-                    </button>
+
 </div>
 </div>
 </section>
@@ -151,7 +144,7 @@
 <div class="absolute inset-0 bg-gradient-to-t from-on-background/80 via-transparent to-transparent"></div>
 <div class="absolute bottom-10 left-10 text-white">
 <h3 class="font-headline text-3xl font-bold mb-2">Lighting</h3>
-<p class="text-slate-300 font-label uppercase text-xs tracking-widest mb-4">Filaments • Architectural • Industrial</p>
+<p class="text-slate-300 font-label uppercase text-xs tracking-widest mb-4">Filaments • Chanderliers • Bulbs</p>
 <a class="text-primary-container font-bold hover:underline flex items-center gap-2" href="#">Explore Collection <span class="material-symbols-outlined text-sm">north_east</span></a>
 </div>
 </div>
@@ -181,7 +174,7 @@
 <div class="absolute inset-0 flex flex-col justify-center p-12 text-white max-w-md">
 <h3 class="font-headline text-4xl font-bold mb-4 leading-tight">Infrastructure</h3>
 <p class="text-slate-200 mb-8 font-light leading-relaxed">Conduits, mounting, and structural lighting frameworks.</p>
-<button class="border border-primary-container text-primary-container px-8 py-3 font-bold rounded-lg hover:bg-primary-container hover:text-on-primary transition-all w-fit">The Core Series</button>
+<button class="border border-primary-container text-primary-container px-8 py-3 font-bold rounded-lg hover:bg-primary-container hover:text-on-primary transition-all w-fit">Explore Collection</button>
 </div>
 </div>
 </div>
@@ -260,49 +253,14 @@
 </div>
 </div>
 </div>
-</section>
-<!-- Expert Recommendations (Editorial Layout) -->
-<section class="py-32 bg-surface">
-<div class="max-w-screen-2xl mx-auto px-8">
-<div class="flex flex-col lg:flex-row gap-20 items-center">
-<div class="lg:w-1/2 relative">
-<div class="bg-primary-container absolute -top-8 -left-8 w-64 h-64 opacity-10 rounded-full blur-3xl"></div>
-<img alt="Professional Workspace" class="rounded-xl relative z-10 shadow-2xl" data-alt="A professional lighting designer's workspace with sketches" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIzoTfG3GUXLaS8gf1QUVd2xTGfuOHDZ6Qtsq0pmrOAc0er5JmKEJUiRFMFFIdcLcu3sTkV_lgzIJBuMv7Yzx-9KgfZq2F71_qJL-6al16oBgNEnVXhaUqqNNRyhgNEV-GffTfHcADpIuEpgFg53yEXWzsBPKYYmy63g9FygJ9GfcPp9FsnaTOsZw7b5EZ80DQZOmpm1anb2ZeK98l7Nt2UrbwkBMrbC0mqZUskyOiyx9fMhtmqeOp0Uijqe0XIHO1Y-S2u9-Zd1A"/>
-</div>
-<div class="lg:w-1/2">
-<span class="font-label text-primary uppercase text-xs font-bold tracking-[0.2em] mb-4 block">Professional Support</span>
-<h2 class="font-headline text-5xl font-extrabold tracking-tighter mb-8 leading-tight">Masters of Industrial Light.</h2>
-<p class="text-secondary body-lg mb-10 leading-relaxed">
-                            Lumen &amp; Lead curators and engineers provide weekly selections of components that transcend mere function. From matching color temperatures across expansive infrastructure to selecting the correct gauge for industrial power, we provide the technical clarity your project demands.
-                        </p>
-<ul class="space-y-6 mb-12">
-<li class="flex items-start gap-4">
-<span class="material-symbols-outlined text-primary">verified</span>
-<div>
-<h5 class="font-bold">System Compliance</h5>
-<p class="text-sm text-secondary">Ensure infrastructure meets the latest architectural standards.</p>
-</div>
-</li>
-<li class="flex items-start gap-4">
-<span class="material-symbols-outlined text-primary">settings_input_component</span>
-<div>
-<h5 class="font-bold">Technical Load Analysis</h5>
-<p class="text-sm text-secondary">Expert analysis on circuit capacity for large-scale professional tools.</p>
-</div>
-</li>
-</ul>
-<button class="bg-on-background text-white px-10 py-4 font-bold rounded-lg hover:bg-slate-800 transition-all">Visit Pro Portal</button>
-</div>
-</div>
-</div>
-</section>
+
 </main>
 <!-- Footer -->
 <footer class="w-full py-16 px-8 mt-auto bg-zinc-50 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800/50">
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto font-['Manrope']">
 <div class="space-y-4">
-<div class="text-lg font-bold text-zinc-900 dark:text-zinc-100 uppercase">Lumen &amp; Lead</div>
-<p class="text-zinc-500 dark:text-zinc-400 text-sm">Precision Luminescence for modern architectural environments.</p>
+<div class="text-lg font-bold text-zinc-900 dark:text-zinc-100 uppercase">Debex Electronics</div>
+<p class="text-zinc-500 dark:text-zinc-400 text-sm">Affordable pricing without compromising on quality.</p>
 </div>
 <div>
 <h4 class="text-xs uppercase tracking-widest font-semibold text-amber-600 mb-6">Catalog</h4>
@@ -335,15 +293,15 @@
 </div>
 <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-800/50 text-center">
 <p class="text-xs uppercase tracking-widest font-semibold text-zinc-500 dark:text-zinc-400">
-                © 2024 Lumen &amp; Lead. Precision Luminescence.
+                © 2026 Debex Electronics. All rights reserved.
             </p>
 </div>
 </footer>
  <!-- LOGOUT SCRIPT -->
   <script>
-    function logout() {
-        localStorage.removeItem("loggedIn");
-        window.location.href = "login.html";
-    }
+   function logout() {
+    localStorage.removeItem("token"); // ✅ correct
+    window.location.href = "login.html";
+}
   </script>
 </body></html>

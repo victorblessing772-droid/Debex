@@ -339,6 +339,7 @@ async function handleLogin(e) {
     }
 
     localStorage.setItem("token", data.token);
+localStorage.setItem("loggedIn", "true"); // ✅ ADD THIS
 
     alert("Login successful!");
     window.location.href = "index.html";
