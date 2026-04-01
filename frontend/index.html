@@ -3,14 +3,13 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Lumen &amp; Lead | Precision Luminescence</title>
+<title>Debex Electronics</title>
 
-  <script>
-    // 🔐 AUTH GUARD (must be first)
-    if (localStorage.getItem("loggedIn") !== "true") {
-        window.location.href = "login.html";
-    }
-  </script>
+<script>
+if (!localStorage.getItem("token")) {
+    window.location.href = "login.html";
+}
+</script>
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;500;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
@@ -95,10 +94,11 @@
 <div class="flex items-center gap-12">
 <span class="text-xl font-extrabold tracking-tighter text-zinc-900 dark:text-zinc-100 uppercase">Lumen &amp; Lead</span>
 <div class="hidden md:flex gap-8 tracking-tight text-sm font-medium">
-<a class="text-amber-700 dark:text-amber-400 border-b-2 border-amber-500 pb-1 transition-colors duration-200" href="#">Lighting</a>
-<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="#">Power &amp; Switches</a>
-<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="#">Professional Tools</a>
-<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="#">Infrastructure</a>
+<a class="text-amber-700 dark:text-amber-400 border-b-2 border-amber-500 pb-1 transition-colors duration-200" href="index.html">Home</a> 
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="lighting.html">Lighting</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="power-switches.html">Power &amp; Switches</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="professional-tools.html">Professional Tools</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-1０ transition-colors duration-2００" href="infrastructure.html">Infrastructure</a>
 </div>
 </div>
 <div class="flex items-center gap-6">
@@ -304,11 +304,9 @@
             </p>
 </div>
 </footer>
- <!-- LOGOUT SCRIPT -->
-  <script>
-    function logout() {
-        localStorage.removeItem("loggedIn");
-        window.location.href = "login.html";
-    }
-  </script>
+<button onclick="logout()">Logout</button>
+<script>function logout() {
+  localStorage.clear();
+  window.location.href = "login.html";
+}</script>
 </body></html>
