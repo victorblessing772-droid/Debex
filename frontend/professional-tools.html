@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed-variant": "#464747",
+              "on-primary-fixed-variant": "#614000",
+              "primary-fixed": "#ffddaf",
+              "surface-bright": "#f8f9fa",
+              "primary-fixed-dim": "#ffba43",
+              "on-tertiary-container": "#00556a",
+              "surface-container": "#edeeef",
+              "on-tertiary-fixed-variant": "#004e60",
+              "tertiary-fixed-dim": "#4cd6ff",
+              "on-tertiary": "#ffffff",
+              "inverse-surface": "#2e3132",
+              "error": "#ba1a1a",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed-dim": "#c7c6c6",
+              "inverse-on-surface": "#f0f1f2",
+              "background": "#f8f9fa",
+              "surface": "#f8f9fa",
+              "on-secondary-fixed": "#1b1c1c",
+              "primary-container": "#ffb000",
+              "tertiary-fixed": "#b7eaff",
+              "on-surface-variant": "#524533",
+              "on-secondary-container": "#646464",
+              "surface-variant": "#e1e3e4",
+              "surface-container-highest": "#e1e3e4",
+              "secondary-fixed": "#e3e2e2",
+              "on-error-container": "#93000a",
+              "tertiary-container": "#00d0fe",
+              "on-secondary": "#ffffff",
+              "surface-dim": "#d9dadb",
+              "error-container": "#ffdad6",
+              "secondary-container": "#e3e2e2",
+              "on-primary-fixed": "#281800",
+              "on-primary-container": "#6a4700",
+              "surface-tint": "#805600",
+              "on-primary": "#ffffff",
+              "outline": "#847560",
+              "tertiary": "#00677f",
+              "secondary": "#5e5e5e",
+              "on-error": "#ffffff",
+              "on-background": "#191c1d",
+              "surface-container-low": "#f3f4f5",
+              "inverse-primary": "#ffba43",
+              "surface-container-high": "#e7e8e9",
+              "on-surface": "#191c1d",
+              "outline-variant": "#d7c4ac",
+              "primary": "#805600",
+              "on-tertiary-fixed": "#001f28"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Manrope"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-filament-glow {
+            background: linear-gradient(135deg, #805600 0%, #ffb000 100%);
+        }
+        .text-glow-hover:hover {
+            text-shadow: 0 0 8px rgba(255, 176, 0, 0.4);
+        }
+    </style>
+    <script>
+if (localStorage.getItem("loggedIn") !== "true") {
+  window.location.href = "login.html";
+}
+</script>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md">
+<nav class="flex items-center justify-between px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-bold tracking-tighter text-zinc-900 font-headline">Debex Electronics</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-amber-700 dark:text-amber-400 border-b-2 border-amber-500 pb-1 transition-colors duration-200" href="index.html">Home</a> 
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="lighting.html">Lighting</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="power-switches.html">Power &amp; Switches</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="professional-tools.html">Professional Tools</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-1０ transition-colors duration-2００" href="infrastructure.html">Infrastructure</a>
+</div>
+<div class="flex items-center space-x-6">
+<button class="material-symbols-outlined text-zinc-600 hover:opacity-80 transition-opacity">shopping_cart</button>
+<button class="material-symbols-outlined text-zinc-600 hover:opacity-80 transition-opacity">account_circle</button>
+</div>
+</nav>
+</header>
+<div class="flex min-h-screen pt-16">
+<!-- Side Navigation Bar -->
+<aside class="hidden md:flex flex-col pt-24 pb-8 space-y-2 h-screen w-64 bg-zinc-50 sticky top-0">
+<div class="px-6 mb-8">
+<h2 class="font-headline text-lg font-bold tracking-tight text-on-surface">Professional Tools</h2>
+<p class="font-label text-[10px] uppercase tracking-widest text-secondary mt-1">Technical Filters</p>
+</div>
+<nav class="flex flex-col space-y-1">
+<a class="flex items-center gap-3 text-amber-700 bg-white rounded-l-lg ml-2 pl-4 py-3 font-manrope text-xs font-medium uppercase tracking-widest transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-sm">electric_meter</span>
+                    Diagnostic Gear
+                </a>
+<a class="flex items-center gap-3 text-zinc-500 px-6 py-3 font-manrope text-xs font-medium uppercase tracking-widest hover:text-zinc-900 hover:bg-zinc-100 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-sm">construction</span>
+                    Hand Tools
+                </a>
+<a class="flex items-center gap-3 text-zinc-500 px-6 py-3 font-manrope text-xs font-medium uppercase tracking-widest hover:text-zinc-900 hover:bg-zinc-100 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-sm">handyman</span>
+                    Installation Kits
+                </a>
+<a class="flex items-center gap-3 text-zinc-500 px-6 py-3 font-manrope text-xs font-medium uppercase tracking-widest hover:text-zinc-900 hover:bg-zinc-100 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-sm">bolt</span>
+                    Power Ratings
+                </a>
+<a class="flex items-center gap-3 text-zinc-500 px-6 py-3 font-manrope text-xs font-medium uppercase tracking-widest hover:text-zinc-900 hover:bg-zinc-100 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-sm">shield_with_heart</span>
+                    Safety Equipment
+                </a>
+</nav>
+<div class="mt-auto px-6 pt-8 border-t border-zinc-200">
+<p class="font-label text-[10px] uppercase tracking-widest text-secondary mb-4">Technical Grade</p>
+<div class="space-y-3">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded-sm border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-label text-xs text-on-surface-variant group-hover:text-on-surface">Industrial</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded-sm border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-label text-xs text-on-surface-variant group-hover:text-on-surface">Professional</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded-sm border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-label text-xs text-on-surface-variant group-hover:text-on-surface">Residential+</span>
+</label>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 bg-surface-container-low px-8 md:px-12 py-12">
+<!-- Hero / Header Section -->
+<section class="mb-16 max-w-6xl">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+<div class="max-w-2xl">
+<span class="font-label text-[11px] uppercase tracking-[0.3em] text-primary font-bold mb-4 block">Engineered for Precision</span>
+<h1 class="font-headline text-5xl md:text-6xl font-extrabold tracking-tighter text-on-surface leading-none mb-6">
+                            Tools for the <br/><span class="text-primary italic">Modern Engineer.</span>
+</h1>
+<p class="font-body text-lg text-secondary leading-relaxed max-w-xl">
+                            The Lumen &amp; Lead professional range is forged for those who demand absolute accuracy in every circuit, connection, and installation. Treat your toolkit like the architectural asset it is.
+                        </p>
+</div>
+<div class="flex gap-4">
+<div class="h-24 w-24 bg-surface-container-highest rounded flex items-center justify-center border border-outline-variant/20 shadow-sm">
+<span class="material-symbols-outlined text-4xl text-primary/40">verified_user</span>
+</div>
+<div class="h-24 w-24 bg-surface-container-highest rounded flex items-center justify-center border border-outline-variant/20 shadow-sm">
+<span class="material-symbols-outlined text-4xl text-primary/40">high_quality</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
+<!-- Product 1: Multimeter -->
+<div class="group bg-surface-container-lowest p-6 transition-all duration-300 hover:shadow-[0_8px_24px_rgba(25,28,29,0.06)] flex flex-col h-full">
+<div class="relative aspect-[4/5] overflow-hidden bg-surface-container mb-6">
+<img alt="Digital Multimeter" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Close-up of a high-end digital multimeter with a backlit screen and amber accents on a dark slate background with sharp shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlX6ugmHwpi0PpJBxygm8SZrGcrJ01D3zpEHXwQNbzw1gV65VziCbmcYtnRkL7E8nOUlKkbvESGpMBxl41KLD1lWwo1hKZCrOC5faGx9I0WdNOjfHPVxqPuz8FugS7wCFN2XEbKLi1WsScE4eBKyG5oE8UBGr6TQgjJdnHsbdu0eytOgGqepZZwjVt1Y1Btdse5IbgKXcQ56bjdUJmehgVZrke5ROeDYYWX1K3baP2AuSA7pQyRjjM681SpSBD8PFb_3ZvLinwX8U"/>
+<div class="absolute top-4 right-4 bg-on-background/10 backdrop-blur px-3 py-1 text-[10px] font-label font-bold uppercase tracking-widest text-on-surface">
+                            CAT IV 600V
+                        </div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline text-xl font-bold tracking-tight text-on-surface group-hover:text-primary transition-colors">L&amp;L Digital Multimeter</h3>
+<span class="font-label text-sm font-semibold">$345.00</span>
+</div>
+<p class="font-body text-xs text-secondary mb-4 line-clamp-2">High-precision diagnostic tool with True RMS sensing and integrated thermal imaging capabilities.</p>
+<div class="flex gap-4 mb-6">
+<div class="flex flex-col">
+<span class="font-label text-[10px] text-outline uppercase tracking-wider">Tolerance</span>
+<span class="font-label text-xs font-medium">±0.05%</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label text-[10px] text-outline uppercase tracking-wider">Housing</span>
+<span class="font-label text-xs font-medium">Rubber-Armor</span>
+</div>
+</div>
+</div>
+<button class="w-full py-3 bg-filament-glow text-on-primary font-manrope text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-opacity">
+                        Add to Specification
+                    </button>
+</div>
+<!-- Product 2: Sentry Voltage Pen -->
+<div class="group bg-surface-container-lowest p-6 transition-all duration-300 hover:shadow-[0_8px_24px_rgba(25,28,29,0.06)] flex flex-col h-full">
+<div class="relative aspect-[4/5] overflow-hidden bg-surface-container mb-6">
+<img alt="Voltage Detector" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Slim professional voltage detector pen with a glowing amber tip on a clean white laboratory surface with architectural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb-kp30jcayBunXikgQj1zK6EbVXg0HfnO9YX46Hu5bPUOS7fyEFfbakZNTnCy_tLJ0Hh94tcMG202No2LzwmgWnv6EzZrfzwQTE2XWzkn-qFECcMi-6f0M94Cn1Twxf2tCUJ7pPTtZuxGIYWQBY_vrRC-F658V9piB-zf-SngXUggas1YdO88x6wlvtG5r6VDAzSmJarT8dGU0Z09IMmsTI9M3yT8WRL31eyxY6dC60ulDQKAYjSoTbF4w2BQfbhu_EgeRNLWBrE"/>
+<div class="absolute top-4 right-4 bg-on-background/10 backdrop-blur px-3 py-1 text-[10px] font-label font-bold uppercase tracking-widest text-on-surface">
+                            Non-Contact
+                        </div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline text-xl font-bold tracking-tight text-on-surface group-hover:text-primary transition-colors">Sentry Voltage Pen</h3>
+<span class="font-label text-sm font-semibold">$89.00</span>
+</div>
+<p class="font-body text-xs text-secondary mb-4 line-clamp-2">Reliable non-contact voltage detection with visual and haptic feedback for industrial environments.</p>
+<div class="flex gap-4 mb-6">
+<div class="flex flex-col">
+<span class="font-label text-[10px] text-outline uppercase tracking-wider">Range</span>
+<span class="font-label text-xs font-medium">12-1000V</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label text-[10px] text-outline uppercase tracking-wider">IP Rating</span>
+<span class="font-label text-xs font-medium">IP67</span>
+</div>
+</div>
+</div>
+<button class="w-full py-3 bg-secondary-container text-on-surface font-manrope text-xs font-bold uppercase tracking-widest hover:bg-surface-container-highest transition-colors">
+                        Add to Specification
+                    </button>
+</div>
+<!-- Product 3: Triple-Core Multi-Plug -->
+<div class="group bg-surface-container-lowest p-6 transition-all duration-300 hover:shadow-[0_8px_24px_rgba(25,28,29,0.06)] flex flex-col h-full">
+<div class="relative aspect-[4/5] overflow-hidden bg-surface-container mb-6">
+<img alt="Multi-Plug Adapter" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Heavy-duty industrial power adapter with matte charcoal finish and metallic amber contacts, isolated on a textured grey concrete background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBEdsTCQ_55bSyunFW-zfsoKTRJeoTt0LXc-ybmVV_MSRt5m2gQoEPbTEyCOZbD6yamdQ2QjGc2KmjxARxxJqlKFFf58V8w3fYeBGhPJF2Sc8z-56w9nOia7GTKjc30yPiMaJEqTSmCbxr2Wr9oFy5u9Xv8zo0qREv7-bi0Gpu5KbGKsg64ogWjLI3JI97KyEech1JJT606LcHeeFTPiG-chAFNa2EuFOKZCbr5N_4__H0nBbV77ZsxDlU7aaZ3KhK7k_JrcQvdbQ"/>
+<div class="absolute top-4 right-4 bg-primary px-3 py-1 text-[10px] font-label font-bold uppercase tracking-widest text-on-primary">
+                            Bestseller
+                        </div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline text-xl font-bold tracking-tight text-on-surface group-hover:text-primary transition-colors">Triple-Core Multi-Plug</h3>
+<span class="font-label text-sm font-semibold">$120.00</span>
+</div>
+<p class="font-body text-xs text-secondary mb-4 line-clamp-2">High-amperage adapter with internal surge protection and premium grounding architecture.</p>
+<div class="flex gap-4 mb-6">
+<div class="flex flex-col">
+<span class="font-label text-[10px] text-outline uppercase tracking-wider">Amp Rating</span>
+<span class="font-label text-xs font-medium">20A Max</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label text-[10px] text-outline uppercase tracking-wider">Protection</span>
+<span class="font-label text-xs font-medium">Fused Core</span>
+</div>
+</div>
+</div>
+<button class="w-full py-3 bg-secondary-container text-on-surface font-manrope text-xs font-bold uppercase tracking-widest hover:bg-surface-container-highest transition-colors">
+                        Add to Specification
+                    </button>
+</div>
+<!-- Product 4: Installation Kit -->
+<div class="group bg-surface-container-lowest p-6 lg:col-span-2 transition-all duration-300 hover:shadow-[0_8px_24px_rgba(25,28,29,0.06)] flex flex-col md:flex-row gap-8">
+<div class="relative aspect-[16/9] md:w-1/2 overflow-hidden bg-surface-container">
+<img alt="Professional Tool Kit" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An organized hard-shell case filled with high-end electrical tools including insulated screwdrivers and wire strippers in a minimalist studio setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoP-hmSjpeD4PAy3sAJn9HAGohEDHVk6ZNsxigrC7rf3yydH1Nrn3GBOFzCdgLdAFEKP0STqz_QGwLghOkpm8xid6ww0uyHgPLmRjiA6DAs3tvbHPs5PMnhQqex_dIxCvmvirzRVEOebPv-pQR_4-arVrL56YN3YF89inIrnV5W7dY_O4wB8raz18-JIwyePjeYfQ2utMqxFtBRbULB789_yFQ6PjHXQV_2RXEjBm0dIZAVI0x4P2JXnvmVjC2_rkF8GwCpK4Ax4o"/>
+</div>
+<div class="flex-1 flex flex-col">
+<div class="mb-4">
+<span class="font-label text-[10px] uppercase tracking-widest text-primary font-bold">Featured Bundle</span>
+<div class="flex justify-between items-start mt-2">
+<h3 class="font-headline text-2xl font-bold tracking-tight text-on-surface group-hover:text-primary transition-colors">Professional Installation Kit</h3>
+<span class="font-label text-lg font-semibold">$850.00</span>
+</div>
+</div>
+<p class="font-body text-sm text-secondary mb-6">A complete system for the luxury residential installer. Includes 12 insulated hand tools, a digital tester, and a custom L&amp;L precision-molded hardshell case with integrated task lighting.</p>
+<div class="grid grid-cols-2 gap-4 mb-8">
+<ul class="space-y-2">
+<li class="flex items-center gap-2 font-label text-[11px] text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-primary">check_circle</span> 1000V Insulated
+                                </li>
+<li class="flex items-center gap-2 font-label text-[11px] text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-primary">check_circle</span> Lifetime Warranty
+                                </li>
+</ul>
+<ul class="space-y-2">
+<li class="flex items-center gap-2 font-label text-[11px] text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-primary">check_circle</span> Case Included
+                                </li>
+<li class="flex items-center gap-2 font-label text-[11px] text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-primary">check_circle</span> VDE Certified
+                                </li>
+</ul>
+</div>
+<div class="mt-auto">
+<button class="w-full py-4 bg-filament-glow text-on-primary font-manrope text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-opacity">
+                                Configure Specification Bundle
+                            </button>
+</div>
+</div>
+</div>
+<!-- Product 5: Handyman Placeholder -->
+<div class="group bg-surface-container-lowest p-6 transition-all duration-300 hover:shadow-[0_8px_24px_rgba(25,28,29,0.06)] flex flex-col h-full">
+<div class="relative aspect-[4/5] overflow-hidden bg-surface-container mb-6">
+<img alt="Wire Strippers" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Ergonomic wire stripping tool with chrome finish and amber-orange grips against a minimalist white architectural background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVLeTujbUjDb8tAaDx8ovxoo4vTCvfcPColwTt1GsB8jPljZ9REg6jbLVeQBp60Md0GX-S4ZDuGf77u9MVzOqWU09bX1dYFS3rCG5BpGA35Pewt8ldr-Tw5BQyMyHKPlboagiiiabel3Zcsp_AxBxyKsT2OECPh1nFVqg0YNYY4AmPYEf8JTdxJYi7Z5NbWlUphv44Tq81hYO8qht6B0bOOqk5xCdLvFHiUZYvKd2dyAVc-BFMDJEZOzcJFdVG2gIvc8R1sYzes9I"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline text-xl font-bold tracking-tight text-on-surface group-hover:text-primary transition-colors">Apex Wire Stripper</h3>
+<span class="font-label text-sm font-semibold">$56.00</span>
+</div>
+<p class="font-body text-xs text-secondary mb-4 line-clamp-2">Self-adjusting mechanism designed for high-repetition industrial wiring projects.</p>
+<div class="flex gap-4 mb-6">
+<div class="flex flex-col">
+<span class="font-label text-[10px] text-outline uppercase tracking-wider">Gauge</span>
+<span class="font-label text-xs font-medium">10-24 AWG</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label text-[10px] text-outline uppercase tracking-wider">Weight</span>
+<span class="font-label text-xs font-medium">180g</span>
+</div>
+</div>
+</div>
+<button class="w-full py-3 bg-secondary-container text-on-surface font-manrope text-xs font-bold uppercase tracking-widest hover:bg-surface-container-highest transition-colors">
+                        Add to Specification
+                    </button>
+</div>
+</div>
+<!-- Pagination / Load More (Tonal) -->
+<div class="mt-20 flex justify-center">
+<button class="group flex items-center gap-4 px-8 py-4 bg-white border border-outline-variant/10 font-manrope text-xs font-bold uppercase tracking-widest hover:bg-zinc-100 transition-all">
+                    Load More Technical Equipment
+                    <span class="material-symbols-outlined transition-transform group-hover:translate-y-1">expand_more</span>
+</button>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="w-full mt-auto bg-zinc-100">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8 max-w-screen-2xl mx-auto">
+<div class="flex flex-col gap-2">
+<div class="font-bold text-zinc-900 font-headline text-xl">The Illuminated Editorial</div>
+<p class="font-manrope text-xs tracking-normal text-zinc-500">© 2024 The Illuminated Editorial. Precision Luminescence.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-manrope text-xs tracking-normal text-zinc-500 hover:text-amber-600 hover:underline underline-offset-4 transition-all" href="#">Technical Support</a>
+<a class="font-manrope text-xs tracking-normal text-zinc-500 hover:text-amber-600 hover:underline underline-offset-4 transition-all" href="#">Warranty</a>
+<a class="font-manrope text-xs tracking-normal text-zinc-500 hover:text-amber-600 hover:underline underline-offset-4 transition-all" href="#">Spec Sheets</a>
+<a class="font-manrope text-xs tracking-normal text-zinc-500 hover:text-amber-600 hover:underline underline-offset-4 transition-all" href="#">Privacy</a>
+</div>
+<div class="flex gap-4">
+<div class="h-10 w-10 rounded-full border border-zinc-300 flex items-center justify-center text-zinc-400 hover:border-amber-600 hover:text-amber-600 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-lg">language</span>
+</div>
+<div class="h-10 w-10 rounded-full border border-zinc-300 flex items-center justify-center text-zinc-400 hover:border-amber-600 hover:text-amber-600 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-lg">mail</span>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

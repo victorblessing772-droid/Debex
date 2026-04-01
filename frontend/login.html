@@ -337,10 +337,10 @@ async function handleLogin(e) {
       alert(data.message || "Login failed");
       return;
     }
-
-    localStorage.setItem("token", data.token);
-localStorage.setItem("loggedIn", "true"); // ✅ ADD THIS
-
+ 
+    // ✅ THIS IS WHAT YOU WERE MISSING
+    localStorage.setItem("token", data.token || "true");
+    
     alert("Login successful!");
     window.location.href = "index.html";
 

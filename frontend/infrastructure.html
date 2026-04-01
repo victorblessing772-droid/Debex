@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container": "#edeeef",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "secondary-container": "#e3e2e2",
+                        "tertiary-fixed-dim": "#4cd6ff",
+                        "tertiary-fixed": "#b7eaff",
+                        "surface": "#f8f9fa",
+                        "secondary-fixed": "#e3e2e2",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#001f28",
+                        "on-surface-variant": "#524533",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#614000",
+                        "surface-container-low": "#f3f4f5",
+                        "on-secondary-container": "#646464",
+                        "on-background": "#191c1d",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#e1e3e4",
+                        "on-primary-fixed": "#281800",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#e1e3e4",
+                        "inverse-surface": "#2e3132",
+                        "background": "#f8f9fa",
+                        "inverse-primary": "#ffba43",
+                        "primary-fixed-dim": "#ffba43",
+                        "on-tertiary-fixed-variant": "#004e60",
+                        "error": "#ba1a1a",
+                        "primary-container": "#ffb000",
+                        "outline-variant": "#d7c4ac",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#c7c6c6",
+                        "tertiary": "#00677f",
+                        "on-surface": "#191c1d",
+                        "surface-dim": "#d9dadb",
+                        "tertiary-container": "#00d0fe",
+                        "surface-bright": "#f8f9fa",
+                        "primary": "#805600",
+                        "on-secondary-fixed-variant": "#464747",
+                        "surface-tint": "#805600",
+                        "primary-fixed": "#ffddaf",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e7e8e9",
+                        "on-tertiary-container": "#00556a",
+                        "on-primary-container": "#6a4700",
+                        "outline": "#847560",
+                        "secondary": "#5e5e5e"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Manrope"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filament-gradient {
+            background: linear-gradient(135deg, #805600 0%, #ffb000 100%);
+        }
+    </style>
+    <script>
+ if (localStorage.getItem("loggedIn") !== "true") {
+  window.location.href = "login.html";
+}
+</script>
+</head>
+<body class="bg-surface text-on-background font-body min-h-screen flex flex-col">
+<!-- TopNavBar (Based on COMPONENTS_31) -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md shadow-sm border-b border-zinc-100 dark:border-zinc-800/50">
+<div class="flex justify-between items-center px-8 h-16 max-w-full mx-auto">
+<div class="text-xl font-extrabold tracking-tighter text-zinc-900 dark:text-zinc-100 font-headline uppercase">
+                Debex Electronics
+            </div>
+<div class="hidden md:flex items-center space-x-8 font-['Manrope'] antialiased tracking-tight text-sm font-medium">
+<a class="text-amber-700 dark:text-amber-400 border-b-2 border-amber-500 pb-1 transition-colors duration-200" href="index.html">Home</a> 
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="lighting.html">Lighting</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="power-switches.html">Power &amp; Switches</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="professional-tools.html">Professional Tools</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-1０ transition-colors duration-2００" href="infrastructure.html">Infrastructure</a>
+</div>
+<div class="flex items-center space-x-6">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 text-lg">search</span>
+<input class="bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary w-64 transition-all" placeholder="Search components..." type="text"/>
+</div>
+<div class="flex items-center space-x-4">
+<button class="material-symbols-outlined text-zinc-600 hover:text-amber-600 transition-transform scale-95 active:scale-90">shopping_cart</button>
+<button class="material-symbols-outlined text-zinc-600 hover:text-amber-600 transition-transform scale-95 active:scale-90">person</button>
+</div>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-20 flex-grow">
+<!-- Hero Header -->
+<header class="max-w-screen-2xl mx-auto px-8 mb-16">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+<div class="lg:col-span-7">
+<nav class="flex mb-4 text-[10px] uppercase tracking-[0.2em] font-label text-secondary">
+<span class="hover:text-primary cursor-pointer">Catalog</span>
+<span class="mx-2">/</span>
+<span class="text-on-background">Infrastructure</span>
+</nav>
+<h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter text-on-background font-headline leading-none">
+                        Electrical <br/>Infrastructure.
+                    </h1>
+<p class="mt-6 text-lg text-secondary max-w-xl font-light leading-relaxed">
+                        High-tolerance containment systems engineered for architectural integrity. Our industrial-grade conduit and junction solutions prioritize longevity in demanding environments.
+                    </p>
+</div>
+<div class="lg:col-span-5 hidden lg:block">
+<div class="h-48 w-full bg-surface-container-low rounded-xl relative overflow-hidden">
+<img alt="Industrial steel conduits" class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-multiply" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0t-VBNZ4xp3PW0lihQeBiTH-CFvuube4LUvAFCdd1sZaeVV9Bwu2aZKcBzgrtmSoFn595dJS5mWWS_kWe8hjScntOIgWW8RJh4kxix5qMUPeogDOtocZJpIqYZkWUAKDqtS2QL6AWw_KvKOc2M2BwWI3TjK0x3P5J8yfiVAx_Fj5tysoittqm3R-PQBG4l_k11g-Xq62jWaUrJWkdGhHXw-l4DEp1eO0brgmAg_KKUyMnsbX4kJd0bwiRE8nMHhrcFIQ8n3O4sRw"/>
+<div class="absolute bottom-4 left-4 font-label text-[10px] tracking-widest uppercase text-on-background font-bold">
+                            Series 04 / Industrial Grade
+                        </div>
+</div>
+</div>
+</div>
+</header>
+<div class="max-w-screen-2xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Technical Sidebar -->
+<aside class="lg:col-span-3 space-y-12">
+<div class="bg-surface-container-low p-8 rounded-xl">
+<div class="flex items-center justify-between mb-8">
+<h3 class="font-headline font-bold text-sm tracking-widest uppercase">Specifications</h3>
+<span class="material-symbols-outlined text-slate-400 text-lg">tune</span>
+</div>
+<!-- Material Filter -->
+<div class="mb-10">
+<label class="font-label text-[10px] uppercase tracking-widest text-secondary font-bold mb-4 block">Material</label>
+<div class="space-y-3">
+<label class="flex items-center group cursor-pointer">
+<input class="rounded-sm border-outline-variant text-primary focus:ring-primary h-4 w-4 bg-transparent" type="checkbox"/>
+<span class="ml-3 text-sm font-medium text-on-surface-variant group-hover:text-primary transition-colors">Galvanized Steel</span>
+</label>
+<label class="flex items-center group cursor-pointer">
+<input checked="" class="rounded-sm border-outline-variant text-primary focus:ring-primary h-4 w-4 bg-transparent" type="checkbox"/>
+<span class="ml-3 text-sm font-medium text-on-surface-variant group-hover:text-primary transition-colors">High-Impact PVC</span>
+</label>
+<label class="flex items-center group cursor-pointer">
+<input class="rounded-sm border-outline-variant text-primary focus:ring-primary h-4 w-4 bg-transparent" type="checkbox"/>
+<span class="ml-3 text-sm font-medium text-on-surface-variant group-hover:text-primary transition-colors">Cast Aluminum</span>
+</label>
+</div>
+</div>
+<!-- Diameter Filter -->
+<div class="mb-10">
+<label class="font-label text-[10px] uppercase tracking-widest text-secondary font-bold mb-4 block">Conduit Diameter</label>
+<div class="grid grid-cols-2 gap-2">
+<button class="px-3 py-2 border border-outline-variant/30 text-xs font-label hover:border-primary transition-all rounded">20mm</button>
+<button class="px-3 py-2 bg-primary text-on-primary text-xs font-label rounded">25mm</button>
+<button class="px-3 py-2 border border-outline-variant/30 text-xs font-label hover:border-primary transition-all rounded">32mm</button>
+<button class="px-3 py-2 border border-outline-variant/30 text-xs font-label hover:border-primary transition-all rounded">50mm</button>
+</div>
+</div>
+<!-- Unit Count -->
+<div class="mb-8">
+<label class="font-label text-[10px] uppercase tracking-widest text-secondary font-bold mb-4 block">Unit Pack</label>
+<div class="space-y-2">
+<div class="flex items-center justify-between text-xs py-1 border-b border-outline-variant/20">
+<span>Single Unit</span>
+<span class="text-secondary font-label">From $12</span>
+</div>
+<div class="flex items-center justify-between text-xs py-1 border-b border-outline-variant/20">
+<span>Bulk Case (25)</span>
+<span class="text-secondary font-label">From $240</span>
+</div>
+</div>
+</div>
+<button class="w-full py-4 text-[10px] font-bold tracking-widest uppercase border border-primary text-primary hover:bg-primary hover:text-on-primary transition-all rounded-lg">
+                        Clear All Filters
+                    </button>
+</div>
+<div class="p-8 border-l-2 border-primary-container bg-surface-container-lowest/50">
+<h4 class="font-headline font-bold text-xs uppercase mb-2">Technical Support</h4>
+<p class="text-xs text-secondary leading-relaxed mb-4">Need load calculations for complex infrastructure?</p>
+<a class="text-xs font-bold text-primary flex items-center gap-2 hover:underline" href="#">
+                        Consult an Engineer
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</aside>
+<!-- Product Grid -->
+<div class="lg:col-span-9">
+<div class="flex justify-between items-center mb-10 border-b border-surface-container pb-6">
+<span class="text-xs font-label text-secondary tracking-widest uppercase">Showing 24 Components</span>
+<div class="flex items-center gap-6">
+<button class="text-[10px] font-bold tracking-widest uppercase flex items-center gap-2">
+                            Sort by: Precision
+                            <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-16">
+<!-- Product 1 -->
+<article class="group">
+<div class="aspect-square bg-surface-container-low rounded-xl mb-6 relative overflow-hidden transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-black/5">
+<img alt="4-Way Terminal Box" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3wq7wsII2U-CnzPivs-x3zZBmDEDr5jyeyBvaDdnRcrfXGdrXVOOaXqgR9Vf7MWXM3smVX_n_CqQhJAj95PwugptFFu6dwLQfxpI7rqiCmLkcarw9wwPqlJ4HZYpYuvQx6sAVJpSqLqJtKz_rYMNkgIjPcfJ1JNIDY_0X2d4ghGbn1llvIuVt04eEFF76Bkhmgl50GIaCw0Of9BTNd9Q46ta38pTZHzOYei3CuG5YmdqiqFZDFXI8DQWYyHRmiTxO1fs4vONYi1w"/>
+<div class="absolute top-4 left-4 bg-on-background text-white text-[9px] font-bold tracking-[0.2em] uppercase px-2 py-1">
+                                Heavy Duty
+                            </div>
+<button class="absolute bottom-4 right-4 filament-gradient text-on-primary p-3 rounded-full opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-lg">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-start">
+<h3 class="font-headline font-bold text-lg leading-tight tracking-tight">20mm 4-Way Terminal Box</h3>
+<span class="font-label text-sm font-semibold">$18.50</span>
+</div>
+<p class="text-xs text-secondary font-label uppercase tracking-widest">Die-Cast Aluminum / IP67</p>
+<div class="pt-4 flex items-center gap-4 text-[10px] font-label font-medium text-on-surface-variant">
+<span class="bg-surface-container px-2 py-1">Fire Rated 2h</span>
+<span class="bg-surface-container px-2 py-1">BS4568 Compliant</span>
+</div>
+</div>
+</article>
+<!-- Product 2 -->
+<article class="group">
+<div class="aspect-square bg-surface-container-low rounded-xl mb-6 relative overflow-hidden transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-black/5">
+<img alt="PVC Conduit Pipes" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEDlN2eaRrPZpSclrr2lx72eTbZBoHjf5b2lBmUV0pGtfj49R8EeyiFut_iARcW1L74uqySpVXcgy4Iv1zHyWtR182gqYg4H9KYSvx8TwUqCFprxjV-YI0C07yYHPqcEmfFN4zGcCzen5-AVtBvLSodlu78bw4vlqKETzq9oETU-Y5lDuDV1Myc0tmx6os4cXtFC8mavZsvjKmcT1jMn75qbtnxgcWsGamw9yplemcsEtbsgxpN1ePRdtc89yfypW9zgEY25kYr_c"/>
+<button class="absolute bottom-4 right-4 filament-gradient text-on-primary p-3 rounded-full opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-lg">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-start">
+<h3 class="font-headline font-bold text-lg leading-tight tracking-tight">25mm Rigid PVC Conduit</h3>
+<span class="font-label text-sm font-semibold">$4.20 /m</span>
+</div>
+<p class="text-xs text-secondary font-label uppercase tracking-widest">High-Impact / UV Stabilized</p>
+<div class="pt-4 flex items-center gap-4 text-[10px] font-label font-medium text-on-surface-variant">
+<span class="bg-surface-container px-2 py-1">Class 2 Insulation</span>
+<span class="bg-surface-container px-2 py-1">Grey/White</span>
+</div>
+</div>
+</article>
+<!-- Product 3 -->
+<article class="group">
+<div class="aspect-square bg-surface-container-low rounded-xl mb-6 relative overflow-hidden transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-black/5">
+<img alt="Square Junction Box" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBliS3F4SXB_SMJ45dGNLtkPSZCwVKYql2g3zeteCfdK3sluE8iJWM8ARYyTOKPfu38DCRUJ7Bz4WaD70cZIJ6B46rgzJBIHBLFWzoGZ-iFjrvNvsDKwHCMFtxrRg4HMTa1a0XCyTD_nxF4RBkK0bSsyjQNNbmrbxVsHUDxy8R4NCLRfsBTkV-6JkuAWW0pdQk12C_8xoHOkiaW6GtkHvJBzL0-623d9Sg4ZqSHubZHE2nuGCE5X9F_rN7riOaI5D1TFTLXRw5hPIU"/>
+<button class="absolute bottom-4 right-4 filament-gradient text-on-primary p-3 rounded-full opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-lg">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-start">
+<h3 class="font-headline font-bold text-lg leading-tight tracking-tight">Deep Square JB Box (Large)</h3>
+<span class="font-label text-sm font-semibold">$12.00</span>
+</div>
+<p class="text-xs text-secondary font-label uppercase tracking-widest">Pre-Galvanized Steel / 47mm</p>
+<div class="pt-4 flex items-center gap-4 text-[10px] font-label font-medium text-on-surface-variant">
+<span class="bg-surface-container px-2 py-1">Multi-Knockout</span>
+<span class="bg-surface-container px-2 py-1">Earth Terminals</span>
+</div>
+</div>
+</article>
+<!-- Large Featured Card (Asymmetric) -->
+<article class="md:col-span-2 group">
+<div class="h-80 md:h-[450px] bg-inverse-surface rounded-xl mb-6 relative overflow-hidden flex flex-col md:flex-row">
+<div class="w-full md:w-1/2 p-12 flex flex-col justify-center text-surface z-10">
+<div class="font-label text-[10px] tracking-[0.3em] uppercase text-primary mb-6 font-black">Pro Preferred</div>
+<h3 class="font-headline text-3xl font-bold tracking-tighter mb-4 leading-tight">Master Installation Pack: 50mm Infrastructure Series</h3>
+<p class="text-sm text-surface-dim mb-8 max-w-xs leading-relaxed">The complete solution for high-capacity mains trunking. Engineered for data centers and commercial builds.</p>
+<button class="w-fit px-8 py-3 filament-gradient text-on-primary text-[10px] font-bold tracking-widest uppercase rounded">Explore Bundle</button>
+</div>
+<div class="absolute inset-0 md:relative md:w-1/2 overflow-hidden h-full">
+<img alt="Installation setup" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-50 md:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHgX5mB_gSNX-uD20EYPqT-A41kGIMK-oUfLBY5bARrLiJCyg0jGqOmhdV5I7Qx5xxxCsPwXoOsaesqyjX8I2bBzN7xfICBVo58gS-jQTCssvl3Fnjs-PsGXPyg8WMxC2_rwwv0OcysjtgE0wvpnzFrfzr7o-jnd9lMOPXRTs_-huoxWQmY6Z4DY8q0xJXzvavUeFxo_PbYyaaXTkBA15U4KXLt993XSoWYwKidZQE6l2kcAgMocZj9qpPbzAge_fUpMfnjih3GCc"/>
+</div>
+</div>
+</article>
+<!-- Product 4 -->
+<article class="group">
+<div class="aspect-square bg-surface-container-low rounded-xl mb-6 relative overflow-hidden transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-black/5">
+<img alt="Flexible Steel Conduit" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7N9H5P4BKhfnNvm1AapNsp5PiAj_XQ22q1BK51DHRagJksuDH_fkIAZij-4TOQ9pj8mu0Hf6k3EvMlynbHmC6zepI3v4tvr5ksdMDoWz0sCZV2z4bCFwP5zQhV6RRnwcXXFx_CWM4dj-U53IxhNxM8j-7cVglya3XjHs51QxVbruSF0UNA2VNdH_VO37OLDtF5dirsdtlBxSFpQ-M1hY2EZiDq7Hi7iqV8rqilvR5kh3yrhCTst3B_ZHAQGwDrcXgNIz1YAiKWIY"/>
+<button class="absolute bottom-4 right-4 filament-gradient text-on-primary p-3 rounded-full opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-lg">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-start">
+<h3 class="font-headline font-bold text-lg leading-tight tracking-tight">Flexible Steel Conduit (IP54)</h3>
+<span class="font-label text-sm font-semibold">$9.80 /m</span>
+</div>
+<p class="text-xs text-secondary font-label uppercase tracking-widest">Galvanized Core / PVC Sheath</p>
+<div class="pt-4 flex items-center gap-4 text-[10px] font-label font-medium text-on-surface-variant">
+<span class="bg-surface-container px-2 py-1">Vibration Proof</span>
+<span class="bg-surface-container px-2 py-1">20-32mm</span>
+</div>
+</div>
+</article>
+</div>
+<div class="mt-20 flex justify-center">
+<button class="px-12 py-4 text-[10px] font-bold tracking-widest uppercase border border-outline hover:bg-on-background hover:text-surface transition-all">
+                        Load More Engineering Artifacts
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (Based on COMPONENTS_31) -->
+<footer class="bg-zinc-50 dark:bg-zinc-900 w-full py-16 px-8 mt-auto">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+<div class="space-y-6">
+<div class="text-lg font-bold text-zinc-900 dark:text-zinc-100 uppercase font-headline">Lumen &amp; Lead</div>
+<p class="font-['Manrope'] text-xs uppercase tracking-widest font-semibold text-zinc-500 dark:text-zinc-400">
+                        © 2024 Lumen &amp; Lead. Precision Luminescence.
+                    </p>
+</div>
+<div>
+<h5 class="font-['Manrope'] text-xs uppercase tracking-widest font-semibold text-zinc-900 dark:text-zinc-100 mb-6">Technical</h5>
+<ul class="space-y-4">
+<li><a class="font-['Manrope'] text-xs uppercase tracking-widest font-semibold text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors opacity-80 hover:opacity-100" href="#">Technical Specs</a></li>
+<li><a class="font-['Manrope'] text-xs uppercase tracking-widest font-semibold text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors opacity-80 hover:opacity-100" href="#">Pro Portal</a></li>
+<li><a class="font-['Manrope'] text-xs uppercase tracking-widest font-semibold text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors opacity-80 hover:opacity-100" href="#">Compliance</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-['Manrope'] text-xs uppercase tracking-widest font-semibold text-zinc-900 dark:text-zinc-100 mb-6">Operations</h5>
+<ul class="space-y-4">
+<li><a class="font-['Manrope'] text-xs uppercase tracking-widest font-semibold text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors opacity-80 hover:opacity-100" href="#">Supply Chain</a></li>
+<li><a class="font-['Manrope'] text-xs uppercase tracking-widest font-semibold text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors opacity-80 hover:opacity-100" href="#">Contact</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-['Manrope'] text-xs uppercase tracking-widest font-semibold text-zinc-900 dark:text-zinc-100 mb-6">Global</h5>
+<div class="space-y-4">
+<p class="font-['Manrope'] text-xs uppercase tracking-widest font-semibold text-zinc-500 dark:text-zinc-400">London / New York / Milan</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-zinc-400 hover:text-amber-600 cursor-pointer opacity-80 hover:opacity-100 transition-all">language</span>
+<span class="material-symbols-outlined text-zinc-400 hover:text-amber-600 cursor-pointer opacity-80 hover:opacity-100 transition-all">location_on</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-zinc-100 dark:border-zinc-800"></div>
+</div>
+</footer>
+</body></html>
