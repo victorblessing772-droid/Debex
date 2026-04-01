@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Chandelier Bulbs | The Illuminated Editorial</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed-dim": "#c7c6c6",
+              "on-tertiary-fixed-variant": "#004e60",
+              "surface-variant": "#e1e3e4",
+              "primary-fixed-dim": "#ffba43",
+              "error": "#ba1a1a",
+              "on-tertiary": "#ffffff",
+              "on-error": "#ffffff",
+              "primary-container": "#ffb000",
+              "surface-container-high": "#e7e8e9",
+              "surface-dim": "#d9dadb",
+              "tertiary-fixed-dim": "#4cd6ff",
+              "inverse-surface": "#2e3132",
+              "on-primary-fixed-variant": "#614000",
+              "inverse-on-surface": "#f0f1f2",
+              "primary-fixed": "#ffddaf",
+              "surface-bright": "#f8f9fa",
+              "tertiary-fixed": "#b7eaff",
+              "inverse-primary": "#ffba43",
+              "outline": "#847560",
+              "surface-container": "#edeeef",
+              "secondary-container": "#e3e2e2",
+              "on-primary": "#ffffff",
+              "on-secondary-fixed-variant": "#464747",
+              "on-surface-variant": "#524533",
+              "surface-container-highest": "#e1e3e4",
+              "secondary": "#5e5e5e",
+              "surface": "#f8f9fa",
+              "on-secondary": "#ffffff",
+              "on-surface": "#191c1d",
+              "on-error-container": "#93000a",
+              "on-tertiary-fixed": "#001f28",
+              "on-primary-fixed": "#281800",
+              "secondary-fixed": "#e3e2e2",
+              "on-tertiary-container": "#00556a",
+              "on-secondary-fixed": "#1b1c1c",
+              "on-primary-container": "#6a4700",
+              "outline-variant": "#d7c4ac",
+              "tertiary-container": "#00d0fe",
+              "background": "#f8f9fa",
+              "error-container": "#ffdad6",
+              "on-background": "#191c1d",
+              "tertiary": "#00677f",
+              "surface-container-low": "#f3f4f5",
+              "on-secondary-container": "#646464",
+              "surface-tint": "#805600",
+              "primary": "#805600"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Manrope"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+      .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+      .custom-scrollbar::-webkit-scrollbar-thumb { background: #d7c4ac33; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md shadow-sm border-b border-zinc-100 dark:border-zinc-800/50">
+<div class="flex justify-between items-center px-8 h-16 max-w-full mx-auto">
+<div class="text-xl font-extrabold tracking-tighter text-zinc-900 dark:text-zinc-100">
+                The Illuminated Editorial
+            </div>
+<nav class="hidden md:flex items-center gap-8 font-['Manrope'] antialiased tracking-tight text-sm font-medium">
+<a class="text-amber-700 dark:text-amber-400 border-b-2 border-amber-500 pb-1" href="#">Lighting</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="#">Power &amp; Switches</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="#">Professional Tools</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="#">Infrastructure</a>
+</nav>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-zinc-600 hover:bg-zinc-50 p-2 rounded-full transition-all scale-95 active:scale-90">shopping_cart</button>
+<button class="material-symbols-outlined text-zinc-600 hover:bg-zinc-50 p-2 rounded-full transition-all scale-95 active:scale-90">person</button>
+</div>
+</div>
+</header>
+<div class="flex min-h-screen pt-16">
+<!-- Side Navigation Bar -->
+<aside class="h-screen w-64 fixed left-0 top-0 pt-16 bg-zinc-50 dark:bg-zinc-900 hidden lg:flex flex-col gap-2 p-4 border-r-0">
+<div class="mb-6 px-4">
+<p class="font-['Manrope'] text-sm font-medium uppercase tracking-widest text-amber-600 dark:text-amber-500">Collections</p>
+<p class="text-[10px] text-zinc-500 uppercase tracking-widest mt-1">Precision Luminescence</p>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-zinc-800 text-amber-600 dark:text-amber-500 shadow-sm rounded-lg font-['Manrope'] text-sm font-bold transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-xl">lightbulb</span>
+                    Chandelier Bulbs
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-zinc-800 text-amber-600 dark:text-amber-500 shadow-sm rounded-lg font-['Manrope'] text-sm font-bold transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-xl">auto_awesome</span>
+                    Classy Bulbs
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 font-['Manrope'] text-sm font-medium transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-xl">flare</span>
+                    Vintage Filaments
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 font-['Manrope'] text-sm font-medium transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-xl">settings_input_component</span>
+                    Industrial Sockets
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 font-['Manrope'] text-sm font-medium transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-xl">architecture</span>
+                    Architectural
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 font-['Manrope'] text-sm font-medium transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-xl">emergency_home</span>
+                    Emergency
+                </a>
+</nav>
+<div class="mt-auto pt-8 border-t border-zinc-100 dark:border-zinc-800/50">
+<button class="w-full bg-surface-container-highest text-on-surface px-4 py-3 text-xs font-bold uppercase tracking-widest rounded-md hover:bg-zinc-200 transition-colors mb-4">
+                    Expert Consultation
+                </button>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-2 text-zinc-500 text-xs font-medium uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined text-lg">support_agent</span>
+                        Support
+                    </a>
+<a class="flex items-center gap-3 px-4 py-2 text-zinc-500 text-xs font-medium uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined text-lg">description</span>
+                        Spec Sheets
+                    </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 lg:ml-64 px-8 pb-20">
+<!-- Hero Header -->
+<section class="py-12 md:py-20 max-w-5xl">
+<h1 class="font-headline text-5xl md:text-6xl font-extrabold tracking-tighter text-on-background mb-4">
+                    Chandelier <span class="text-primary italic">Bulbs</span>
+</h1>
+<p class="font-body text-lg text-secondary max-w-2xl leading-relaxed">
+                    Elevate your ambient spaces with our precision-engineered chandelier lighting. From vintage filament warmth to high-performance architectural LEDs.
+                </p>
+</section>
+<!-- Filters & Layout -->
+<div class="flex flex-col lg:flex-row gap-8">
+<!-- Advanced Filters -->
+<
+<!-- Product Grid -->
+<div class="flex-1">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+<!-- Product Card 1 -->
+<div class="group relative bg-surface-container-lowest transition-all duration-300 hover:shadow-[0_8px_24px_rgba(25,28,29,0.06)] p-4 flex flex-col">
+<div class="aspect-[4/5] overflow-hidden bg-surface-container-low relative mb-6">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="close-up of a high-end vintage Edison style chandelier bulb with visible glowing filaments and warm amber light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0MAJxG7ag6PbvgS5WE4GDuNMpA3APPYc2ecQF-KBfK-aA7FLJkZVbLNIGu5y1HC0rOqLtVWKvaSzHNFB3_2AyW6MPLk4ajH_CQuAFvB12lMa1JxB3MYyPhWXc3ffcIkDeIqF4W6PJSDcj_vgCjtcPoWMv0UXkaCqziV09S_dKgDo82eMGldFlROadcMTVlNjS8hjaCTIDqRJb9SdwOazCVkhmV4pkphTeNPUymW810Qhqoy3Lc1g_RGt-zWwQf1G__HDtam4VeAw"/>
+<div class="absolute top-4 left-4 bg-primary px-3 py-1 text-[10px] font-bold text-on-primary uppercase tracking-widest"></div>
+</div>
+<div class="space-y-1 mb-4">
+<div class="flex justify-between items-start">
+<h3 class="font-headline font-bold text-lg text-on-surface">The Aurora Torpedo</h3>
+<span class="font-label text-sm font-semibold text-primary">$24.00</span>
+</div>
+<p class="font-label text-[11px] text-secondary uppercase tracking-widest">E12 Base • 4W LED • 2700K</p>
+</div>
+<div class="flex items-center gap-1 mb-6 text-primary-container">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star_half</span>
+<span class="font-label text-[10px] text-secondary ml-1">(48)</span>
+</div>
+<button class="mt-auto w-full py-3 bg-gradient-to-br from-primary to-primary-container text-on-primary font-headline font-bold text-xs uppercase tracking-widest rounded-md hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">shopping_bag</span> Add to Cart
+                            </button>
+</div>
+<!-- Product Card 2 -->
+<div class="group relative bg-surface-container-lowest transition-all duration-300 hover:shadow-[0_8px_24px_rgba(25,28,29,0.06)] p-4 flex flex-col">
+<div class="aspect-[4/5] overflow-hidden bg-surface-container-low relative mb-6">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="sleek modern clear glass chandelier bulb with minimalist internal structure against a neutral clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEq8Z6qYnvRvUYrxorG270FU3-gRxGi_Maay1Ya3QCPnFbU4h4ct7z_QpugvE26z_bx-p_k2CoA-r43RTrGfBODBi5MpS7QykaH-4W16IdDw_IrEh0t-AbdLzqBqv1PJXi1mSOCH-MnsJkFGKnY86aBIMzRoT86EAwfvQR3l6Qf1o3v3Bgn-QTvJSF16k4O6cx3NDc-vgVCFVKzSillOqKHzQv81ZkYjUX_a1HBU-tVANg6xUmrcLqU13fPq6z_0t1LGtQN1YK1_c"/>
+<div class="absolute top-4 left-4 bg-zinc-900 px-3 py-1 text-[10px] font-bold text-white uppercase tracking-widest"></div>
+</div>
+<div class="space-y-1 mb-4">
+<div class="flex justify-between items-start">
+<h3 class="font-headline font-bold text-lg text-on-surface">Prism Arc LED</h3>
+<span class="font-label text-sm font-semibold text-primary">$32.00</span>
+</div>
+<p class="font-label text-[11px] text-secondary uppercase tracking-widest">E26 Base • 7W LED • 4000K</p>
+</div>
+<div class="flex items-center gap-1 mb-6 text-primary-container">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label text-[10px] text-secondary ml-1">(124)</span>
+</div>
+<button class="mt-auto w-full py-3 bg-gradient-to-br from-primary to-primary-container text-on-primary font-headline font-bold text-xs uppercase tracking-widest rounded-md hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">shopping_bag</span> Add to Cart
+                            </button>
+</div>
+<!-- Product Card 3 -->
+<div class="group relative bg-surface-container-lowest transition-all duration-300 hover:shadow-[0_8px_24px_rgba(25,28,29,0.06)] p-4 flex flex-col">
+<div class="aspect-[4/5] overflow-hidden bg-surface-container-low relative mb-6">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="frosted glass chandelier bulb emitting a soft diffused light inside a luxury lighting showroom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDdjhiWuDl0ZLpYxPI-QBUTnedkXTS4L6raRGhr00k8dRgTvJsAmpo3TW8mILsBxIllJKCToY8FE0xqpn3JV3fMkt-N-hXcbRjOjqwFSY6RcOByk_Rzd6k2ipds0CXmEhHJLIS7dWjOEyR0YLLbjBLuMbS9KrxPMOxYgIlT9VarITqa7yHXzcSXQv-xP8y9ZVuQrUlttW-wqDjxcCQ9ifeSRSPkXKWES3lM-7hnWpt7QINIK0Nji6jL2bUqjJNQPr2m-mwyUh2Vqw"/>
+<div class="absolute top-4 left-4 bg-tertiary px-3 py-1 text-[10px] font-bold text-on-tertiary uppercase tracking-widest"></div>
+</div>
+<div class="space-y-1 mb-4">
+<div class="flex justify-between items-start">
+<h3 class="font-headline font-bold text-lg text-on-surface">Soft-Glow Sphere</h3>
+<span class="font-label text-sm font-semibold text-primary">$18.50</span>
+</div>
+<p class="font-label text-[11px] text-secondary uppercase tracking-widest">E12 Base • 3W LED • 3000K</p>
+</div>
+<div class="flex items-center gap-1 mb-6 text-primary-container">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="font-label text-[10px] text-secondary ml-1">(32)</span>
+</div>
+<button class="mt-auto w-full py-3 bg-gradient-to-br from-primary to-primary-container text-on-primary font-headline font-bold text-xs uppercase tracking-widest rounded-md hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">shopping_bag</span> Add to Cart
+                            </button>
+</div>
+</div>
+<!-- Pagination / More -->
+<div class="mt-20 flex justify-center">
+<button class="group flex flex-col items-center gap-2">
+<span class="font-headline font-bold text-xs uppercase tracking-[0.3em] text-on-surface">Explore More Quality Lighting</span>
+<span class="material-symbols-outlined text-primary group-hover:translate-y-1 transition-transform">keyboard_double_arrow_down</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<<footer class="w-full py-16 px-8 mt-auto bg-zinc-50 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800/50">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto font-['Manrope']">
+<div class="space-y-4">
+<div class="text-lg font-bold text-zinc-900 dark:text-zinc-100 uppercase">Debex Electronics</div>
+<p class="text-zinc-500 dark:text-zinc-400 text-sm">Affordable pricing without compromising on quality.</p>
+</div>
+<div>
+<h4 class="text-xs uppercase tracking-widest font-semibold text-amber-600 mb-6">Catalog</h4>
+<div class="flex flex-col gap-3 text-xs tracking-wide uppercase">
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Lighting</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Power &amp; Switches</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Professional Tools</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Infrastructure</a>
+</div>
+</div>
+<div>
+<h4 class="text-xs uppercase tracking-widest font-semibold text-amber-600 mb-6">Resources</h4>
+<div class="flex flex-col gap-3 text-xs tracking-wide uppercase">
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Technical Specs</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Pro Portal</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Compliance</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Supply Chain</a>
+</div>
+</div>
+<div>
+<h4 class="text-xs uppercase tracking-widest font-semibold text-amber-600 mb-6">Connect</h4>
+<div class="flex flex-col gap-3 text-xs tracking-wide uppercase">
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Contact</a>
+<div class="flex gap-4 pt-2">
+<span class="material-symbols-outlined text-zinc-400 cursor-pointer hover:text-amber-500">language</span>
+<span class="material-symbols-outlined text-zinc-400 cursor-pointer hover:text-amber-500">share</span>
+</div>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-800/50 text-center">
+<p class="text-xs uppercase tracking-widest font-semibold text-zinc-500 dark:text-zinc-400">
+                © 2026 Debex Electronics. All rights reserved.
+            </p>
+</div>
+</footer>
+</body></html>
