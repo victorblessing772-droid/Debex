@@ -79,10 +79,14 @@
       .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
       .custom-scrollbar::-webkit-scrollbar-thumb { background: #d7c4ac33; border-radius: 10px; }
     </style>
-        <script>
- if (localStorage.getItem("loggedIn") !== "true") {
-  window.location.href = "login.html";
-}
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      window.location.replace("index.html");
+    }
+  });
 </script>
 </head>
 <body class="bg-surface font-body text-on-surface antialiased">
@@ -93,7 +97,7 @@
 <div class="flex items-center gap-12">
 <span class="text-xl font-extrabold tracking-tighter text-zinc-900 dark:text-zinc-100 uppercase">Debex Electronics</span>
 <div class="hidden md:flex gap-8 tracking-tight text-sm font-medium">
-<a class="text-amber-700 dark:text-amber-400 border-b-2 border-amber-500 pb-1 transition-colors duration-200" href="index.html">Home</a> 
+<a class="text-amber-700 dark:text-amber-400 border-b-2 border-amber-500 pb-1 transition-colors duration-200" href="home.html">Home</a> 
 <a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="lighting.html">Lighting</a>
 <a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="power-switches.html">Power &amp; Switches</a>
 <a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="professional-tools.html">Professional Tools</a>

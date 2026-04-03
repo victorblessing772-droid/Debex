@@ -89,23 +89,30 @@
         background: linear-gradient(135deg, #805600 0%, #ffb000 100%);
       }
     </style>
-    <script>
-if (localStorage.getItem("loggedIn") !== "true") {
-  window.location.href = "login.html";
-}
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      window.location.replace("index.html");
+    }
+  });
 </script>
 </head>
 <body class="bg-surface text-on-background font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
 <!-- Top Navigation Shell -->
 <header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm dark:shadow-none">
-<nav class="flex items-center justify-between px-8 py-4 max-w-screen-2xl mx-auto">
-<div class="text-xl font-bold tracking-tighter text-slate-900 dark:text-slate-50 uppercase">Debex Electronics</div>
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md shadow-sm border-b border-zinc-100 dark:border-zinc-800/50">
+<div class="flex justify-between items-center px-8 h-16 max-w-full mx-auto font-['Manrope'] antialiased">
+<div class="flex items-center gap-12">
+<span class="text-xl font-extrabold tracking-tighter text-zinc-900 dark:text-zinc-100 uppercase">Debex Electronics</span>
 <div class="hidden md:flex gap-8 tracking-tight text-sm font-medium">
-<a class="text-amber-700 dark:text-amber-400 border-b-2 border-amber-500 pb-1 transition-colors duration-200" href="index.html">Home</a> 
+<a class="text-amber-700 dark:text-amber-400 border-b-2 border-amber-500 pb-1 transition-colors duration-200" href="home.html">Home</a> 
 <a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="lighting.html">Lighting</a>
 <a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="power-switches.html">Power &amp; Switches</a>
 <a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="professional-tools.html">Professional Tools</a>
 <a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-1０ transition-colors duration-2００" href="infrastructure.html">Infrastructure</a>
+</div>
 </div>
 <div class="flex items-center gap-6">
 <button class="material-symbols-outlined text-slate-600 hover:bg-slate-50/50 p-2 rounded-full transition-all active:scale-95">shopping_cart</button>
