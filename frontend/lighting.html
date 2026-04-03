@@ -113,43 +113,42 @@
 <div class="flex min-h-screen pt-16">
 <!-- Side Navigation Bar -->
 <aside class="h-screen w-64 fixed left-0 top-0 pt-16 bg-zinc-50 dark:bg-zinc-900 hidden lg:flex flex-col gap-2 p-4 border-r-0">
-<div class="mb-6 px-4">
-<p class="font-['Manrope'] text-sm font-medium uppercase tracking-widest text-amber-600 dark:text-amber-500">Collections</p>
-<p class="text-[10px] text-zinc-500 uppercase tracking-widest mt-1">Precision Luminescence</p>
-</div>
-<nav class="flex flex-col gap-1">
-<a class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-zinc-800 text-amber-600 dark:text-amber-500 shadow-sm rounded-lg font-['Manrope'] text-sm font-bold transition-all duration-200 ease-in-out" href="#">
-<span class="material-symbols-outlined text-xl">lightbulb</span>
-                    Chandelier Bulbs
-                </a>
-<a class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-zinc-800 text-amber-600 dark:text-amber-500 shadow-sm rounded-lg font-['Manrope'] text-sm font-bold transition-all duration-200 ease-in-out" href="#">
-<span class="material-symbols-outlined text-xl">auto_awesome</span>
-                    Classy Bulbs
-                </a>
-<a class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-zinc-800 text-amber-600 dark:text-amber-500 shadow-sm rounded-lg font-['Manrope'] text-sm font-bold transition-all duration-200 ease-in-out" href="#">
-<span class="material-symbols-outlined text-xl">flare</span>
-                    Vintage Filaments
-                </a>
-<a class="flex items-center gap-3 px-4 py-3 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 font-['Manrope'] text-sm font-medium transition-all duration-200 ease-in-out" href="#">
- </a>
-</nav>
-<div class="mt-auto pt-8 border-t border-zinc-100 dark:border-zinc-800/50">
-<div class="flex flex-col gap-1">
-<a class="flex items-center gap-3 px-4 py-2 text-zinc-500 text-xs font-medium uppercase tracking-widest" href="#">
-
-</div>
-</div>
+  <div class="mb-6 px-4">
+    <p class="font-['Manrope'] text-sm font-medium uppercase tracking-widest text-amber-600 dark:text-amber-500">Collections</p>
+    <p class="text-[10px] text-zinc-500 uppercase tracking-widest mt-1">Precision Luminescence</p>
+  </div>
+  <nav class="flex flex-col gap-1">
+    <button class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-zinc-800 text-amber-600 dark:text-amber-500 shadow-sm rounded-lg font-['Manrope'] text-sm font-bold transition-all duration-200 ease-in-out sidebar-filter" data-filter="all">
+      <span class="material-symbols-outlined text-xl">lightbulb_circle</span>
+      All Products
+    </button>
+    <button class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-zinc-800 text-amber-600 dark:text-amber-500 shadow-sm rounded-lg font-['Manrope'] text-sm font-bold transition-all duration-200 ease-in-out sidebar-filter" data-filter="chandelier">
+      <span class="material-symbols-outlined text-xl">lightbulb</span>
+      Chandelier Bulbs
+    </button>
+    <button class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-zinc-800 text-amber-600 dark:text-amber-500 shadow-sm rounded-lg font-['Manrope'] text-sm font-bold transition-all duration-200 ease-in-out sidebar-filter" data-filter="classy">
+      <span class="material-symbols-outlined text-xl">auto_awesome</span>
+      Classy Bulbs
+    </button>
+    <button class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-zinc-800 text-amber-600 dark:text-amber-500 shadow-sm rounded-lg font-['Manrope'] text-sm font-bold transition-all duration-200 ease-in-out sidebar-filter" data-filter="vintage">
+      <span class="material-symbols-outlined text-xl">flare</span>
+      Vintage Filaments
+    </button>
+  </nav>
+  <div class="mt-auto pt-8 border-t border-zinc-100 dark:border-zinc-800/50">
+    <div class="flex flex-col gap-1">
+      <a class="flex items-center gap-3 px-4 py-2 text-zinc-500 text-xs font-medium uppercase tracking-widest" href="#"></a>
+    </div>
+  </div>
 </aside>
 <!-- Main Content Area -->
 <main class="flex-1 lg:ml-64 px-8 pb-20">
 <!-- Hero Header -->
 <section class="py-12 md:py-20 max-w-5xl">
-<h1 class="font-headline text-5xl md:text-6xl font-extrabold tracking-tighter text-on-background mb-4">
-                    Chandelier <span class="text-primary italic">Bulbs</span>
-</h1>
-<p class="font-body text-lg text-secondary max-w-2xl leading-relaxed">
-                    Elevate your ambient spaces with our precision-engineered chandelier lighting. From vintage filament warmth to high-performance architectural LEDs.
-                </p>
+<h1 class="text-5xl md:text-6xl font-extrabold font-headline tracking-tighter text-on-surface mb-6">Vintage Filaments</h1>
+<p class="text-lg text-secondary font-body leading-relaxed max-w-2xl">
+  Engineered to evoke the early 20th century, our Vintage series combines historical glass forms with advanced tungsten-mimic LED filaments. Precision warmth for the discerning eye.
+</p>
 </section>
 <!-- Filters & Layout -->
 <div class="flex flex-col lg:flex-row gap-8">
@@ -157,82 +156,208 @@
 <
 <!-- Product Grid -->
 <div class="flex-1">
-<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-<!-- Product Card 1 -->
-<div class="group relative bg-surface-container-lowest transition-all duration-300 hover:shadow-[0_8px_24px_rgba(25,28,29,0.06)] p-4 flex flex-col">
-<div class="aspect-[4/5] overflow-hidden bg-surface-container-low relative mb-6">
-<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="close-up of a high-end vintage Edison style chandelier bulb with visible glowing filaments and warm amber light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0MAJxG7ag6PbvgS5WE4GDuNMpA3APPYc2ecQF-KBfK-aA7FLJkZVbLNIGu5y1HC0rOqLtVWKvaSzHNFB3_2AyW6MPLk4ajH_CQuAFvB12lMa1JxB3MYyPhWXc3ffcIkDeIqF4W6PJSDcj_vgCjtcPoWMv0UXkaCqziV09S_dKgDo82eMGldFlROadcMTVlNjS8hjaCTIDqRJb9SdwOazCVkhmV4pkphTeNPUymW810Qhqoy3Lc1g_RGt-zWwQf1G__HDtam4VeAw"/>
-<div class="absolute top-4 left-4 bg-primary px-3 py-1 text-[10px] font-bold text-on-primary uppercase tracking-widest"></div>
+<div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+  <!-- Chandelier Bulbs Product Card -->
+  <article class="group relative bg-surface-container-lowest transition-all duration-500 hover:shadow-xl hover:-translate-y-1 flex flex-col product-card" data-category="chandelier">
+    <div class="aspect-[4/5] overflow-hidden bg-surface-container-low relative">
+      <img alt="Chandelier Bulb" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0MAJxG7ag6PbvgS5WE4GDuNMpA3APPYc2ecQF-KBfK-aA7FLJkZVbLNIGu5y1HC0rOqLtVWKvaSzHNFB3_2AyW6MPLk4ajH_CQuAFvB12lMa1JxB3MYyPhWXc3ffcIkDeIqF4W6PJSDcj_vgCjtcPoWMv0UXkaCqziV09S_dKgDo82eMGldFlROadcMTVlNjS8hjaCTIDqRJb9SdwOazCVkhmV4pkphTeNPUymW810Qhqoy3Lc1g_RGt-zWwQf1G__HDtam4VeAw"/>
+    </div>
+    <div class="p-8 flex flex-col flex-1">
+      <div class="flex justify-between items-start mb-4">
+        <h3 class="font-headline text-2xl font-bold tracking-tight text-on-surface">The Aurora Torpedo</h3>
+        <span class="font-label text-sm font-semibold text-primary">$24.00</span>
+      </div>
+      <div class="flex gap-4 mb-6">
+        <div class="flex flex-col">
+          <span class="font-label text-[10px] text-secondary uppercase tracking-widest">Base</span>
+          <span class="font-label text-xs font-bold">E12</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-label text-[10px] text-secondary uppercase tracking-widest">Power</span>
+          <span class="font-label text-xs font-bold">4W LED</span>
+        </div>
+      </div>
+      <button class="mt-auto bg-surface-container-highest text-on-surface py-4 px-6 rounded-md font-label text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-surface-dim transition-all">
+        Add to Cart
+        <span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
+      </button>
+    </div>
+  </article>
+  <!-- Classy Bulbs Product Cards -->
+  <article class="group relative bg-surface-container-lowest transition-all duration-500 hover:shadow-xl hover:-translate-y-1 flex flex-col product-card" data-category="classy">
+    <div class="aspect-[4/5] overflow-hidden bg-surface-container-low mb-6 transition-colors group-hover:bg-surface-container-high relative">
+      <img alt="Frosted Globe Bulb" class="w-full h-full object-cover mix-blend-multiply opacity-90 group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtIDGHS79XKdoFxCLjc31dNKgffxSR3RnTFi9picT-fTmyLKCKAQQDei6_m2-pjq-W_JDyfILSN-9nkXWy6kH8o64maufzqWU2KAX4zl_Ja0tJ1rp7G7l3PNRn_9yotxEAvxwtH0gFmrxNsi4wD4YGW-vmZ09OMYA7ZsmDyHkneUkF2Gm-2YJMycT2kiCrU6SkLASIMTbUPqnPq_goX8Ea-f0PwGdrOCjADx76YReVaCQePpSG_1sf_eARyhiYABERD-BtQ0DvzQM"/>
+    </div>
+    <div class="p-8 flex flex-col flex-1">
+      <div class="flex justify-between items-start mb-4">
+        <h3 class="font-headline text-2xl font-bold tracking-tight text-on-surface">Frosted Opal Globe</h3>
+        <span class="font-label font-bold text-lg">$42.00</span>
+      </div>
+      <div class="flex gap-4 mb-6">
+        <div class="flex flex-col">
+          <span class="font-label text-[10px] text-secondary uppercase tracking-widest">Type</span>
+          <span class="font-label text-xs font-bold">G95 / 8W / 2700K</span>
+        </div>
+      </div>
+      <button class="mt-auto bg-surface-container-highest text-on-surface py-4 px-6 rounded-md font-label text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-surface-dim transition-all">
+        Add to Cart
+        <span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
+      </button>
+    </div>
+  </article>
+  <article class="group relative bg-surface-container-lowest transition-all duration-500 hover:shadow-xl hover:-translate-y-1 flex flex-col product-card" data-category="classy">
+    <div class="aspect-[4/5] overflow-hidden bg-surface-container-low mb-6 transition-colors group-hover:bg-surface-container-high relative">
+      <img alt="Crystal-Cut LED" class="w-full h-full object-cover mix-blend-multiply opacity-90 group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFxG8ptF9Vj-WZ_v4UJja9f-530hoo6BRifGdL--qvPV43nWgWpisoU5uV9OhEjxzD5wzMwX1zunoZ5X7T3nGUA7Kzxq1hqsu1zMWItzuinvQfAvAOqkMChsVoa5R0DcHgOp3JLyE5GMD6-IjR0iXHchT0Rp57c-bY8iBeQEy2IgPpvKVR4WYd8Q1nfUACuoo5_O8VkckACQhrNRo0aqmOdj3WjPjsa3ZpN7zZogXVfUo0PlVj_lNYy0RNhHOc0Pf7SwqwEaLYFlE"/>
+    </div>
+    <div class="p-8 flex flex-col flex-1">
+      <div class="flex justify-between items-start mb-4">
+        <h3 class="font-headline text-2xl font-bold tracking-tight text-on-surface">Prismatic Crystal LED</h3>
+        <span class="font-label font-bold text-lg">$68.00</span>
+      </div>
+      <div class="flex gap-4 mb-6">
+        <div class="flex flex-col">
+          <span class="font-label text-[10px] text-secondary uppercase tracking-widest">Type</span>
+          <span class="font-label text-xs font-bold">E27 / 4W / CRYSTAL</span>
+        </div>
+      </div>
+      <button class="mt-auto bg-surface-container-highest text-on-surface py-4 px-6 rounded-md font-label text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-surface-dim transition-all">
+        Add to Cart
+        <span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
+      </button>
+    </div>
+  </article>
+  <article class="group relative bg-surface-container-lowest transition-all duration-500 hover:shadow-xl hover:-translate-y-1 flex flex-col product-card" data-category="classy">
+    <div class="aspect-[4/5] overflow-hidden bg-surface-container-low mb-6 transition-colors group-hover:bg-surface-container-high relative">
+      <img alt="Clear Candelabra" class="w-full h-full object-cover mix-blend-multiply opacity-90 group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQ87aLM-hGpwn8ivkXQFy-CBV4SBm5tS75Z-EPlj_HhMJ1b3FsqIeTwSfnG5OAecuPoJdkSMdUShEwRieM61CZMCpl7ojDUJk8s1ZH-lfRJUoUUv2p_tkterKo4lijLBT-Ptrr15eFxzToxcgKUdzwxEdWSCtoORwWeKL-zYxLjgfHsV5kh1mvH5r5KMTg2N4xa2gdboM-9zzrj3Xtw6cWFGRj4EWxvxnPS7Nvw1fIb8_kd098em_ieyQckDtDgv9A-bJncgiNsr4"/>
+    </div>
+    <div class="p-8 flex flex-col flex-1">
+      <div class="flex justify-between items-start mb-4">
+        <h3 class="font-headline text-2xl font-bold tracking-tight text-on-surface">Filament Candelabra</h3>
+        <span class="font-label font-bold text-lg">$24.00</span>
+      </div>
+      <div class="flex gap-4 mb-6">
+        <div class="flex flex-col">
+          <span class="font-label text-[10px] text-secondary uppercase tracking-widest">Type</span>
+          <span class="font-label text-xs font-bold">E14 / 2W / FILAMENT</span>
+        </div>
+      </div>
+      <button class="mt-auto bg-surface-container-highest text-on-surface py-4 px-6 rounded-md font-label text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-surface-dim transition-all">
+        Add to Cart
+        <span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
+      </button>
+    </div>
+  </article>
+  <!-- Vintage Filaments Product Cards -->
+  <article class="group relative bg-surface-container-lowest transition-all duration-500 hover:shadow-xl hover:-translate-y-1 flex flex-col product-card" data-category="vintage">
+    <div class="aspect-[4/5] overflow-hidden bg-surface-container-low relative">
+      <img alt="Antique Edison Bulb" class="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCp3XtAH-ij0W9gmsbTYmoGD3cyRN6AO7WirTuDUOjcvRsii5oF8tmFTKV4Uar-CqaAI5AcWXjS9uSasHiKERV6jmpeZqKIORhx9c-lF84Gi7BwAuc8dmHVKfQbmyDdWc5cgNwB8yHAgxXYiZydgzjd5Hz_RkCcdJBdJdgCyJZFzforeGO8w_-zruCcKmQA9qAaz_7MMgsTRK7RYhv1onpQbWxl68OW__JhPqeLfDVDc545xdaVKYyB_XGzb-ry7d9-nboF9qiEAro"/>
+      <div class="absolute top-4 right-4 bg-surface/90 backdrop-blur px-3 py-1 text-[10px] font-label font-bold tracking-widest uppercase text-primary">Limited Edition</div>
+    </div>
+    <div class="p-8 flex flex-col flex-1">
+      <div class="flex justify-between items-start mb-4">
+        <h3 class="font-headline text-2xl font-bold tracking-tight text-on-surface">The 1920 Edison</h3>
+        <span class="font-label text-sm font-semibold text-primary">$42.00</span>
+      </div>
+      <div class="flex gap-4 mb-6">
+        <div class="flex flex-col">
+          <span class="font-label text-[10px] text-secondary uppercase tracking-widest">Wattage</span>
+          <span class="font-label text-xs font-bold">4.5W (40W Equiv.)</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-label text-[10px] text-secondary uppercase tracking-widest">Color</span>
+          <span class="font-label text-xs font-bold">2200K Sunset</span>
+        </div>
+      </div>
+      <button class="mt-auto filament-gradient text-on-primary py-4 px-6 rounded-md font-label text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 group-hover:shadow-lg transition-all">
+        Add to Cart
+        <span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
+      </button>
+    </div>
+  </article>
+  <article class="group relative bg-surface-container-lowest transition-all duration-500 hover:shadow-xl hover:-translate-y-1 flex flex-col product-card" data-category="vintage">
+    <div class="aspect-[4/5] overflow-hidden bg-surface-container-low">
+      <img alt="Spiral Filament Globe" class="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzwVW_jMEW2e7uAYE-KH0-qpGe3rYUkvFVCEB43JZtDO6z5wCrruNX6o8XdQ8sxpWItGD4BlJnGF2u7WEwm_O1weNSXDkGcJPvLn-XX76NUc2djhfZzvhSHM03mQ_lGQk7EHgZDk42uyjJ_9msYTTAVZoDrc_rRsejH3geCSpQbnKD3dSAeD1i6YU8XRnaDYolJw7xCd2TrqB2-5UyTmslAH2G-OVTW-qOJ2OzmIQ4IgfWDzKKZx9TPOO95IkibLH9TYHXOzVjC1s"/>
+    </div>
+    <div class="p-8 flex flex-col flex-1">
+      <div class="flex justify-between items-start mb-4">
+        <h3 class="font-headline text-2xl font-bold tracking-tight text-on-surface">Helical Globe G125</h3>
+        <span class="font-label text-sm font-semibold text-primary">$58.00</span>
+      </div>
+      <div class="flex gap-4 mb-6">
+        <div class="flex flex-col">
+          <span class="font-label text-[10px] text-secondary uppercase tracking-widest">Wattage</span>
+          <span class="font-label text-xs font-bold">6W (60W Equiv.)</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-label text-[10px] text-secondary uppercase tracking-widest">Shape</span>
+          <span class="font-label text-xs font-bold">Oversized Globe</span>
+        </div>
+      </div>
+      <button class="mt-auto bg-surface-container-highest text-on-surface py-4 px-6 rounded-md font-label text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-surface-dim transition-all">
+        Add to Cart
+        <span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
+      </button>
+    </div>
+  </article>
+  <article class="group relative bg-surface-container-lowest transition-all duration-500 hover:shadow-xl hover:-translate-y-1 flex flex-col lg:col-span-2 xl:col-span-1 product-card" data-category="vintage">
+    <div class="aspect-[4/5] overflow-hidden bg-surface-container-low">
+      <img alt="Tubular Radio Bulb" class="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMz7kQ_hMQbLXhFhG4JQxAVaM9so_5pch1UY6WtRtExHVnFUL91RRNdKanVzFx0jSyJIdpRCXMQ428oG4Nht5k1YA2k6vdcA6UizVEiWF28k9mRMoqXCV7c_MRkhnZqSF1EFND0deYjxrvIskSy_PpRbVsKsjlS3YDBqMIJAkhC3deBtD5cWEHtDsAfwWja24XNZfYbzyA-p-qOW-fxRVakySmKilAC3D-8mK5T6F5XJkqW7DeiHQMvAu0iiNiAIhuGqQLXoUIZSM"/>
+    </div>
+    <div class="p-8 flex flex-col flex-1">
+      <div class="flex justify-between items-start mb-4">
+        <h3 class="font-headline text-2xl font-bold tracking-tight text-on-surface">Victorian Radio Tube</h3>
+        <span class="font-label text-sm font-semibold text-primary">$36.00</span>
+      </div>
+      <div class="flex gap-4 mb-6">
+        <div class="flex flex-col">
+          <span class="font-label text-[10px] text-secondary uppercase tracking-widest">Wattage</span>
+          <span class="font-label text-xs font-bold">4W (35W Equiv.)</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-label text-[10px] text-secondary uppercase tracking-widest">Base</span>
+          <span class="font-label text-xs font-bold">E26 Brass</span>
+        </div>
+      </div>
+      <button class="mt-auto filament-gradient text-on-primary py-4 px-6 rounded-md font-label text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 group-hover:shadow-lg transition-all">
+        Add to Cart
+        <span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
+      </button>
+    </div>
+  </article>
 </div>
-<div class="space-y-1 mb-4">
-<div class="flex justify-between items-start">
-<h3 class="font-headline font-bold text-lg text-on-surface">The Aurora Torpedo</h3>
-<span class="font-label text-sm font-semibold text-primary">$24.00</span>
+</main>
 </div>
-<p class="font-label text-[11px] text-secondary uppercase tracking-widest">E12 Base • 4W LED • 2700K</p>
-</div>
-<div class="flex items-center gap-1 mb-6 text-primary-container">
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star_half</span>
-<span class="font-label text-[10px] text-secondary ml-1">(48)</span>
-</div>
-<button class="mt-auto w-full py-3 bg-gradient-to-br from-primary to-primary-container text-on-primary font-headline font-bold text-xs uppercase tracking-widest rounded-md hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-lg">shopping_bag</span> Add to Cart
-                            </button>
-</div>
-<!-- Product Card 2 -->
-<div class="group relative bg-surface-container-lowest transition-all duration-300 hover:shadow-[0_8px_24px_rgba(25,28,29,0.06)] p-4 flex flex-col">
-<div class="aspect-[4/5] overflow-hidden bg-surface-container-low relative mb-6">
-<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="sleek modern clear glass chandelier bulb with minimalist internal structure against a neutral clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEq8Z6qYnvRvUYrxorG270FU3-gRxGi_Maay1Ya3QCPnFbU4h4ct7z_QpugvE26z_bx-p_k2CoA-r43RTrGfBODBi5MpS7QykaH-4W16IdDw_IrEh0t-AbdLzqBqv1PJXi1mSOCH-MnsJkFGKnY86aBIMzRoT86EAwfvQR3l6Qf1o3v3Bgn-QTvJSF16k4O6cx3NDc-vgVCFVKzSillOqKHzQv81ZkYjUX_a1HBU-tVANg6xUmrcLqU13fPq6z_0t1LGtQN1YK1_c"/>
-<div class="absolute top-4 left-4 bg-zinc-900 px-3 py-1 text-[10px] font-bold text-white uppercase tracking-widest"></div>
-</div>
-<div class="space-y-1 mb-4">
-<div class="flex justify-between items-start">
-<h3 class="font-headline font-bold text-lg text-on-surface">Prism Arc LED</h3>
-<span class="font-label text-sm font-semibold text-primary">$32.00</span>
-</div>
-<p class="font-label text-[11px] text-secondary uppercase tracking-widest">E26 Base • 7W LED • 4000K</p>
-</div>
-<div class="flex items-center gap-1 mb-6 text-primary-container">
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="font-label text-[10px] text-secondary ml-1">(124)</span>
-</div>
-<button class="mt-auto w-full py-3 bg-gradient-to-br from-primary to-primary-container text-on-primary font-headline font-bold text-xs uppercase tracking-widest rounded-md hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-lg">shopping_bag</span> Add to Cart
-                            </button>
-</div>
-<!-- Product Card 3 -->
-<div class="group relative bg-surface-container-lowest transition-all duration-300 hover:shadow-[0_8px_24px_rgba(25,28,29,0.06)] p-4 flex flex-col">
-<div class="aspect-[4/5] overflow-hidden bg-surface-container-low relative mb-6">
-<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="frosted glass chandelier bulb emitting a soft diffused light inside a luxury lighting showroom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDdjhiWuDl0ZLpYxPI-QBUTnedkXTS4L6raRGhr00k8dRgTvJsAmpo3TW8mILsBxIllJKCToY8FE0xqpn3JV3fMkt-N-hXcbRjOjqwFSY6RcOByk_Rzd6k2ipds0CXmEhHJLIS7dWjOEyR0YLLbjBLuMbS9KrxPMOxYgIlT9VarITqa7yHXzcSXQv-xP8y9ZVuQrUlttW-wqDjxcCQ9ifeSRSPkXKWES3lM-7hnWpt7QINIK0Nji6jL2bUqjJNQPr2m-mwyUh2Vqw"/>
-<div class="absolute top-4 left-4 bg-tertiary px-3 py-1 text-[10px] font-bold text-on-tertiary uppercase tracking-widest"></div>
-</div>
-<div class="space-y-1 mb-4">
-<div class="flex justify-between items-start">
-<h3 class="font-headline font-bold text-lg text-on-surface">Soft-Glow Sphere</h3>
-<span class="font-label text-sm font-semibold text-primary">$18.50</span>
-</div>
-<p class="font-label text-[11px] text-secondary uppercase tracking-widest">E12 Base • 3W LED • 3000K</p>
-</div>
-<div class="flex items-center gap-1 mb-6 text-primary-container">
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined text-sm">star</span>
-<span class="font-label text-[10px] text-secondary ml-1">(32)</span>
-</div>
-<button class="mt-auto w-full py-3 bg-gradient-to-br from-primary to-primary-container text-on-primary font-headline font-bold text-xs uppercase tracking-widest rounded-md hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-lg">shopping_bag</span> Add to Cart
-                            </button>
-</div>
+<!-- Sidebar filter script -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const filterButtons = document.querySelectorAll('.sidebar-filter');
+    const productCards = document.querySelectorAll('.product-card');
+
+    function showCategory(category) {
+      if (category === 'all') {
+        productCards.forEach(card => card.style.display = '');
+      } else {
+        productCards.forEach(card => {
+          if (card.getAttribute('data-category') === category) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+    }
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const filter = btn.getAttribute('data-filter');
+        showCategory(filter);
+      });
+    });
+
+    // Show all by default
+    showCategory('all');
+  });
+</script>
 </div>
 <!-- Pagination / More -->
 <div class="mt-20 flex justify-center">
