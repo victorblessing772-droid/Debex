@@ -85,6 +85,41 @@
     if (!token) {
       window.location.replace("index.html");
     }
+
+    // Handle "Add to Cart" buttons
+    const addToCartButtons = document.querySelectorAll('.add-to-cart, button:has(> .material-symbols-outlined:contains("add_shopping_cart"))');
+    addToCartButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        // Add item to cart (can be expanded with actual cart logic)
+        alert('Item added to cart!');
+        window.location.href = 'checkout.html';
+      });
+    });
+
+    // Handle "Explore Bundle" button
+    const exploreButton = document.querySelector('button:contains("Explore Bundle")');
+    if (exploreButton) {
+      exploreButton.addEventListener('click', () => {
+        window.location.href = 'checkout.html';
+      });
+    }
+
+    // Handle "Clear All Filters" button
+    const clearButton = document.querySelector('button:contains("Clear All Filters")');
+    if (clearButton) {
+      clearButton.addEventListener('click', () => {
+        document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+      });
+    }
+
+    // Handle "Load More" button
+    const loadMoreButton = document.querySelector('button:contains("Load More")');
+    if (loadMoreButton) {
+      loadMoreButton.addEventListener('click', () => {
+        alert('Loading more products...');
+      });
+    }
   });
 </script>
 </head>
@@ -108,7 +143,7 @@
 <input class="bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary w-64 transition-all" placeholder="Search components..." type="text"/>
 </div>
 <div class="flex items-center space-x-4">
-<button class="material-symbols-outlined text-zinc-600 hover:text-amber-600 transition-transform scale-95 active:scale-90">shopping_cart</button>
+<a href="checkout.html" class="material-symbols-outlined text-zinc-600 hover:text-amber-600 transition-transform scale-95 active:scale-90">shopping_cart</a>
 <button class="material-symbols-outlined text-zinc-600 hover:text-amber-600 transition-transform scale-95 active:scale-90">person</button>
 </div>
 </div>
