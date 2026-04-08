@@ -78,6 +78,9 @@
       .custom-scrollbar::-webkit-scrollbar { width: 4px; }
       .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
       .custom-scrollbar::-webkit-scrollbar-thumb { background: #d7c4ac33; border-radius: 10px; }
+      .bg-filament-glow {
+        background: linear-gradient(135deg, #805600 0%, #ffb000 100%);
+      }
     </style>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
@@ -105,7 +108,7 @@
 </div>
 </div>
 <div class="flex items-center gap-6">
-<button class="material-symbols-outlined text-zinc-600 hover:bg-zinc-50 p-2 rounded-full transition-all scale-95 active:scale-90">shopping_cart</button>
+<a href="checkout.html" class="material-symbols-outlined text-zinc-600 hover:bg-zinc-50 p-2 rounded-full transition-all scale-95 active:scale-90">shopping_cart</a>
 <button class="material-symbols-outlined text-zinc-600 hover:bg-zinc-50 p-2 rounded-full transition-all scale-95 active:scale-90">person</button>
 </div>
 </div>
@@ -133,9 +136,7 @@
     </button>
   </nav>
   <div class="mt-auto pt-8 border-t border-zinc-100 dark:border-zinc-800/50">
-    <div class="flex flex-col gap-1">
-      <a class="flex items-center gap-3 px-4 py-2 text-zinc-500 text-xs font-medium uppercase tracking-widest" href="#"></a>
-    </div>
+
   </div>
 </aside>
 <!-- Main Content Area -->
@@ -178,7 +179,7 @@
           <span class="font-label text-xs font-bold">4W LED</span>
         </div>
       </div>
-      <button class="mt-auto bg-surface-container-highest text-on-surface py-4 px-6 rounded-md font-label text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-surface-dim transition-all">
+      <button class="w-full py-3 bg-filament-glow text-on-primary font-manrope text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-all rounded-md flex items-center justify-center gap-2">
         Add to Cart
         <span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
       </button>
@@ -211,7 +212,7 @@
           <span class="font-label text-xs font-bold">G95 / 8W / 2700K</span>
         </div>
       </div>
-      <button class="mt-auto bg-surface-container-highest text-on-surface py-4 px-6 rounded-md font-label text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-surface-dim transition-all">
+      <button class="w-full py-3 bg-filament-glow text-on-primary font-manrope text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-all rounded-md flex items-center justify-center gap-2">
         Add to Cart
         <span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
       </button>
@@ -232,7 +233,7 @@
           <span class="font-label text-xs font-bold">E27 / 4W / CRYSTAL</span>
         </div>
       </div>
-      <button class="mt-auto bg-surface-container-highest text-on-surface py-4 px-6 rounded-md font-label text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-surface-dim transition-all">
+      <button class="w-full py-3 bg-filament-glow text-on-primary font-manrope text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-all rounded-md flex items-center justify-center gap-2">
         Add to Cart
         <span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
       </button>
@@ -253,7 +254,7 @@
           <span class="font-label text-xs font-bold">E14 / 2W / FILAMENT</span>
         </div>
       </div>
-      <button class="mt-auto bg-surface-container-highest text-on-surface py-4 px-6 rounded-md font-label text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-surface-dim transition-all">
+      <button class="w-full py-3 bg-filament-glow text-on-primary font-manrope text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-all rounded-md flex items-center justify-center gap-2">
         Add to Cart
         <span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
       </button>
@@ -291,7 +292,7 @@
           <span class="font-label text-xs font-bold">2200K Sunset</span>
         </div>
       </div>
-      <button class="mt-auto filament-gradient text-on-primary py-4 px-6 rounded-md font-label text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 group-hover:shadow-lg transition-all">
+    <button class="w-full py-3 bg-filament-glow text-on-primary font-manrope text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-all rounded-md flex items-center justify-center gap-2">
         Add to Cart
         <span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
       </button>
@@ -316,7 +317,7 @@
           <span class="font-label text-xs font-bold">Oversized Globe</span>
         </div>
       </div>
-      <button class="mt-auto bg-surface-container-highest text-on-surface py-4 px-6 rounded-md font-label text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-surface-dim transition-all">
+  <button class="w-full py-3 bg-filament-glow text-on-primary font-manrope text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-all rounded-md flex items-center justify-center gap-2">
         Add to Cart
         <span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
       </button>
@@ -341,7 +342,7 @@
           <span class="font-label text-xs font-bold">E26 Brass</span>
         </div>
       </div>
-      <button class="mt-auto filament-gradient text-on-primary py-4 px-6 rounded-md font-label text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 group-hover:shadow-lg transition-all">
+     <button class="w-full py-3 bg-filament-glow text-on-primary font-manrope text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-all rounded-md flex items-center justify-center gap-2">
         Add to Cart
         <span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
       </button>
