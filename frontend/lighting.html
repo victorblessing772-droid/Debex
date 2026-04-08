@@ -118,10 +118,7 @@
     <p class="text-[10px] text-zinc-500 uppercase tracking-widest mt-1">Precision Luminescence</p>
   </div>
   <nav class="flex flex-col gap-1">
-    <button class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-zinc-800 text-amber-600 dark:text-amber-500 shadow-sm rounded-lg font-['Manrope'] text-sm font-bold transition-all duration-200 ease-in-out sidebar-filter" data-filter="all">
-      <span class="material-symbols-outlined text-xl">lightbulb_circle</span>
-      All Products
-    </button>
+
     <button class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-zinc-800 text-amber-600 dark:text-amber-500 shadow-sm rounded-lg font-['Manrope'] text-sm font-bold transition-all duration-200 ease-in-out sidebar-filter" data-filter="chandelier">
       <span class="material-symbols-outlined text-xl">lightbulb</span>
       Chandelier Bulbs
@@ -144,21 +141,25 @@
 <!-- Main Content Area -->
 <main class="flex-1 lg:ml-64 px-8 pb-20">
 <!-- Hero Header -->
-<section class="py-12 md:py-20 max-w-5xl">
-<h1 class="text-5xl md:text-6xl font-extrabold font-headline tracking-tighter text-on-surface mb-6">Vintage Filaments</h1>
-<p class="text-lg text-secondary font-body leading-relaxed max-w-2xl">
-  Engineered to evoke the early 20th century, our Vintage series combines historical glass forms with advanced tungsten-mimic LED filaments. Precision warmth for the discerning eye.
-</p>
-</section>
 <!-- Filters & Layout -->
 <div class="flex flex-col lg:flex-row gap-8">
 <!-- Advanced Filters -->
 <
 <!-- Product Grid -->
 <div class="flex-1">
-<div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-  <!-- Chandelier Bulbs Product Card -->
-  <article class="group relative bg-surface-container-lowest transition-all duration-500 hover:shadow-xl hover:-translate-y-1 flex flex-col product-card" data-category="chandelier">
+<div id="product-grid" class="space-y-12">
+  <!-- All Products Section -->
+
+  <!-- Chandelier Bulbs Section -->
+  <section class="chandelier-section" data-category="chandelier">
+    <div class="py-12 md:py-20 max-w-5xl">
+      <h2 class="text-5xl md:text-6xl font-extrabold font-headline tracking-tighter text-on-surface mb-6">Chandelier Bulbs</h2>
+      <p class="text-lg text-secondary font-body leading-relaxed max-w-2xl">
+        Timeless elegance meets modern efficiency. Our chandelier collection features premium bulbs designed to enhance any decorative fixture with warm, inviting luminescence.
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+      <article class="group relative bg-surface-container-lowest transition-all duration-500 hover:shadow-xl hover:-translate-y-1 flex flex-col product-card" data-category="chandelier">
     <div class="aspect-[4/5] overflow-hidden bg-surface-container-low relative">
       <img alt="Chandelier Bulb" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0MAJxG7ag6PbvgS5WE4GDuNMpA3APPYc2ecQF-KBfK-aA7FLJkZVbLNIGu5y1HC0rOqLtVWKvaSzHNFB3_2AyW6MPLk4ajH_CQuAFvB12lMa1JxB3MYyPhWXc3ffcIkDeIqF4W6PJSDcj_vgCjtcPoWMv0UXkaCqziV09S_dKgDo82eMGldFlROadcMTVlNjS8hjaCTIDqRJb9SdwOazCVkhmV4pkphTeNPUymW810Qhqoy3Lc1g_RGt-zWwQf1G__HDtam4VeAw"/>
     </div>
@@ -183,8 +184,19 @@
       </button>
     </div>
   </article>
-  <!-- Classy Bulbs Product Cards -->
-  <article class="group relative bg-surface-container-lowest transition-all duration-500 hover:shadow-xl hover:-translate-y-1 flex flex-col product-card" data-category="classy">
+    </div>
+  </section>
+
+  <!-- Classy Bulbs Section -->
+  <section class="classy-section" data-category="classy">
+    <div class="py-12 md:py-20 max-w-5xl">
+      <h2 class="text-5xl md:text-6xl font-extrabold font-headline tracking-tighter text-on-surface mb-6">Classy Bulbs</h2>
+      <p class="text-lg text-secondary font-body leading-relaxed max-w-2xl">
+        Sophisticated design for the refined taste. Our Classy collection combines contemporary styling with premium finishes, perfect for modern interiors.
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+      <article class="group relative bg-surface-container-lowest transition-all duration-500 hover:shadow-xl hover:-translate-y-1 flex flex-col product-card" data-category="classy">
     <div class="aspect-[4/5] overflow-hidden bg-surface-container-low mb-6 transition-colors group-hover:bg-surface-container-high relative">
       <img alt="Frosted Globe Bulb" class="w-full h-full object-cover mix-blend-multiply opacity-90 group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtIDGHS79XKdoFxCLjc31dNKgffxSR3RnTFi9picT-fTmyLKCKAQQDei6_m2-pjq-W_JDyfILSN-9nkXWy6kH8o64maufzqWU2KAX4zl_Ja0tJ1rp7G7l3PNRn_9yotxEAvxwtH0gFmrxNsi4wD4YGW-vmZ09OMYA7ZsmDyHkneUkF2Gm-2YJMycT2kiCrU6SkLASIMTbUPqnPq_goX8Ea-f0PwGdrOCjADx76YReVaCQePpSG_1sf_eARyhiYABERD-BtQ0DvzQM"/>
     </div>
@@ -247,7 +259,18 @@
       </button>
     </div>
   </article>
-  <!-- Vintage Filaments Product Cards -->
+    </div>
+  </section>
+
+  <!-- Vintage Filaments Section -->
+  <section class="vintage-section" data-category="vintage">
+    <div class="py-12 md:py-20 max-w-5xl">
+      <h2 class="text-5xl md:text-6xl font-extrabold font-headline tracking-tighter text-on-surface mb-6">Vintage Filaments</h2>
+      <p class="text-lg text-secondary font-body leading-relaxed max-w-2xl">
+        Engineered to evoke the early 20th century, our Vintage series combines historical glass forms with advanced tungsten-mimic LED filaments. Precision warmth for the discerning eye.
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
   <article class="group relative bg-surface-container-lowest transition-all duration-500 hover:shadow-xl hover:-translate-y-1 flex flex-col product-card" data-category="vintage">
     <div class="aspect-[4/5] overflow-hidden bg-surface-container-low relative">
       <img alt="Antique Edison Bulb" class="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCp3XtAH-ij0W9gmsbTYmoGD3cyRN6AO7WirTuDUOjcvRsii5oF8tmFTKV4Uar-CqaAI5AcWXjS9uSasHiKERV6jmpeZqKIORhx9c-lF84Gi7BwAuc8dmHVKfQbmyDdWc5cgNwB8yHAgxXYiZydgzjd5Hz_RkCcdJBdJdgCyJZFzforeGO8w_-zruCcKmQA9qAaz_7MMgsTRK7RYhv1onpQbWxl68OW__JhPqeLfDVDc545xdaVKYyB_XGzb-ry7d9-nboF9qiEAro"/>
@@ -324,6 +347,8 @@
       </button>
     </div>
   </article>
+    </div>
+  </section>
 </div>
 </main>
 </div>
@@ -331,17 +356,39 @@
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     const filterButtons = document.querySelectorAll('.sidebar-filter');
-    const productCards = document.querySelectorAll('.product-card');
+    const sections = document.querySelectorAll('[data-category]');
+    const allProductsGrid = document.getElementById('all-products-grid');
 
     function showCategory(category) {
-      if (category === 'all') {
-        productCards.forEach(card => card.style.display = '');
-      } else {
-        productCards.forEach(card => {
-          if (card.getAttribute('data-category') === category) {
-            card.style.display = '';
+      sections.forEach(section => {
+        if (category === 'all') {
+          section.style.display = '';
+        } else {
+          if (section.getAttribute('data-category') === category) {
+            section.style.display = '';
           } else {
-            card.style.display = 'none';
+            section.style.display = 'none';
+          }
+        }
+      });
+
+      // Populate all products grid with image-only cards
+      if (category === 'all') {
+        const allCards = document.querySelectorAll('.product-card');
+        allProductsGrid.innerHTML = '';
+        
+        allCards.forEach(card => {
+          const imageContainer = card.querySelector('.aspect-\\[4\\/5\\], [class*="aspect"]');
+          if (imageContainer) {
+            const imageElement = imageContainer.querySelector('img');
+            if (imageElement) {
+              const imageCard = document.createElement('div');
+              imageCard.className = 'aspect-[4/5] overflow-hidden bg-surface-container-low relative group cursor-pointer';
+              imageCard.innerHTML = `
+                <img alt="${imageElement.alt}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="${imageElement.src}"/>
+              `;
+              allProductsGrid.appendChild(imageCard);
+            }
           }
         });
       }
