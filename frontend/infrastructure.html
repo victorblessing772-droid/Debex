@@ -78,64 +78,19 @@
             background: linear-gradient(135deg, #805600 0%, #ffb000 100%);
         }
     </style>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      window.location.replace("index.html");
-    }
-
-    // Handle "Add to Cart" buttons
-    const addToCartButtons = document.querySelectorAll('.add-to-cart, button:has(> .material-symbols-outlined:contains("add_shopping_cart"))');
-    addToCartButtons.forEach(button => {
-      button.addEventListener('click', (e) => {
-        e.preventDefault();
-        // Add item to cart (can be expanded with actual cart logic)
-        alert('Item added to cart!');
-        window.location.href = 'checkout.html';
-      });
-    });
-
-    // Handle "Explore Bundle" button
-    const exploreButton = document.querySelector('button:contains("Explore Bundle")');
-    if (exploreButton) {
-      exploreButton.addEventListener('click', () => {
-        window.location.href = 'checkout.html';
-      });
-    }
-
-    // Handle "Clear All Filters" button
-    const clearButton = document.querySelector('button:contains("Clear All Filters")');
-    if (clearButton) {
-      clearButton.addEventListener('click', () => {
-        document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
-      });
-    }
-
-    // Handle "Load More" button
-    const loadMoreButton = document.querySelector('button:contains("Load More")');
-    if (loadMoreButton) {
-      loadMoreButton.addEventListener('click', () => {
-        alert('Loading more products...');
-      });
-    }
-  });
-</script>
 </head>
 <body class="bg-surface text-on-background font-body min-h-screen flex flex-col">
 <!-- TopNavBar (Based on COMPONENTS_31) -->
 <nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md shadow-sm border-b border-zinc-100 dark:border-zinc-800/50">
-<div class="flex justify-between items-center px-8 h-16 max-w-full mx-auto font-['Manrope'] antialiased">
-<div class="flex items-center gap-12">
-<span class="text-xl font-extrabold tracking-tighter text-zinc-900 dark:text-zinc-100 uppercase">Debex Electronics</span>
-<div class="hidden md:flex gap-8 tracking-tight text-sm font-medium">
-<a class="text-amber-700 dark:text-amber-400 border-b-2 border-amber-500 pb-1 transition-colors duration-200" href="home.html">Home</a> 
-<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="lighting.html">Lighting</a>
-<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="power-switches.html">Power &amp; Switches</a>
-<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="professional-tools.html">Professional Tools</a>
-<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-1０ transition-colors duration-2００" href="infrastructure.html">Infrastructure</a>
-</div>
+<div class="flex justify-between items-center px-8 h-16 max-w-full mx-auto">
+<div class="text-xl font-extrabold tracking-tighter text-zinc-900 dark:text-zinc-100 font-headline uppercase">
+                Lumen &amp; Lead
+            </div>
+<div class="hidden md:flex items-center space-x-8 font-['Manrope'] antialiased tracking-tight text-sm font-medium">
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="#">Lighting</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="#">Power &amp; Switches</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="#">Professional Tools</a>
+<a class="text-amber-700 dark:text-amber-400 border-b-2 border-amber-500 pb-1" href="#">Infrastructure</a>
 </div>
 <div class="flex items-center space-x-6">
 <div class="relative hidden lg:block">
@@ -143,7 +98,7 @@
 <input class="bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary w-64 transition-all" placeholder="Search components..." type="text"/>
 </div>
 <div class="flex items-center space-x-4">
-<a href="checkout.html" class="material-symbols-outlined text-zinc-600 hover:text-amber-600 transition-transform scale-95 active:scale-90">shopping_cart</a>
+<button class="material-symbols-outlined text-zinc-600 hover:text-amber-600 transition-transform scale-95 active:scale-90">shopping_cart</button>
 <button class="material-symbols-outlined text-zinc-600 hover:text-amber-600 transition-transform scale-95 active:scale-90">person</button>
 </div>
 </div>
@@ -185,7 +140,70 @@
 <span class="material-symbols-outlined text-slate-400 text-lg">tune</span>
 </div>
 <!-- Material Filter -->
-
+<div class="mb-10">
+<label class="font-label text-[10px] uppercase tracking-widest text-secondary font-bold mb-4 block">Material</label>
+<div class="space-y-3">
+<label class="flex items-center group cursor-pointer">
+<input class="rounded-sm border-outline-variant text-primary focus:ring-primary h-4 w-4 bg-transparent" type="checkbox"/>
+<span class="ml-3 text-sm font-medium text-on-surface-variant group-hover:text-primary transition-colors">Galvanized Steel</span>
+</label>
+<label class="flex items-center group cursor-pointer">
+<input checked="" class="rounded-sm border-outline-variant text-primary focus:ring-primary h-4 w-4 bg-transparent" type="checkbox"/>
+<span class="ml-3 text-sm font-medium text-on-surface-variant group-hover:text-primary transition-colors">High-Impact PVC</span>
+</label>
+<label class="flex items-center group cursor-pointer">
+<input class="rounded-sm border-outline-variant text-primary focus:ring-primary h-4 w-4 bg-transparent" type="checkbox"/>
+<span class="ml-3 text-sm font-medium text-on-surface-variant group-hover:text-primary transition-colors">Cast Aluminum</span>
+</label>
+</div>
+</div>
+<!-- Diameter Filter -->
+<div class="mb-10">
+<label class="font-label text-[10px] uppercase tracking-widest text-secondary font-bold mb-4 block">Conduit Diameter</label>
+<div class="grid grid-cols-2 gap-2">
+<button class="px-3 py-2 border border-outline-variant/30 text-xs font-label hover:border-primary transition-all rounded">20mm</button>
+<button class="px-3 py-2 bg-primary text-on-primary text-xs font-label rounded">25mm</button>
+<button class="px-3 py-2 border border-outline-variant/30 text-xs font-label hover:border-primary transition-all rounded">32mm</button>
+<button class="px-3 py-2 border border-outline-variant/30 text-xs font-label hover:border-primary transition-all rounded">50mm</button>
+</div>
+</div>
+<!-- Unit Count -->
+<div class="mb-8">
+<label class="font-label text-[10px] uppercase tracking-widest text-secondary font-bold mb-4 block">Unit Pack</label>
+<div class="space-y-2">
+<div class="flex items-center justify-between text-xs py-1 border-b border-outline-variant/20">
+<span>Single Unit</span>
+<span class="text-secondary font-label">From $12</span>
+</div>
+<div class="flex items-center justify-between text-xs py-1 border-b border-outline-variant/20">
+<span>Bulk Case (25)</span>
+<span class="text-secondary font-label">From $240</span>
+</div>
+</div>
+</div>
+<button class="w-full py-4 text-[10px] font-bold tracking-widest uppercase border border-primary text-primary hover:bg-primary hover:text-on-primary transition-all rounded-lg">
+                        Clear All Filters
+                    </button>
+</div>
+<div class="p-8 border-l-2 border-primary-container bg-surface-container-lowest/50">
+<h4 class="font-headline font-bold text-xs uppercase mb-2">Technical Support</h4>
+<p class="text-xs text-secondary leading-relaxed mb-4">Need load calculations for complex infrastructure?</p>
+<a class="text-xs font-bold text-primary flex items-center gap-2 hover:underline" href="#">
+                        Consult an Engineer
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</aside>
+<!-- Product Grid -->
+<div class="lg:col-span-9">
+<div class="flex justify-between items-center mb-10 border-b border-surface-container pb-6">
+<span class="text-xs font-label text-secondary tracking-widest uppercase">Showing 24 Components</span>
+<div class="flex items-center gap-6">
+<button class="text-[10px] font-bold tracking-widest uppercase flex items-center gap-2">
+                            Sort by: Precision
+                            <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-16">
 <!-- Product 1 -->
@@ -295,7 +313,7 @@
 </div>
 </main>
 <!-- Footer (Based on COMPONENTS_31) -->
-<<footer class="w-full py-16 px-8 mt-auto bg-zinc-50 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800/50">
+<footer class="w-full py-16 px-8 mt-auto bg-zinc-50 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800/50">
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto font-['Manrope']">
 <div class="space-y-4">
 <div class="text-lg font-bold text-zinc-900 dark:text-zinc-100 uppercase">Debex Electronics</div>
@@ -334,12 +352,12 @@
 <p class="text-xs uppercase tracking-widest font-semibold text-zinc-500 dark:text-zinc-400">
                 © 2026 Debex Electronics. All rights reserved.
             </p>
-
 <footer class="w-full py-8 px-8 bg-white border-t border-surface-container-high">
 <div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
 <span class="font-manrope text-sm tracking-wide text-stone-500">
                 © 2026 Debex Electronics. All rights reserved.
             </span>
+
 
 </div>
 </footer>
