@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-export const protect = (req, res, next) => {
+const protect = (req, res, next) => {
   let token = req.headers.authorization;
 
   if (token && token.startsWith("Bearer")) {
@@ -9,6 +9,7 @@ export const protect = (req, res, next) => {
 
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
+      req.userId = decoded.id || decoded._id;
       req.user = decoded;
 
       next();
@@ -19,3 +20,5 @@ export const protect = (req, res, next) => {
     res.status(401).json({ message: "No token provided" });
   }
 };
+
+export default protect;

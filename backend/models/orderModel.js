@@ -1,15 +1,20 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema(
   {
-    user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-    products: [
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    items: [
       {
-        product: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
+        id: String,
+        name: String,
+        price: Number,
         quantity: Number,
+        image: String,
       },
     ],
-    totalPrice: Number,
+    total: String,
+    customerEmail: String,
+    address: String,
     status: {
       type: String,
       default: "pending",
@@ -18,4 +23,4 @@ const orderSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Order", orderSchema);
+export default mongoose.model("Order", orderSchema);
