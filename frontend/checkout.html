@@ -220,47 +220,29 @@
 <div class="sticky top-28 bg-surface-container-lowest p-8 shadow-sm space-y-8">
 <h3 class="text-xl font-headline font-bold tracking-tight pb-4 border-b border-surface-container-high">Order Summary</h3>
 <!-- Product List -->
-<div class="space-y-6">
-<div class="flex gap-4">
-<div class="w-20 h-20 bg-surface-container-low flex-shrink-0 relative">
-<img alt="Electrical components" class="w-full h-full object-cover" data-alt="Close-up of a high-end brushed brass double switched wall socket on a neutral architectural background with soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDROC_3thhQAd3L6L6QUanTN6vveRsjKx6-UtqmXaOYIU9VJswro07Yur7DXGMhfi87FWOUEfz0M8WfFohMMCXWOqHfC4oXTl9uE7HqbptrbHlSLkyNVwijvh5T1FfcUl-6LC5h0R4leNiuQLXQLDEIjkfCrsgtNKsawDbenmA7NlnRstqHBs45HQ_wZp8tLtEsRfW20m-9_dCZ0rL642-j6a9fkFJydXRiYWEA4V6EpsUic7X_vknIy1ypxgoKv-u621e2_jqROZ0"/>
-<span class="absolute -top-2 -right-2 bg-on-surface text-surface text-[10px] w-5 h-5 flex items-center justify-center rounded-full font-bold">2</span>
+<div id="cart-items" class="space-y-6">
+<!-- Cart items will be populated here -->
 </div>
-<div class="flex-grow">
-<p class="font-headline font-bold text-sm leading-tight">Twin Switched Socket</p>
-<p class="text-xs text-secondary mt-1 font-label">Brushed Brass / 13A</p>
-<p class="text-sm font-bold mt-2">$84.00</p>
-</div>
-</div>
-<div class="flex gap-4">
-<div class="w-20 h-20 bg-surface-container-low flex-shrink-0 relative">
-<img alt="Chandelier bulbs" class="w-full h-full object-cover" data-alt="Elegant glass LED filament chandelier bulbs displayed against a dark minimalist background with warm ambient light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAE7EHHbiGvN2ZVcAyXCi8S0lbR40W3d_4t989-MggDUXpXBAq-kqhXxPCA2be1R4KxrL2SceMmhgiC-LsJo1iJiPvE-NN0ZGrrSJ_bfuZmhPcvebsFgoMyilBsMdAPzg7ca7APKUufM4nhZlk4OHScx623lJDcp02-Mi39HpckdM8udgI4Y_QpDKE9lvZZgo3dftkmuswi90TDfTsWjH1fvbodTB6TSt8o52fI7afdeg2vxsY_JCuLnyyzChKv0ZKrkMTZ8LzFUVg"/>
-<span class="absolute -top-2 -right-2 bg-on-surface text-surface text-[10px] w-5 h-5 flex items-center justify-center rounded-full font-bold">6</span>
-</div>
-<div class="flex-grow">
-<p class="font-headline font-bold text-sm leading-tight">Filament Chandelier Bulbs</p>
-<p class="text-xs text-secondary mt-1 font-label">2700K Warm Glow / E14</p>
-<p class="text-sm font-bold mt-2">$72.00</p>
-</div>
-</div>
+<div id="empty-cart" class="text-center py-8">
+<p class="text-secondary font-label text-sm">Your cart is empty. Add items to get started!</p>
 </div>
 <!-- Price Breakdown -->
 <div class="space-y-3 pt-6 border-t border-surface-container-high">
 <div class="flex justify-between text-sm">
 <span class="text-secondary">Subtotal</span>
-<span class="font-bold">$156.00</span>
+<span id="subtotal" class="font-bold">$0.00</span>
 </div>
 <div class="flex justify-between text-sm">
 <span class="text-secondary">Precision Shipping</span>
-<span class="font-bold">$45.00</span>
+<span id="shipping" class="font-bold">$0.00</span>
 </div>
 <div class="flex justify-between text-sm">
 <span class="text-secondary">Architectural Tax (8%)</span>
-<span class="font-bold">$12.48</span>
+<span id="tax" class="font-bold">$0.00</span>
 </div>
 <div class="flex justify-between text-lg pt-4 border-t border-surface-container-high">
 <span class="font-headline font-bold">Total</span>
-<span class="font-headline font-extrabold text-primary">$213.48</span>
+<span id="total" class="font-headline font-extrabold text-primary">$0.00</span>
 </div>
 </div>
 <!-- CTA -->
@@ -285,35 +267,171 @@
 </div>
 </main>
 <!-- Footer -->
-<footer class="w-full py-16 px-8 mt-auto bg-stone-100 dark:bg-stone-900 font-manrope text-sm tracking-wide">
-<div class="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-7xl mx-auto">
-<div class="md:col-span-1">
-<div class="font-bold text-lg text-stone-900 dark:text-stone-50 mb-4">The Illuminated Editorial</div>
-<p class="text-stone-500 dark:text-stone-400 leading-relaxed">Precision-engineered electrical artifacts for the modern architect.</p>
-</div>
+<footer class="w-full py-16 px-8 mt-auto bg-zinc-50 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800/50">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto font-['Manrope']">
 <div class="space-y-4">
-<h4 class="font-bold text-stone-900 dark:text-stone-50 uppercase text-xs tracking-widest">Support</h4>
-<div class="flex flex-col gap-2">
-<a class="text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 underline-offset-4 hover:underline transition-opacity opacity-80 hover:opacity-100" href="#">Technical Specs</a>
-<a class="text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 underline-offset-4 hover:underline transition-opacity opacity-80 hover:opacity-100" href="#">Shipping</a>
+<div class="text-lg font-bold text-zinc-900 dark:text-zinc-100 uppercase">Debex Electronics</div>
+<p class="text-zinc-500 dark:text-zinc-400 text-sm">Affordable pricing without compromising on quality.</p>
+</div>
+<div>
+<h4 class="text-xs uppercase tracking-widest font-semibold text-amber-600 mb-6">Catalog</h4>
+<div class="flex flex-col gap-3 text-xs tracking-wide uppercase">
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Lighting</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Power &amp; Switches</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Professional Tools</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Infrastructure</a>
 </div>
 </div>
-<div class="space-y-4">
-<h4 class="font-bold text-stone-900 dark:text-stone-50 uppercase text-xs tracking-widest">Company</h4>
-<div class="flex flex-col gap-2">
-<a class="text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 underline-offset-4 hover:underline transition-opacity opacity-80 hover:opacity-100" href="#">Trade Program</a>
-<a class="text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 underline-offset-4 hover:underline transition-opacity opacity-80 hover:opacity-100" href="#">Sustainability</a>
+<div>
+<h4 class="text-xs uppercase tracking-widest font-semibold text-amber-600 mb-6">Resources</h4>
+<div class="flex flex-col gap-3 text-xs tracking-wide uppercase">
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Technical Specs</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Pro Portal</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Compliance</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Supply Chain</a>
 </div>
 </div>
-<div class="space-y-4">
-<h4 class="font-bold text-stone-900 dark:text-stone-50 uppercase text-xs tracking-widest">Legal</h4>
-<div class="flex flex-col gap-2">
-<a class="text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 underline-offset-4 hover:underline transition-opacity opacity-80 hover:opacity-100" href="#">Privacy</a>
-<p class="text-[10px] text-stone-400 dark:text-stone-500 mt-4 leading-tight">
-                        © 2024 The Illuminated Editorial. Precision Luminescence.
-                    </p>
+<div>
+<h4 class="text-xs uppercase tracking-widest font-semibold text-amber-600 mb-6">Connect</h4>
+<div class="flex flex-col gap-3 text-xs tracking-wide uppercase">
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Contact</a>
+<div class="flex gap-4 pt-2">
+<span class="material-symbols-outlined text-zinc-400 cursor-pointer hover:text-amber-500">language</span>
+<span class="material-symbols-outlined text-zinc-400 cursor-pointer hover:text-amber-500">share</span>
 </div>
 </div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-800/50 text-center">
+<p class="text-xs uppercase tracking-widest font-semibold text-zinc-500 dark:text-zinc-400">
+                © 2026 Debex Electronics. All rights reserved.
+            </p>
 </div>
 </footer>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const API_BASE = 'http://localhost:5500/api';
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      window.location.replace("index.html");
+    }
+
+    // Display cart items
+    function displayCart() {
+      const cart = JSON.parse(localStorage.getItem('debex-cart') || '[]');
+      const cartItems = document.getElementById('cart-items');
+      const emptyCart = document.getElementById('empty-cart');
+      
+      if (cart.length === 0) {
+        cartItems.innerHTML = '';
+        emptyCart.style.display = 'block';
+        document.getElementById('subtotal').textContent = '$0.00';
+        document.getElementById('shipping').textContent = '$0.00';
+        document.getElementById('tax').textContent = '$0.00';
+        document.getElementById('total').textContent = '$0.00';
+        return;
+      }
+      
+      emptyCart.style.display = 'none';
+      let html = '';
+      let subtotal = 0;
+      
+      cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        subtotal += itemTotal;
+        html += `
+          <div class="flex gap-4">
+            <div class="w-20 h-20 bg-surface-container-low flex-shrink-0 relative">
+              <img alt="${item.name}" class="w-full h-full object-cover" src="${item.image || ''}"/>
+              <span class="absolute -top-2 -right-2 bg-on-surface text-surface text-[10px] w-5 h-5 flex items-center justify-center rounded-full font-bold">${item.quantity}</span>
+            </div>
+            <div class="flex-grow">
+              <p class="font-headline font-bold text-sm leading-tight">${item.name}</p>
+              <p class="text-xs text-secondary mt-1 font-label">$${item.price.toFixed(2)} each</p>
+              <p class="text-sm font-bold mt-2">$${itemTotal.toFixed(2)}</p>
+              <button data-index="${index}" class="remove-item text-primary text-xs font-bold mt-2 hover:underline">Remove</button>
+            </div>
+          </div>
+        `;
+      });
+      
+      cartItems.innerHTML = html;
+      
+      // Add remove listeners
+      document.querySelectorAll('.remove-item').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const index = parseInt(e.target.dataset.index);
+          cart.splice(index, 1);
+          localStorage.setItem('debex-cart', JSON.stringify(cart));
+          displayCart();
+        });
+      });
+      
+      // Calculate totals
+      const shipping = cart.length > 0 ? 45 : 0;
+      const tax = subtotal * 0.08;
+      const total = subtotal + shipping + tax;
+      
+      document.getElementById('subtotal').textContent = '$' + subtotal.toFixed(2);
+      document.getElementById('shipping').textContent = '$' + shipping.toFixed(2);
+      document.getElementById('tax').textContent = '$' + tax.toFixed(2);
+      document.getElementById('total').textContent = '$' + total.toFixed(2);
+    }
+    
+    displayCart();
+
+    // Handle checkout/order submission
+    const checkoutForm = document.querySelector('form');
+    if (checkoutForm) {
+      checkoutForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const cart = JSON.parse(localStorage.getItem('debex-cart') || '[]');
+        
+        if (cart.length === 0) {
+          alert('Your cart is empty!');
+          return;
+        }
+        
+        const orderData = {
+          items: cart,
+          total: document.getElementById('total').textContent,
+          customerEmail: document.querySelector('input[type="email"]')?.value,
+          address: document.querySelector('input[placeholder*="Address"]')?.value
+        };
+
+        try {
+          const response = await fetch(API_BASE + '/orders', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(orderData)
+          });
+
+          if (response.ok) {
+            alert('Order placed successfully!');
+            localStorage.removeItem('debex-cart');
+            window.location.href = 'home.html';
+          } else {
+            alert('Error placing order');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('Error connecting to server');
+        }
+      });
+    }
+
+    // Handle checkout buttons
+    document.querySelectorAll('button').forEach(btn => {
+      if (btn.textContent.includes('Place') || btn.textContent.includes('Order')) {
+        btn.addEventListener('click', (e) => {
+          if (checkoutForm) {
+            e.preventDefault();
+            checkoutForm.dispatchEvent(new Event('submit'));
+          }
+        });
+      }
+    });
+  });
+</script>
 </body></html>

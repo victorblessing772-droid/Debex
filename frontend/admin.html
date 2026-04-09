@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Create New Listing | Lumen &amp; Lead Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "inverse-surface": "#2e3132",
+                        "surface-variant": "#e1e3e4",
+                        "surface-bright": "#f8f9fa",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#00d0fe",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-tertiary-container": "#00556a",
+                        "surface-container-low": "#f3f4f5",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "inverse-primary": "#ffba43",
+                        "on-surface-variant": "#524533",
+                        "background": "#f8f9fa",
+                        "secondary": "#5e5e5e",
+                        "secondary-fixed": "#e3e2e2",
+                        "surface": "#f8f9fa",
+                        "outline": "#847560",
+                        "surface-container": "#edeeef",
+                        "on-primary-container": "#6a4700",
+                        "secondary-fixed-dim": "#c7c6c6",
+                        "outline-variant": "#d7c4ac",
+                        "on-background": "#191c1d",
+                        "tertiary-fixed-dim": "#4cd6ff",
+                        "on-primary-fixed-variant": "#614000",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#281800",
+                        "on-tertiary-fixed-variant": "#004e60",
+                        "surface-dim": "#d9dadb",
+                        "tertiary": "#00677f",
+                        "surface-tint": "#805600",
+                        "tertiary-fixed": "#b7eaff",
+                        "surface-container-high": "#e7e8e9",
+                        "on-secondary-container": "#646464",
+                        "on-surface": "#191c1d",
+                        "secondary-container": "#e3e2e2",
+                        "on-error": "#ffffff",
+                        "primary": "#805600",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#ffb000",
+                        "on-tertiary-fixed": "#001f28",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#ffddaf",
+                        "on-secondary-fixed-variant": "#464747",
+                        "primary-fixed-dim": "#ffba43",
+                        "inverse-on-surface": "#f0f1f2"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Manrope"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-glow-button {
+            background: linear-gradient(135deg, #805600 0%, #ffb000 100%);
+        }
+        .glass-panel {
+            background: rgba(248, 249, 250, 0.8);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-background min-h-screen flex">
+<!-- SideNavBar Component -->
+<aside class="hidden lg:flex flex-col h-screen sticky top-0 p-4 gap-6 bg-zinc-100 dark:bg-zinc-900 h-full w-64 border-r-0 font-manrope text-sm font-medium">
+<div class="px-2 py-4">
+<span class="text-lg font-black text-zinc-900 dark:text-zinc-50 tracking-tighter">Lumen &amp; Lead</span>
+<div class="mt-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden">
+<img alt="Admin User Profile" class="w-full h-full object-cover" data-alt="professional headshot of a middle-aged male architect in a minimal grey studio setting with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqiJqaz_Z7kzCNTES15v8uplvHYbuyxup2obeaPdqCwjzFWE4jyGeEWRYRZYGI3aSDdFKc2mAi1eADgkIVKj2xA-3EqQqx2ayzQwMeudAdyOgBIBjGSts4kmq90x8njDcZ8xRwZqclql_7Asns9yZUEe9RPoKE5UUQjctG4ioD5rBK_Xx9pd7_ONiF41uOmSk5CCqoJebS--L5cbkHCr7DLZ_wv8YQqqo3ZJWz1hKQUJ7b5-VOeu7la5uA2pS_8RZjcEoMmLSPowc"/>
+</div>
+<div>
+<p class="font-bold text-zinc-900 dark:text-zinc-50">Admin Workspace</p>
+<p class="text-[10px] uppercase tracking-wider text-zinc-500">Product Catalog Management</p>
+</div>
+</div>
+</div>
+<nav class="flex flex-col gap-1 flex-grow">
+<!-- Active state determined by intent: Inventory (Managing listings) -->
+<a class="flex items-center gap-3 px-4 py-3 text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800/50 hover:translate-x-1 transition-transform duration-200 active:scale-98" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-zinc-800 text-amber-700 dark:text-amber-400 rounded-lg shadow-sm font-bold hover:translate-x-1 transition-transform duration-200 active:scale-98" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span>Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800/50 hover:translate-x-1 transition-transform duration-200 active:scale-98" href="#">
+<span class="material-symbols-outlined" data-icon="settings_input_component">settings_input_component</span>
+<span>Technical Specs</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800/50 hover:translate-x-1 transition-transform duration-200 active:scale-98" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<button class="mt-auto custom-glow-button text-on-primary py-3 rounded-lg font-bold shadow-lg transition-all duration-300 hover:opacity-90 active:scale-95">
+            Create New Listing
+        </button>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 overflow-y-auto bg-surface">
+<div class="max-w-7xl mx-auto p-8 lg:p-12">
+<!-- Header Section -->
+<header class="mb-12 flex justify-between items-end">
+<div>
+<h1 class="text-4xl font-extrabold tracking-tighter text-on-background font-headline mb-2">Create New Listing</h1>
+<p class="text-secondary font-label uppercase tracking-[0.2em] text-[10px]">Lumen &amp; Lead / Administrative Console</p>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-2 bg-surface-container-highest text-on-surface text-sm font-bold rounded-md hover:bg-surface-container-high transition-colors" type="button" onclick="document.getElementById('product-form').reset(); location.reload();">Discard</button>
+<button class="px-6 py-2 custom-glow-button text-on-primary text-sm font-bold rounded-md shadow-md hover:opacity-90 transition-opacity" type="submit" form="product-form" id="publish-btn">Publish Listing</button>
+</div>
+</header>
+<div class="grid grid-cols-12 gap-8 items-start">
+<!-- Left Column: Form -->
+<form id="product-form" class="col-span-12 lg:col-span-7 space-y-8">
+<!-- Basic Information Section (Tonal Layering) -->
+<section class="bg-surface-container-low p-8 rounded-xl space-y-6">
+<h2 class="text-xs font-bold uppercase tracking-widest text-primary border-b border-outline-variant/20 pb-4">Basic Information</h2>
+<div class="space-y-4">
+<div>
+<label class="block text-[11px] font-bold uppercase tracking-tighter text-secondary mb-2 font-label">Product Title</label>
+<input id="product-title" class="w-full bg-surface-container-lowest border-none focus:ring-0 focus:border-b-2 focus:border-primary rounded-md p-4 text-on-background placeholder:text-outline-variant/50 transition-all" placeholder="e.g. Filament Zenith Pendant - Brass" type="text" required/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-[11px] font-bold uppercase tracking-tighter text-secondary mb-2 font-label">Category</label>
+<select id="category-select" class="w-full bg-surface-container-lowest border-none focus:ring-0 rounded-md p-4 text-on-background appearance-none" required>
+<option value="chandelier">Chandelier Bulbs</option>
+<option value="classy">Classy Bulbs</option>
+<option value="vintage">Vintage Filaments</option>
+<option value="infrastructure">Infrastructure</option>
+<option value="power">Power & Switches</option>
+<option value="professional">Professional Tools</option>
+</select>
+</div>
+<div>
+<label class="block text-[11px] font-bold uppercase tracking-tighter text-secondary mb-2 font-label">Price (USD)</label>
+<div class="relative">
+<span class="absolute left-4 top-4 text-outline-variant">$</span>
+<input id="product-price" class="w-full bg-surface-container-lowest border-none focus:ring-0 rounded-md p-4 pl-8 text-on-background placeholder:text-outline-variant/50" placeholder="0.00" type="number" step="0.01" required/>
+</div>
+</div>
+</div>
+<div>
+<label class="block text-[11px] font-bold uppercase tracking-tighter text-secondary mb-2 font-label">Product Description</label>
+<textarea id="product-description" class="w-full bg-surface-container-lowest border-none focus:ring-0 rounded-md p-4 text-on-background placeholder:text-outline-variant/50 resize-none" placeholder="Describe the material quality, light distribution, and architectural intent..." rows="4" required></textarea>
+</div>
+</div>
+</section>
+<!-- Image Upload (Asymmetric Layout/Bento Element) -->
+<section class="bg-surface-container-low p-8 rounded-xl">
+<h2 class="text-xs font-bold uppercase tracking-widest text-primary border-b border-outline-variant/20 pb-4 mb-6">Visual Assets</h2>
+<div class="grid grid-cols-12 gap-4">
+<div class="col-span-12 md:col-span-8 h-64 bg-surface-container-lowest rounded-lg border-2 border-dashed border-outline-variant/30 flex flex-col items-center justify-center group cursor-pointer hover:border-primary/50 transition-colors" id="image-upload-area">
+<input id="image-input" type="file" accept="image/png,image/jpeg,image/webp" style="display: none;"/>
+<span class="material-symbols-outlined text-4xl text-outline-variant mb-4 group-hover:text-primary transition-colors" data-icon="cloud_upload">cloud_upload</span>
+<p class="text-sm font-bold text-on-surface">Click or Drag &amp; Drop Image</p>
+<p class="text-[10px] text-secondary mt-1">PNG, JPG, or WEBP up to 10MB</p>
+<img id="preview-image" alt="Preview" style="display: none; max-width: 100%; max-height: 100%; object-fit: contain;"/>
+</div>
+<div class="col-span-12 md:col-span-4 grid grid-rows-2 gap-4">
+<div class="bg-surface-container-lowest rounded-lg border-2 border-dashed border-outline-variant/30 flex items-center justify-center hover:border-primary/50 transition-colors cursor-pointer" onclick="document.getElementById('image-input').click()">
+<span class="material-symbols-outlined text-outline-variant" data-icon="add_photo_alternate">add_photo_alternate</span>
+</div>
+<div class="bg-surface-container-lowest rounded-lg border-2 border-dashed border-outline-variant/30 flex items-center justify-center hover:border-primary/50 transition-colors cursor-pointer" onclick="document.getElementById('image-input').click()">
+<span class="material-symbols-outlined text-outline-variant" data-icon="add_photo_alternate">add_photo_alternate</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical Specifications (Dynamic List) -->
+<section class="bg-surface-container-low p-8 rounded-xl space-y-6">
+<div class="flex justify-between items-center border-b border-outline-variant/20 pb-4">
+<h2 class="text-xs font-bold uppercase tracking-widest text-primary">Technical Specifications</h2>
+<button class="text-primary text-[10px] font-bold uppercase tracking-widest flex items-center gap-1 hover:opacity-70">
+<span class="material-symbols-outlined text-sm" data-icon="add_circle">add_circle</span> Add Specification
+                            </button>
+</div>
+<div class="space-y-3">
+<div class="grid grid-cols-12 gap-4">
+<div class="col-span-5">
+<input class="w-full bg-surface-container-lowest border-none focus:ring-0 rounded-md p-3 text-xs font-label" placeholder="Label (e.g. Voltage)" type="text"/>
+</div>
+<div class="col-span-6">
+<input class="w-full bg-surface-container-lowest border-none focus:ring-0 rounded-md p-3 text-xs font-label" placeholder="Value (e.g. 120V / 60Hz)" type="text"/>
+</div>
+<div class="col-span-1 flex items-center justify-center">
+<button class="text-outline-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-4">
+<div class="col-span-5">
+<input class="w-full bg-surface-container-lowest border-none focus:ring-0 rounded-md p-3 text-xs font-label" placeholder="Label (e.g. Wattage)" type="text"/>
+</div>
+<div class="col-span-6">
+<input class="w-full bg-surface-container-lowest border-none focus:ring-0 rounded-md p-3 text-xs font-label" placeholder="Value (e.g. 60W Equivalent)" type="text"/>
+</div>
+<div class="col-span-1 flex items-center justify-center">
+<button class="text-outline-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</form>
+<!-- Right Column: Product Preview (Editorial Style) -->
+<div class="col-span-12 lg:col-span-5 sticky top-8">
+<div class="bg-surface-container-lowest rounded-xl shadow-2xl overflow-hidden border border-surface-container-low">
+<div class="bg-surface p-4 flex justify-between items-center border-b border-surface-container-low">
+<span class="text-[10px] font-bold uppercase tracking-[0.2em] text-secondary">Customer View Preview</span>
+<div class="flex gap-1.5">
+<div class="w-2.5 h-2.5 rounded-full bg-zinc-200"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-zinc-200"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-zinc-200"></div>
+</div>
+</div>
+<!-- Preview Card -->
+<div class="p-0">
+<div class="relative aspect-[4/5] bg-surface-container-low overflow-hidden group">
+<img alt="Preview Product" class="w-full h-full object-cover" data-alt="minimalist architectural pendant light with gold filament bulb hanging in a dark moody concrete interior with dramatic shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKm88q-hn7qi5k9ApTmzndJ7ZVjfxAE6WaYCLpX8xfYqnK_uAmVLUGbd7fLR052vkoNirhYGxlV_3JWiLbWEIsLyiCqVs3AID2ncUIEsKvR50q4MSEJXUKD46U4GzoMDt6u_elo_z-Cig7pOOG-DKHTR7m3hhx4VOOpH-p_EFXcW9XkdKV9KTG-l1rrNJRK_PbUzf-U6tWzs8tGhLVHn5mpPGj8s5vGeUHuH2ZWVfm4W2xEYR1qXsB6d_-mXbwLzaVO2WOrPN7fII"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="absolute top-6 right-6">
+<span class="bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-primary shadow-sm">New Collection</span>
+</div>
+</div>
+<div class="p-8 space-y-6">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-2xl font-extrabold tracking-tighter font-headline mb-1">Architectural Zenith Pendant</h3>
+<p class="text-xs text-secondary uppercase tracking-[0.15em]">Lighting / Hand-Blown Glass</p>
+</div>
+<span class="text-xl font-medium text-primary tracking-tighter">$425.00</span>
+</div>
+<div class="space-y-4">
+<p class="text-sm text-on-surface/70 leading-relaxed font-body">
+                                        Experience precision luminescence with our signature Zenith series. Each unit is calibrated for optimal warmth and atmospheric depth.
+                                    </p>
+<div class="grid grid-cols-2 gap-y-4 border-t border-surface-container-low pt-6">
+<div>
+<p class="text-[9px] uppercase tracking-widest text-secondary mb-1">Illumination</p>
+<p class="text-xs font-bold">2700K Warm Glow</p>
+</div>
+<div>
+<p class="text-[9px] uppercase tracking-widest text-secondary mb-1">Material</p>
+<p class="text-xs font-bold">Brushed Brass &amp; Steel</p>
+</div>
+<div>
+<p class="text-[9px] uppercase tracking-widest text-secondary mb-1">Voltage</p>
+<p class="text-xs font-bold">120V Technical Grade</p>
+</div>
+<div>
+<p class="text-[9px] uppercase tracking-widest text-secondary mb-1">Longevity</p>
+<p class="text-xs font-bold">50,000 Hours</p>
+</div>
+</div>
+</div>
+<button class="w-full py-4 custom-glow-button text-on-primary font-bold uppercase tracking-widest text-xs rounded-md shadow-lg opacity-50 cursor-not-allowed">
+                                    Add to Project (Preview)
+                                </button>
+</div>
+</div>
+</div>
+<div class="mt-6 flex items-center justify-center gap-4 text-[10px] font-bold uppercase tracking-widest text-outline">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm" data-icon="devices">devices</span> Fully Responsive</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm" data-icon="visibility">visibility</span> Live Updating</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer (Hidden in standard workflow, but provided as per JSON for structure) -->
+<footer class="w-full pt-16 pb-8 bg-zinc-50 dark:bg-zinc-950 mt-20 border-t border-zinc-200 dark:border-zinc-800">
+<div class="w-full max-w-7xl mx-auto px-8 flex flex-col items-center">
+<div class="flex gap-8 mb-8">
+<a class="text-zinc-500 dark:text-zinc-500 font-manrope text-xs tracking-widest uppercase hover:text-amber-500 transition-colors opacity-70 hover:opacity-100" href="#">Technical Documentation</a>
+<a class="text-zinc-500 dark:text-zinc-500 font-manrope text-xs tracking-widest uppercase hover:text-amber-500 transition-colors opacity-70 hover:opacity-100" href="#">Architectural Partners</a>
+<a class="text-zinc-500 dark:text-zinc-500 font-manrope text-xs tracking-widest uppercase hover:text-amber-500 transition-colors opacity-70 hover:opacity-100" href="#">Shipping &amp; Returns</a>
+<a class="text-zinc-500 dark:text-zinc-500 font-manrope text-xs tracking-widest uppercase hover:text-amber-500 transition-colors opacity-70 hover:opacity-100" href="#">Sustainability</a>
+</div>
+<div class="text-lg font-bold text-zinc-900 dark:text-zinc-50 mb-2">Lumen &amp; Lead</div>
+<p class="text-zinc-500 dark:text-zinc-500 font-manrope text-xs tracking-widest uppercase">© 2024 Lumen &amp; Lead. Precision Luminescence.</p>
+</div>
+</footer>
+</main>
+</body></html>
+<script>
+  const API_BASE = 'http://localhost:5500/api';
+  let selectedImageBase64 = '';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Image upload handling
+    const imageInput = document.getElementById('image-input');
+    const uploadArea = document.getElementById('image-upload-area');
+    const previewImage = document.getElementById('preview-image');
+
+    // Click to select
+    uploadArea.addEventListener('click', () => imageInput.click());
+
+    // File selection handler
+    imageInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        handleImageFile(file);
+      }
+    });
+
+    // Drag and drop
+    uploadArea.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      uploadArea.classList.add('border-primary');
+    });
+
+    uploadArea.addEventListener('dragleave', () => {
+      uploadArea.classList.remove('border-primary');
+    });
+
+    uploadArea.addEventListener('drop', (e) => {
+      e.preventDefault();
+      uploadArea.classList.remove('border-primary');
+      const file = e.dataTransfer.files[0];
+      if (file && file.type.startsWith('image/')) {
+        handleImageFile(file);
+      }
+    });
+
+    function handleImageFile(file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        selectedImageBase64 = e.target.result;
+        previewImage.src = selectedImageBase64;
+        previewImage.style.display = 'block';
+        // Hide the upload icon text
+        uploadArea.querySelector('.material-symbols-outlined').style.display = 'none';
+        uploadArea.querySelector('p').style.display = 'none';
+        uploadArea.querySelectorAll('p')[1].style.display = 'none';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // Form submission
+    const form = document.getElementById('product-form');
+    const publishBtn = document.getElementById('publish-btn');
+    
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      if (!document.getElementById('product-title').value) {
+        alert('Please enter a product title');
+        return;
+      }
+      if (!document.getElementById('product-price').value) {
+        alert('Please enter a price');
+        return;
+      }
+      
+      const formData = {
+        name: document.getElementById('product-title').value,
+        category: document.getElementById('category-select').value,
+        price: parseFloat(document.getElementById('product-price').value),
+        description: document.getElementById('product-description').value,
+        image: selectedImageBase64
+      };
+      
+      try {
+        publishBtn.disabled = true;
+        publishBtn.textContent = 'Publishing...';
+        
+        const response = await fetch(`${API_BASE}/products`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+        
+        if (response.ok) {
+          alert('Product published successfully!');
+          form.reset();
+          selectedImageBase64 = '';
+          const previewImage = document.getElementById('preview-image');
+          const uploadArea = document.getElementById('image-upload-area');
+          previewImage.style.display = 'none';
+          uploadArea.querySelector('.material-symbols-outlined').style.display = 'block';
+          uploadArea.querySelectorAll('p').forEach(p => p.style.display = 'block');
+        } else {
+          const error = await response.json();
+          alert('Error: ' + (error.message || 'Error publishing product'));
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Error connecting to server: ' + error.message);
+      } finally {
+        publishBtn.disabled = false;
+        publishBtn.textContent = 'Publish Listing';
+      }
+    });
+  });
+</script>
+        publishBtn.textContent = 'Publish Listing';
+      }
+    });
+  });
+</script>
+</body></html>

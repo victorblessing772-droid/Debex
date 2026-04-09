@@ -104,9 +104,15 @@
 <a href="checkout.html" class="scale-95 active:scale-90 transition-transform hover:text-amber-600">
 <span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
 </a>
-<button class="scale-95 active:scale-90 transition-transform hover:text-amber-600">
+<button class="scale-95 active:scale-90 transition-transform hover:text-amber-600" onclick="logoutUser()">
 <span class="material-symbols-outlined" data-icon="person">person</span>
 </button>
+<script>
+function logoutUser() {
+  localStorage.removeItem('token');
+  window.location.href = 'index.html';
+}
+</script>
 </div>
 </div>
 </div>

@@ -109,7 +109,13 @@
 </div>
 <div class="flex items-center gap-6">
 <a href="checkout.html" class="material-symbols-outlined text-zinc-600 hover:bg-zinc-50 p-2 rounded-full transition-all scale-95 active:scale-90">shopping_cart</a>
-<button class="material-symbols-outlined text-zinc-600 hover:bg-zinc-50 p-2 rounded-full transition-all scale-95 active:scale-90">person</button>
+<button class="material-symbols-outlined text-zinc-600 hover:bg-zinc-50 p-2 rounded-full transition-all scale-95 active:scale-90" onclick="logoutUser()">person</button>
+<script>
+function logoutUser() {
+  localStorage.removeItem('token');
+  window.location.href = 'index.html';
+}
+</script>
 </div>
 </div>
 </header>
@@ -374,7 +380,7 @@
       });
 
       // Populate all products grid with image-only cards
-      if (category === 'all') {
+      if (category === 'all' && allProductsGrid) {
         const allCards = document.querySelectorAll('.product-card');
         allProductsGrid.innerHTML = '';
         
@@ -404,6 +410,121 @@
 
     // Show all by default
     showCategory('all');
+
+    // Fetch products from backend
+    const API_BASE = 'http://localhost:5500/api';
+    
+    async function fetchProducts() {
+      try {
+        const response = await fetch(`${API_BASE}/products`);
+        if (response.ok) {
+          const products = await response.json();
+          console.log('Products loaded:', products);
+          
+          // Filter products by category and dynamically add to page
+          const chandelier = products.filter(p => p.category === 'chandelier');
+          const classy = products.filter(p => p.category === 'classy');
+          const vintage = products.filter(p => p.category === 'vintage');
+          
+          // Add products to their respective sections
+          addProductsToSection('chandelier', chandelier);
+          addProductsToSection('classy', classy);
+          addProductsToSection('vintage', vintage);
+        } else {
+          console.error('Error fetching products');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+    
+    function addProductsToSection(category, products) {
+      const section = document.querySelector(`[data-category="${category}"] .grid`);
+      if (!section) return;
+      
+      products.forEach(product => {
+        const card = document.createElement('article');
+        card.className = 'group relative bg-surface-container-lowest transition-all duration-500 hover:shadow-xl hover:-translate-y-1 flex flex-col product-card';
+        card.setAttribute('data-category', category);
+        
+        card.innerHTML = `
+          <div class="aspect-[4/5] overflow-hidden bg-surface-container-low relative">
+            <img alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="${product.image || 'https://via.placeholder.com/300x400'}"/>
+          </div>
+          <div class="p-8 flex flex-col flex-1">
+            <div class="flex justify-between items-start mb-4">
+              <h3 class="font-headline text-2xl font-bold tracking-tight text-on-surface">${product.name}</h3>
+              <span class="font-label text-sm font-semibold text-primary">$${product.price.toFixed(2)}</span>
+            </div>
+            <p class="text-secondary text-sm mb-6">${product.description || ''}</p>
+            <button class="w-full py-3 bg-filament-glow text-on-primary font-manrope text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-all rounded-md flex items-center justify-center gap-2">
+              Add to Cart
+              <span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
+            </button>
+          </div>
+        `;
+        
+        section.appendChild(card);
+      });
+    }
+
+    fetchProducts();
+
+    // Handle add to cart
+    document.querySelectorAll('button').forEach(btn => {
+      if (btn.textContent.includes('Add to Cart')) {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          try {
+            // Get product info from card
+            const card = btn.closest('article.product-card');
+            console.log('Card found:', card);
+            
+            if (!card) {
+              console.error('Product card not found!');
+              alert('Error: Could not find product card');
+              return;
+            }
+            
+            const productName = card.querySelector('h3')?.textContent?.trim() || 'Product';
+            console.log('Product name:', productName);
+            
+            const priceSpan = card.querySelector('span.font-semibold');
+            const priceText = priceSpan?.textContent || '0.00';
+            console.log('Price text:', priceText);
+            
+            const price = parseFloat(priceText.replace('$', '').trim());
+            console.log('Price:', price);
+            
+            const imageUrl = card.querySelector('img')?.src || '';
+            console.log('Image URL:', imageUrl);
+            
+            // Add to cart
+            const cart = JSON.parse(localStorage.getItem('debex-cart') || '[]');
+            const existingItem = cart.find(item => item.name === productName);
+            
+            if (existingItem) {
+              existingItem.quantity += 1;
+            } else {
+              cart.push({
+                name: productName,
+                price: price,
+                quantity: 1,
+                image: imageUrl
+              });
+            }
+            
+            localStorage.setItem('debex-cart', JSON.stringify(cart));
+            console.log('Cart updated:', cart);
+            alert('Item added to cart! Proceeding to checkout...');
+            window.location.href = 'checkout.html';
+          } catch (error) {
+            console.error('Error adding to cart:', error);
+            alert('Error adding item to cart: ' + error.message);
+          }
+        });
+      }
+    });
   });
 </script>
 </div>

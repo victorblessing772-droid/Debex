@@ -206,19 +206,19 @@
 <p class="text-sm font-label text-secondary">Authorized personnel access only.</p>
 </div>
 <div class="p-6 bg-surface-container-low border border-surface-container-high rounded-xl">
-<form class="space-y-5">
+<form id="admin-form" class="space-y-5" onsubmit="handleAdminLogin(event)">
 <div class="space-y-2">
-<label class="block text-xs font-bold text-stone-600 uppercase tracking-tighter">Admin Identifier</label>
+<label class="block text-xs font-bold text-stone-600 uppercase tracking-tighter">Admin Email</label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 text-lg">badge</span>
-<input class="w-full pl-10 pr-4 py-2.5 bg-white border border-surface-container-high focus:border-inverse-surface focus:ring-0 rounded-lg text-sm transition-colors" placeholder="ADM-000-000" type="text"/>
+<input class="w-full pl-10 pr-4 py-2.5 bg-white border border-surface-container-high focus:border-inverse-surface focus:ring-0 rounded-lg text-sm transition-colors" placeholder="admin@debex.com" type="email" required/>
 </div>
 </div>
 <div class="space-y-2">
-<label class="block text-xs font-bold text-stone-600 uppercase tracking-tighter">Security Key</label>
+<label class="block text-xs font-bold text-stone-600 uppercase tracking-tighter">Security Password</label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 text-lg">lock_open</span>
-<input class="w-full pl-10 pr-4 py-2.5 bg-white border border-surface-container-high focus:border-inverse-surface focus:ring-0 rounded-lg text-sm transition-colors" placeholder="••••••••" type="password"/>
+<input class="w-full pl-10 pr-4 py-2.5 bg-white border border-surface-container-high focus:border-inverse-surface focus:ring-0 rounded-lg text-sm transition-colors" placeholder="••••••••" type="password" required/>
 </div>
 </div>
 <div class="pt-2">
@@ -281,10 +281,11 @@ async function handleRegister(e) {
   e.preventDefault();
 
   const form = document.getElementById("signup-form");
+  const name = form.querySelector('input[type="text"]').value;
   const email = form.querySelector('input[type="email"]').value;
   const password = form.querySelector('input[type="password"]').value;
 
-  if (!email || !password) {
+  if (!name || !email || !password) {
     alert("Fill all fields");
     return;
   }
@@ -293,7 +294,7 @@ async function handleRegister(e) {
     const res = await fetch("http://localhost:5000/api/users/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({ name, email, password })
     });
 
     const data = await res.json();
@@ -343,6 +344,44 @@ async function handleLogin(e) {
     
     alert("Login successful!");
     window.location.href = "home.html";
+
+  } catch (err) {
+    alert("Server error");
+  }
+}
+
+/* ADMIN LOGIN */
+async function handleAdminLogin(e) {
+  e.preventDefault();
+
+  const form = document.getElementById("admin-form");
+  const email = form.querySelector('input[type="email"]').value;
+  const password = form.querySelector('input[type="password"]').value;
+
+  if (!email || !password) {
+    alert("Fill all fields");
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:5000/api/users/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.message || "Admin authentication failed");
+      return;
+    }
+ 
+    localStorage.setItem("token", data.token || "true");
+    localStorage.setItem("isAdmin", "true");
+    
+    alert("Admin access granted!");
+    window.location.href = "admin.html";
 
   } catch (err) {
     alert("Server error");

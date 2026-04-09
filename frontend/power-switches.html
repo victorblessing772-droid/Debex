@@ -96,6 +96,57 @@
     if (!token) {
       window.location.replace("index.html");
     }
+
+    // API Integration
+    const API_BASE = 'http://localhost:5500/api';
+    
+    async function fetchProducts() {
+      try {
+        const response = await fetch(`${API_BASE}/products`);
+        if (response.ok) {
+          const products = await response.json();
+          console.log('Products loaded:', products);
+        } else {
+          console.error('Error fetching products');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+
+    fetchProducts();
+
+    // Handle add to cart buttons
+    document.querySelectorAll('button').forEach(btn => {
+      if (btn.textContent.includes('Add to Cart') || btn.className.includes('add-to-cart')) {
+        btn.addEventListener('click', () => {
+          // Get product info from card
+          const card = btn.closest('div[class*=\"flex\"]') || btn.closest('article');
+          const productName = card?.querySelector('h3')?.textContent || 'Product';
+          const priceText = card?.querySelector('span[class*=\"semibold\"]')?.textContent || '0.00';
+          const price = parseFloat(priceText.replace('$', ''));
+          
+          // Add to cart
+          const cart = JSON.parse(localStorage.getItem('debex-cart') || '[]');
+          const existingItem = cart.find(item => item.name === productName);
+          
+          if (existingItem) {
+            existingItem.quantity += 1;
+          } else {
+            cart.push({
+              name: productName,
+              price: price,
+              quantity: 1,
+              image: card?.querySelector('img')?.src || ''
+            });
+          }
+          
+          localStorage.setItem('debex-cart', JSON.stringify(cart));
+          alert('Item added to cart! Proceeding to checkout...');
+          window.location.href = 'checkout.html';
+        });
+      }
+    });
   });
 </script>
 </head>
@@ -116,7 +167,13 @@
 </div>
 <div class="flex items-center gap-6">
 <a href="checkout.html" class="material-symbols-outlined text-slate-600 hover:bg-slate-50/50 p-2 rounded-full transition-all active:scale-95">shopping_cart</a>
-<button class="material-symbols-outlined text-slate-600 hover:bg-slate-50/50 p-2 rounded-full transition-all active:scale-95">person</button>
+<button class="material-symbols-outlined text-slate-600 hover:bg-slate-50/50 p-2 rounded-full transition-all active:scale-95" onclick="logoutUser()">person</button>
+<script>
+function logoutUser() {
+  localStorage.removeItem('token');
+  window.location.href = 'index.html';
+}
+</script>
 </div>
 </nav>
 <div class="bg-slate-100 dark:bg-slate-800 h-[1px] w-full"></div>

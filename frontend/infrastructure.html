@@ -86,40 +86,91 @@
       window.location.replace("index.html");
     }
 
-    // Handle "Add to Cart" buttons
-    const addToCartButtons = document.querySelectorAll('.add-to-cart, button:has(> .material-symbols-outlined:contains("add_shopping_cart"))');
-    addToCartButtons.forEach(button => {
-      button.addEventListener('click', (e) => {
-        e.preventDefault();
-        // Add item to cart (can be expanded with actual cart logic)
-        alert('Item added to cart!');
-        window.location.href = 'checkout.html';
-      });
+    // API Integration
+    const API_BASE = 'http://localhost:5500/api';
+    
+    async function fetchProducts() {
+      try {
+        const response = await fetch(`${API_BASE}/products`);
+        if (response.ok) {
+          const products = await response.json();
+          console.log('Products loaded:', products);
+        } else {
+          console.error('Error fetching products');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+
+    fetchProducts();
+
+    // Handle buttons
+    document.querySelectorAll('button').forEach(btn => {
+      const text = btn.textContent.trim();
+      if (text.includes('add_shopping_cart') || btn.className.includes('filament-gradient')) {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          // Get product info from card
+          const card = btn.closest('article');
+          const productName = card?.querySelector('h3')?.textContent || 'Product';
+          const priceText = card?.querySelector('span:not(.material-symbols-outlined)')?.textContent || '0.00';
+          const price = parseFloat(priceText.replace('$', '').replace('/m', ''));
+          
+          // Add to cart
+          const cart = JSON.parse(localStorage.getItem('debex-cart') || '[]');
+          const existingItem = cart.find(item => item.name === productName);
+          
+          if (existingItem) {
+            existingItem.quantity += 1;
+          } else {
+            cart.push({
+              name: productName,
+              price: price,
+              quantity: 1,
+              image: card?.querySelector('img')?.src || ''
+            });
+          }
+          
+          localStorage.setItem('debex-cart', JSON.stringify(cart));
+          alert('Item added to cart!');
+          window.location.href = 'checkout.html';
+        });
+      }
+      if (text.includes('Explore Bundle')) {
+        btn.addEventListener('click', () => {
+          const card = btn.closest('article');
+          const productName = card?.querySelector('h3')?.textContent || 'Bundle';
+          const priceText = card?.querySelector('span[class*="semibold"]')?.textContent || '0.00';
+          const price = parseFloat(priceText.replace('$', ''));
+          
+          const cart = JSON.parse(localStorage.getItem('debex-cart') || '[]');
+          const existingItem = cart.find(item => item.name === productName);
+          
+          if (existingItem) {
+            existingItem.quantity += 1;
+          } else {
+            cart.push({
+              name: productName,
+              price: price,
+              quantity: 1,
+              image: card?.querySelector('img')?.src || ''
+            });
+          }
+          
+          localStorage.setItem('debex-cart', JSON.stringify(cart));
+          window.location.href = 'checkout.html';
+        });
+      }
+      if (text.includes('Clear All Filters')) {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+        });
+      }
+      if (text.includes('Load More')) {
+        btn.addEventListener('click', () => alert('Loading more products...'));
+      }
     });
-
-    // Handle "Explore Bundle" button
-    const exploreButton = document.querySelector('button:contains("Explore Bundle")');
-    if (exploreButton) {
-      exploreButton.addEventListener('click', () => {
-        window.location.href = 'checkout.html';
-      });
-    }
-
-    // Handle "Clear All Filters" button
-    const clearButton = document.querySelector('button:contains("Clear All Filters")');
-    if (clearButton) {
-      clearButton.addEventListener('click', () => {
-        document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
-      });
-    }
-
-    // Handle "Load More" button
-    const loadMoreButton = document.querySelector('button:contains("Load More")');
-    if (loadMoreButton) {
-      loadMoreButton.addEventListener('click', () => {
-        alert('Loading more products...');
-      });
-    }
   });
 </script>
 </head>
@@ -144,7 +195,13 @@
 </div>
 <div class="flex items-center space-x-4">
 <a href="checkout.html" class="material-symbols-outlined text-zinc-600 hover:text-amber-600 transition-transform scale-95 active:scale-90">shopping_cart</a>
-<button class="material-symbols-outlined text-zinc-600 hover:text-amber-600 transition-transform scale-95 active:scale-90">person</button>
+<button class="material-symbols-outlined text-zinc-600 hover:text-amber-600 transition-transform scale-95 active:scale-90" onclick="logoutUser()">person</button>
+<script>
+function logoutUser() {
+  localStorage.removeItem('token');
+  window.location.href = 'index.html';
+}
+</script>
 </div>
 </div>
 </div>
@@ -178,76 +235,13 @@
 </header>
 <div class="max-w-screen-2xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
 <!-- Technical Sidebar -->
-<aside class="lg:col-span-3 space-y-12">
-<div class="bg-surface-container-low p-8 rounded-xl">
-<div class="flex items-center justify-between mb-8">
-<h3 class="font-headline font-bold text-sm tracking-widest uppercase">Specifications</h3>
-<span class="material-symbols-outlined text-slate-400 text-lg">tune</span>
-</div>
-<!-- Material Filter -->
-<div class="mb-10">
-<label class="font-label text-[10px] uppercase tracking-widest text-secondary font-bold mb-4 block">Material</label>
-<div class="space-y-3">
-<label class="flex items-center group cursor-pointer">
-<input class="rounded-sm border-outline-variant text-primary focus:ring-primary h-4 w-4 bg-transparent" type="checkbox"/>
-<span class="ml-3 text-sm font-medium text-on-surface-variant group-hover:text-primary transition-colors">Galvanized Steel</span>
-</label>
-<label class="flex items-center group cursor-pointer">
-<input checked="" class="rounded-sm border-outline-variant text-primary focus:ring-primary h-4 w-4 bg-transparent" type="checkbox"/>
-<span class="ml-3 text-sm font-medium text-on-surface-variant group-hover:text-primary transition-colors">High-Impact PVC</span>
-</label>
-<label class="flex items-center group cursor-pointer">
-<input class="rounded-sm border-outline-variant text-primary focus:ring-primary h-4 w-4 bg-transparent" type="checkbox"/>
-<span class="ml-3 text-sm font-medium text-on-surface-variant group-hover:text-primary transition-colors">Cast Aluminum</span>
-</label>
-</div>
-</div>
-<!-- Diameter Filter -->
-<div class="mb-10">
-<label class="font-label text-[10px] uppercase tracking-widest text-secondary font-bold mb-4 block">Conduit Diameter</label>
-<div class="grid grid-cols-2 gap-2">
-<button class="px-3 py-2 border border-outline-variant/30 text-xs font-label hover:border-primary transition-all rounded">20mm</button>
-<button class="px-3 py-2 bg-primary text-on-primary text-xs font-label rounded">25mm</button>
-<button class="px-3 py-2 border border-outline-variant/30 text-xs font-label hover:border-primary transition-all rounded">32mm</button>
-<button class="px-3 py-2 border border-outline-variant/30 text-xs font-label hover:border-primary transition-all rounded">50mm</button>
-</div>
-</div>
-<!-- Unit Count -->
-<div class="mb-8">
-<label class="font-label text-[10px] uppercase tracking-widest text-secondary font-bold mb-4 block">Unit Pack</label>
-<div class="space-y-2">
-<div class="flex items-center justify-between text-xs py-1 border-b border-outline-variant/20">
-<span>Single Unit</span>
-<span class="text-secondary font-label">From $12</span>
-</div>
-<div class="flex items-center justify-between text-xs py-1 border-b border-outline-variant/20">
-<span>Bulk Case (25)</span>
-<span class="text-secondary font-label">From $240</span>
-</div>
-</div>
-</div>
-<button class="w-full py-4 text-[10px] font-bold tracking-widest uppercase border border-primary text-primary hover:bg-primary hover:text-on-primary transition-all rounded-lg">
-                        Clear All Filters
-                    </button>
-</div>
-<div class="p-8 border-l-2 border-primary-container bg-surface-container-lowest/50">
-<h4 class="font-headline font-bold text-xs uppercase mb-2">Technical Support</h4>
-<p class="text-xs text-secondary leading-relaxed mb-4">Need load calculations for complex infrastructure?</p>
-<a class="text-xs font-bold text-primary flex items-center gap-2 hover:underline" href="#">
-                        Consult an Engineer
-                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</a>
-</div>
-</aside>
+
 <!-- Product Grid -->
 <div class="lg:col-span-9">
 <div class="flex justify-between items-center mb-10 border-b border-surface-container pb-6">
-<span class="text-xs font-label text-secondary tracking-widest uppercase">Showing 24 Components</span>
+<span class="text-xs font-label text-secondary tracking-widest uppercase"></span>
 <div class="flex items-center gap-6">
-<button class="text-[10px] font-bold tracking-widest uppercase flex items-center gap-2">
-                            Sort by: Precision
-                            <span class="material-symbols-outlined text-sm">expand_more</span>
-</button>
+
 </div>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-16">
@@ -256,7 +250,7 @@
 <div class="aspect-square bg-surface-container-low rounded-xl mb-6 relative overflow-hidden transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-black/5">
 <img alt="4-Way Terminal Box" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3wq7wsII2U-CnzPivs-x3zZBmDEDr5jyeyBvaDdnRcrfXGdrXVOOaXqgR9Vf7MWXM3smVX_n_CqQhJAj95PwugptFFu6dwLQfxpI7rqiCmLkcarw9wwPqlJ4HZYpYuvQx6sAVJpSqLqJtKz_rYMNkgIjPcfJ1JNIDY_0X2d4ghGbn1llvIuVt04eEFF76Bkhmgl50GIaCw0Of9BTNd9Q46ta38pTZHzOYei3CuG5YmdqiqFZDFXI8DQWYyHRmiTxO1fs4vONYi1w"/>
 <div class="absolute top-4 left-4 bg-on-background text-white text-[9px] font-bold tracking-[0.2em] uppercase px-2 py-1">
-                                Heavy Duty
+                                
                             </div>
 <button class="absolute bottom-4 right-4 filament-gradient text-on-primary p-3 rounded-full opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-lg">
 <span class="material-symbols-outlined">add_shopping_cart</span>
@@ -315,19 +309,7 @@
 </div>
 </article>
 <!-- Large Featured Card (Asymmetric) -->
-<article class="md:col-span-2 group">
-<div class="h-80 md:h-[450px] bg-inverse-surface rounded-xl mb-6 relative overflow-hidden flex flex-col md:flex-row">
-<div class="w-full md:w-1/2 p-12 flex flex-col justify-center text-surface z-10">
-<div class="font-label text-[10px] tracking-[0.3em] uppercase text-primary mb-6 font-black">Pro Preferred</div>
-<h3 class="font-headline text-3xl font-bold tracking-tighter mb-4 leading-tight">Master Installation Pack: 50mm Infrastructure Series</h3>
-<p class="text-sm text-surface-dim mb-8 max-w-xs leading-relaxed">The complete solution for high-capacity mains trunking. Engineered for data centers and commercial builds.</p>
-<button class="w-fit px-8 py-3 filament-gradient text-on-primary text-[10px] font-bold tracking-widest uppercase rounded">Explore Bundle</button>
-</div>
-<div class="absolute inset-0 md:relative md:w-1/2 overflow-hidden h-full">
-<img alt="Installation setup" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-50 md:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHgX5mB_gSNX-uD20EYPqT-A41kGIMK-oUfLBY5bARrLiJCyg0jGqOmhdV5I7Qx5xxxCsPwXoOsaesqyjX8I2bBzN7xfICBVo58gS-jQTCssvl3Fnjs-PsGXPyg8WMxC2_rwwv0OcysjtgE0wvpnzFrfzr7o-jnd9lMOPXRTs_-huoxWQmY6Z4DY8q0xJXzvavUeFxo_PbYyaaXTkBA15U4KXLt993XSoWYwKidZQE6l2kcAgMocZj9qpPbzAge_fUpMfnjih3GCc"/>
-</div>
-</div>
-</article>
+
 <!-- Product 4 -->
 <article class="group">
 <div class="aspect-square bg-surface-container-low rounded-xl mb-6 relative overflow-hidden transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-black/5">
@@ -350,9 +332,7 @@
 </article>
 </div>
 <div class="mt-20 flex justify-center">
-<button class="px-12 py-4 text-[10px] font-bold tracking-widest uppercase border border-outline hover:bg-on-background hover:text-surface transition-all">
-                        Load More Engineering Artifacts
-                    </button>
+
 </div>
 </div>
 </div>
