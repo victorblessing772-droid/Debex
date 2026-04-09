@@ -85,61 +85,54 @@
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const token = localStorage.getItem("token");
-
     if (!token) {
       window.location.replace("index.html");
     }
 
-    // API Integration
-    const API_BASE = 'http://localhost:5500/api';
-    
-    async function fetchProducts() {
-      try {
-        const response = await fetch(`${API_BASE}/products`);
-        if (response.ok) {
-          const products = await response.json();
-          console.log('Products loaded:', products);
-        } else {
-          console.error('Error fetching products');
-        }
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    }
-
-    fetchProducts();
-
-    // Handle add to specification buttons
-    document.querySelectorAll('button').forEach(btn => {
-      if (btn.textContent.includes('Add to Specification')) {
-        btn.addEventListener('click', () => {
-          // Get product info from card
-          const card = btn.closest('div[class*=\"flex\"]') || btn.closest('article');
-          const productName = card?.querySelector('h3')?.textContent || 'Product';
-          const priceText = card?.querySelector('span[class*=\"semibold\"]')?.textContent || '0.00';
-          const price = parseFloat(priceText.replace('$', ''));
-          
-          // Add to cart
-          const cart = JSON.parse(localStorage.getItem('debex-cart') || '[]');
-          const existingItem = cart.find(item => item.name === productName);
-          
-          if (existingItem) {
-            existingItem.quantity += 1;
-          } else {
-            cart.push({
-              name: productName,
-              price: price,
-              quantity: 1,
-              image: card?.querySelector('img')?.src || ''
-            });
-          }
-          
-          localStorage.setItem('debex-cart', JSON.stringify(cart));
-          alert('Item added to specification! Proceeding to checkout...');
-          window.location.href = 'checkout.html';
+    // Fetch and display only 'professional-tools' products
+    fetch("https://debex-7ixn.onrender.com/api/products")
+      .then((response) => response.json())
+      .then((products) => {
+        const grid = document.querySelector(".grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3");
+        if (!grid) return;
+        grid.innerHTML = "";
+        products.filter(p => (p.category || '').toLowerCase() === 'professional-tools').forEach((product) => {
+          const article = document.createElement("article");
+          article.className = "group";
+          article.innerHTML = `
+            <div class=\"aspect-square bg-surface-container-low rounded-xl mb-6 relative overflow-hidden transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-black/5\">
+              <img alt=\"${product.name}\" class=\"absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110\" src=\"${product.image || 'https://via.placeholder.com/300x300?text=No+Image'}\"/>
+              <button class=\"absolute bottom-4 right-4 filament-gradient text-on-primary p-3 rounded-full opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-lg add-to-cart\">
+                <span class=\"material-symbols-outlined\">add_shopping_cart</span>
+              </button>
+            </div>
+            <div class=\"space-y-2\">
+              <div class=\"flex justify-between items-start\">
+                <h3 class=\"font-headline font-bold text-lg leading-tight tracking-tight\">${product.name}</h3>
+                <span class=\"font-label text-sm font-semibold\">$${product.price}</span>
+              </div>
+              <p class=\"text-xs text-secondary font-label uppercase tracking-widest\">${product.description || ''}</p>
+              <div class=\"pt-4 flex items-center gap-4 text-[10px] font-label font-medium text-on-surface-variant\">
+                <span class=\"bg-surface-container px-2 py-1\">${product.category || ''}</span>
+                <span class=\"bg-surface-container px-2 py-1\">${product.brand || ''}</span>
+              </div>
+            </div>
+          `;
+          grid.appendChild(article);
         });
-      }
-    });
+
+        // Add to Cart button logic
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+          button.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Item added to cart!');
+            window.location.href = 'checkout.html';
+          });
+        });
+      })
+      .catch((err) => {
+        console.error("Failed to fetch products:", err);
+      });
   });
 </script>
 </head>
