@@ -86,107 +86,55 @@
       window.location.replace("index.html");
     }
 
-    // API Integration
-    const API_BASE = 'http://localhost:5500/api';
-    
-    async function fetchProducts() {
-      try {
-        const response = await fetch(`${API_BASE}/products`);
-        if (response.ok) {
-          const products = await response.json();
-          console.log('Products loaded:', products);
-        } else {
-          console.error('Error fetching products');
-        }
-      } catch (error) {
-        console.error('Error:', error);
-      }
+    // Handle "Add to Cart" buttons
+    const addToCartButtons = document.querySelectorAll('.add-to-cart, button:has(> .material-symbols-outlined:contains("add_shopping_cart"))');
+    addToCartButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        // Add item to cart (can be expanded with actual cart logic)
+        alert('Item added to cart!');
+        window.location.href = 'checkout.html';
+      });
+    });
+
+    // Handle "Explore Bundle" button
+    const exploreButton = document.querySelector('button:contains("Explore Bundle")');
+    if (exploreButton) {
+      exploreButton.addEventListener('click', () => {
+        window.location.href = 'checkout.html';
+      });
     }
 
-    fetchProducts();
+    // Handle "Clear All Filters" button
+    const clearButton = document.querySelector('button:contains("Clear All Filters")');
+    if (clearButton) {
+      clearButton.addEventListener('click', () => {
+        document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+      });
+    }
 
-    // Handle buttons
-    document.querySelectorAll('button').forEach(btn => {
-      const text = btn.textContent.trim();
-      if (text.includes('add_shopping_cart') || btn.className.includes('filament-gradient')) {
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          // Get product info from card
-          const card = btn.closest('article');
-          const productName = card?.querySelector('h3')?.textContent || 'Product';
-          const priceText = card?.querySelector('span:not(.material-symbols-outlined)')?.textContent || '0.00';
-          const price = parseFloat(priceText.replace('$', '').replace('/m', ''));
-          
-          // Add to cart
-          const cart = JSON.parse(localStorage.getItem('debex-cart') || '[]');
-          const existingItem = cart.find(item => item.name === productName);
-          
-          if (existingItem) {
-            existingItem.quantity += 1;
-          } else {
-            cart.push({
-              name: productName,
-              price: price,
-              quantity: 1,
-              image: card?.querySelector('img')?.src || ''
-            });
-          }
-          
-          localStorage.setItem('debex-cart', JSON.stringify(cart));
-          alert('Item added to cart!');
-          window.location.href = 'checkout.html';
-        });
-      }
-      if (text.includes('Explore Bundle')) {
-        btn.addEventListener('click', () => {
-          const card = btn.closest('article');
-          const productName = card?.querySelector('h3')?.textContent || 'Bundle';
-          const priceText = card?.querySelector('span[class*="semibold"]')?.textContent || '0.00';
-          const price = parseFloat(priceText.replace('$', ''));
-          
-          const cart = JSON.parse(localStorage.getItem('debex-cart') || '[]');
-          const existingItem = cart.find(item => item.name === productName);
-          
-          if (existingItem) {
-            existingItem.quantity += 1;
-          } else {
-            cart.push({
-              name: productName,
-              price: price,
-              quantity: 1,
-              image: card?.querySelector('img')?.src || ''
-            });
-          }
-          
-          localStorage.setItem('debex-cart', JSON.stringify(cart));
-          window.location.href = 'checkout.html';
-        });
-      }
-      if (text.includes('Clear All Filters')) {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
-        });
-      }
-      if (text.includes('Load More')) {
-        btn.addEventListener('click', () => alert('Loading more products...'));
-      }
-    });
+    // Handle "Load More" button
+    const loadMoreButton = document.querySelector('button:contains("Load More")');
+    if (loadMoreButton) {
+      loadMoreButton.addEventListener('click', () => {
+        alert('Loading more products...');
+      });
+    }
   });
 </script>
 </head>
 <body class="bg-surface text-on-background font-body min-h-screen flex flex-col">
 <!-- TopNavBar (Based on COMPONENTS_31) -->
 <nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md shadow-sm border-b border-zinc-100 dark:border-zinc-800/50">
-<div class="flex justify-between items-center px-8 h-16 max-w-full mx-auto font-['Manrope'] antialiased">
-<div class="flex items-center gap-12">
-<span class="text-xl font-extrabold tracking-tighter text-zinc-900 dark:text-zinc-100 uppercase">Debex Electronics</span>
-<div class="hidden md:flex gap-8 tracking-tight text-sm font-medium">
-<a class="text-amber-700 dark:text-amber-400 border-b-2 border-amber-500 pb-1 transition-colors duration-200" href="home.html">Home</a> 
-<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="lighting.html">Lighting</a>
-<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="power-switches.html">Power &amp; Switches</a>
-<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="professional-tools.html">Professional Tools</a>
-<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-1０ transition-colors duration-2００" href="infrastructure.html">Infrastructure</a>
-</div>
+<div class="flex justify-between items-center px-8 h-16 max-w-full mx-auto">
+<div class="text-xl font-extrabold tracking-tighter text-zinc-900 dark:text-zinc-100 font-headline uppercase">
+                Lumen &amp; Lead
+            </div>
+<div class="hidden md:flex items-center space-x-8 font-['Manrope'] antialiased tracking-tight text-sm font-medium">
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="#">Lighting</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="#">Power &amp; Switches</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="#">Professional Tools</a>
+<a class="text-amber-700 dark:text-amber-400 border-b-2 border-amber-500 pb-1" href="#">Infrastructure</a>
 </div>
 <div class="flex items-center space-x-6">
 <div class="relative hidden lg:block">
@@ -195,13 +143,7 @@
 </div>
 <div class="flex items-center space-x-4">
 <a href="checkout.html" class="material-symbols-outlined text-zinc-600 hover:text-amber-600 transition-transform scale-95 active:scale-90">shopping_cart</a>
-<button class="material-symbols-outlined text-zinc-600 hover:text-amber-600 transition-transform scale-95 active:scale-90" onclick="logoutUser()">person</button>
-<script>
-function logoutUser() {
-  localStorage.removeItem('token');
-  window.location.href = 'index.html';
-}
-</script>
+<button class="material-symbols-outlined text-zinc-600 hover:text-amber-600 transition-transform scale-95 active:scale-90">person</button>
 </div>
 </div>
 </div>
@@ -338,7 +280,7 @@ function logoutUser() {
 </div>
 </main>
 <!-- Footer (Based on COMPONENTS_31) -->
-<<footer class="w-full py-16 px-8 mt-auto bg-zinc-50 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800/50">
+<footer class="w-full py-16 px-8 mt-auto bg-zinc-50 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800/50">
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto font-['Manrope']">
 <div class="space-y-4">
 <div class="text-lg font-bold text-zinc-900 dark:text-zinc-100 uppercase">Debex Electronics</div>
@@ -377,12 +319,12 @@ function logoutUser() {
 <p class="text-xs uppercase tracking-widest font-semibold text-zinc-500 dark:text-zinc-400">
                 © 2026 Debex Electronics. All rights reserved.
             </p>
-
 <footer class="w-full py-8 px-8 bg-white border-t border-surface-container-high">
 <div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
 <span class="font-manrope text-sm tracking-wide text-stone-500">
                 © 2026 Debex Electronics. All rights reserved.
             </span>
+
 
 </div>
 </footer>
