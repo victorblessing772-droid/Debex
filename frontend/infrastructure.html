@@ -85,7 +85,7 @@
       window.location.replace("index.html");
     }
 
-    // Fetch products from Render API and display them
+    // Fetch products from Render API and display them (only infrastructure category)
     fetch("https://debex-7ixn.onrender.com/api/products")
       .then((response) => response.json())
       .then((products) => {
