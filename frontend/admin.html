@@ -410,12 +410,20 @@
           uploadArea.querySelector('.material-symbols-outlined').style.display = 'block';
           uploadArea.querySelectorAll('p').forEach(p => p.style.display = 'block');
         } else {
-          const error = await response.json();
-          alert('Error: ' + (error.message || 'Error publishing product'));
+          const contentType = response.headers.get('content-type');
+          let errorMsg = 'Error publishing product';
+          
+          if (contentType && contentType.includes('application/json')) {
+            const error = await response.json();
+            errorMsg = error.message || errorMsg;
+          } else {
+            errorMsg = `Server error (Status ${response.status})`;
+          }
+          alert('Error: ' + errorMsg);
         }
       } catch (error) {
         console.error('Error:', error);
-        alert('Error connecting to server: ' + error.message);
+        alert('Error connecting to server: ' + error.message + '\n\nMake sure the API endpoint is correct: ' + API_BASE);
       } finally {
         publishBtn.disabled = false;
         publishBtn.textContent = 'Publish Listing';
