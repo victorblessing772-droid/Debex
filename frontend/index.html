@@ -291,7 +291,7 @@ async function handleRegister(e) {
   }
 
   try {
-    const res = await fetch("http://localhost:5000/api/users/register", {
+    const res = await fetch("https://debex-2.onrender.com/api/users/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, email, password })
@@ -326,7 +326,7 @@ async function handleLogin(e) {
   }
 
   try {
-    const res = await fetch("http://localhost:5000/api/users/login", {
+    const res = await fetch(\"https://debex-2.onrender.com/api/users/login\", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password })
@@ -364,7 +364,7 @@ async function handleAdminLogin(e) {
   }
 
   try {
-    const res = await fetch("http://localhost:5000/api/users/login", {
+    const res = await fetch("https://debex-2.onrender.com/api/users/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password })

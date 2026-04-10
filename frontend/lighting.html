@@ -412,11 +412,11 @@ function logoutUser() {
     showCategory('all');
 
     // Fetch products from backend
-    const API_BASE = 'http://localhost:5500/api';
+    const API_BASE = 'https://debex-2.onrender.com/api/products';
     
     async function fetchProducts() {
       try {
-        const response = await fetch(`${API_BASE}/products`);
+        const response = await fetch(`${API_BASE}`);
         if (response.ok) {
           const products = await response.json();
           console.log('Products loaded:', products);
@@ -526,6 +526,238 @@ function logoutUser() {
       }
     });
   });
+
+  // ========== PRODUCT FORM SUBMISSION FUNCTIONS ==========
+  
+  /**
+   * Safely submit form data to backend API
+   * Handles: file uploads, arrays, optional fields, empty responses
+   */
+  async function submitProductForm(formId, apiEndpoint) {
+    try {
+      // 1. Validate form exists
+      const form = document.getElementById(formId);
+      if (!form) {
+        console.error(`Form with id "${formId}" not found`);
+        throw new Error('Form not found');
+      }
+
+      // 2. Collect form data safely
+      const formData = new FormData(form);
+      const productData = {
+        title: formData.get('title')?.trim() || '',
+        category: formData.get('category')?.trim() || '',
+        price: parseFloat(formData.get('price')) || 0,
+        description: formData.get('description')?.trim() || '',
+        specifications: [],
+        images: []
+      };
+
+      // 3. Validate required fields
+      if (!productData.title || !productData.category || productData.price <= 0) {
+        const errors = [];
+        if (!productData.title) errors.push('Title is required');
+        if (!productData.category) errors.push('Category is required');
+        if (productData.price <= 0) errors.push('Price must be greater than 0');
+        
+        console.error('Validation errors:', errors);
+        throw new Error(errors.join(', '));
+      }
+
+      // 4. Handle specifications array (key/value pairs)
+      const specKeys = formData.getAll('spec-key');
+      const specValues = formData.getAll('spec-value');
+      
+      specKeys.forEach((key, index) => {
+        if (key.trim() && specValues[index]?.trim()) {
+          productData.specifications.push({
+            key: key.trim(),
+            value: specValues[index].trim()
+          });
+        }
+      });
+
+      // 5. Handle images (file uploads or URLs)
+      const imageInputs = form.querySelectorAll('input[name="images"]');
+      
+      for (const imageInput of imageInputs) {
+        if (imageInput.files && imageInput.files.length > 0) {
+          // Handle file upload - convert to base64
+          for (const file of imageInput.files) {
+            const base64 = await fileToBase64(file);
+            productData.images.push({
+              type: 'base64',
+              data: base64,
+              filename: file.name
+            });
+          }
+        } else if (imageInput.value && isValidUrl(imageInput.value)) {
+          // Handle URL input
+          productData.images.push({
+            type: 'url',
+            url: imageInput.value
+          });
+        }
+      }
+
+      console.log('Form data collected:', productData);
+
+      // 6. Determine API URL (handle localhost and deployed)
+      const apiUrl = getApiUrl(apiEndpoint);
+      console.log('Sending request to:', apiUrl);
+
+      // 7. Send fetch request
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          ...(localStorage.getItem('token') && {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          })
+        },
+        body: JSON.stringify(productData)
+      });
+
+      console.log('Response status:', response.status);
+      console.log('Response headers:', response.headers);
+
+      // 8. Safely check response
+      if (!response.ok) {
+        const errorText = await safeReadResponseBody(response);
+        console.error(`HTTP ${response.status}: ${errorText}`);
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+
+      // 9. Safely parse JSON response
+      const result = await safeParseJSON(response);
+      
+      if (!result) {
+        console.warn('Server returned empty or invalid JSON response');
+        throw new Error('Invalid response from server');
+      }
+
+      console.log('Success! Response data:', result);
+      return result;
+
+    } catch (error) {
+      console.error('Form submission error:', {
+        message: error.message,
+        stack: error.stack,
+        timestamp: new Date().toISOString()
+      });
+      throw error;
+    }
+  }
+
+  /**
+   * Convert file to base64 string
+   */
+  function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const base64String = reader.result.split(',')[1];
+        resolve(base64String);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  /**
+   * Validate URL format
+   */
+  function isValidUrl(string) {
+    try {
+      new URL(string);
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  /**
+   * Get API URL based on environment
+   */
+  function getApiUrl(endpoint) {
+    const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+    return `https://debex-2.onrender.com/api${cleanEndpoint}`;
+  }
+
+  /**
+   * Safely read response body without consuming stream twice
+   */
+  async function safeReadResponseBody(response) {
+    try {
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        return JSON.stringify(await response.json());
+      } else {
+        return await response.text();
+      }
+    } catch (e) {
+      return '[Unable to read response body]';
+    }
+  }
+
+  /**
+   * Safely parse JSON response
+   * Prevents "Unexpected end of JSON input" error
+   */
+  async function safeParseJSON(response) {
+    try {
+      const contentLength = response.headers.get('content-length');
+      const contentType = response.headers.get('content-type');
+      
+      if (contentLength === '0' || contentLength === 0) {
+        console.warn('Response has no content (content-length: 0)');
+        return null;
+      }
+
+      if (!contentType || !contentType.includes('application/json')) {
+        console.warn('Response is not JSON:', contentType);
+        return null;
+      }
+
+      const text = await response.text();
+      
+      if (!text || text.trim() === '') {
+        console.warn('Response body is empty');
+        return null;
+      }
+
+      return JSON.parse(text);
+
+    } catch (error) {
+      if (error instanceof SyntaxError) {
+        console.error('Invalid JSON in response:', error.message);
+        return null;
+      }
+      throw error;
+    }
+  }
+
+  // Product form submission handler
+  const productFormElement = document.getElementById('productForm');
+  if (productFormElement) {
+    productFormElement.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      try {
+        const result = await submitProductForm('productForm', '/products');
+        console.log('Product created:', result);
+        alert('Product created successfully!');
+        e.target.reset();
+        // Reload products
+        fetchProducts();
+        // Close modal if exists
+        const modal = document.getElementById('productFormModal');
+        if (modal) modal.style.display = 'none';
+      } catch (error) {
+        alert(`Error: ${error.message}`);
+      }
+    });
+  }
 </script>
 </div>
 <!-- Pagination / More -->
@@ -539,6 +771,115 @@ function logoutUser() {
 </div>
 </main>
 </div>
+
+<!-- Product Form Modal -->
+<div id="productFormModal" style="display: none;" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+  <div class="bg-white dark:bg-zinc-900 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+    <div class="sticky top-0 bg-white dark:bg-zinc-900 border-b border-zinc-300 dark:border-zinc-700 p-6 flex justify-between items-center">
+      <h2 class="text-2xl font-bold text-on-surface">Add New Product</h2>
+      <button onclick="document.getElementById('productFormModal').style.display = 'none'" class="text-2xl">×</button>
+    </div>
+    
+    <form id="productForm" class="p-6 space-y-6">
+      <!-- Basic Fields -->
+      <div>
+        <label class="block text-sm font-bold text-secondary mb-2">Product Title *</label>
+        <input type="text" name="title" required placeholder="e.g., Aurora Torpedo Bulb" class="w-full bg-surface-container-low border border-outline rounded px-4 py-2 focus:outline-none focus:border-primary"/>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-bold text-secondary mb-2">Category *</label>
+          <select name="category" required class="w-full bg-surface-container-low border border-outline rounded px-4 py-2 focus:outline-none focus:border-primary">
+            <option value="">-- Select Category --</option>
+            <option value="chandelier">Chandelier</option>
+            <option value="classy">Classy</option>
+            <option value="vintage">Vintage</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-bold text-secondary mb-2">Price *</label>
+          <input type="number" name="price" required step="0.01" min="0" placeholder="e.g., 24.00" class="w-full bg-surface-container-low border border-outline rounded px-4 py-2 focus:outline-none focus:border-primary"/>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-bold text-secondary mb-2">Description</label>
+        <textarea name="description" placeholder="Product description..." rows="3" class="w-full bg-surface-container-low border border-outline rounded px-4 py-2 focus:outline-none focus:border-primary"></textarea>
+      </div>
+
+      <!-- Specifications -->
+      <div>
+        <label class="block text-sm font-bold text-secondary mb-3">Specifications</label>
+        <div id="specs-container" class="space-y-3">
+          <div class="spec-row grid grid-cols-2 gap-2">
+            <input type="text" name="spec-key" placeholder="Key (e.g., Wattage)" class="bg-surface-container-low border border-outline rounded px-4 py-2"/>
+            <input type="text" name="spec-value" placeholder="Value (e.g., 4W LED)" class="bg-surface-container-low border border-outline rounded px-4 py-2"/>
+          </div>
+        </div>
+        <button type="button" onclick="addSpecRow()" class="mt-2 text-primary text-sm font-bold hover:underline">+ Add Specification</button>
+      </div>
+
+      <!-- Images -->
+      <div>
+        <label class="block text-sm font-bold text-secondary mb-3">Images</label>
+        <div id="images-container" class="space-y-2">
+          <div>
+            <label class="text-xs text-secondary">Upload Image Files</label>
+            <input type="file" name="images" multiple accept="image/*" class="w-full bg-surface-container-low border border-outline rounded px-4 py-2"/>
+          </div>
+          <div>
+            <label class="text-xs text-secondary">Or Image URL</label>
+            <input type="url" name="images" placeholder="https://example.com/image.jpg" class="w-full bg-surface-container-low border border-outline rounded px-4 py-2"/>
+          </div>
+        </div>
+        <button type="button" onclick="addImageInput()" class="mt-2 text-primary text-sm font-bold hover:underline">+ Add Another Image</button>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="flex gap-3 pt-4 border-t border-surface-container">
+        <button type="submit" class="flex-1 bg-filament-glow text-on-primary py-3 font-bold rounded hover:opacity-90 transition">
+          Create Product
+        </button>
+        <button type="button" onclick="document.getElementById('productFormModal').style.display = 'none'" class="flex-1 bg-surface-container-low text-on-surface py-3 font-bold rounded hover:bg-surface-container-high transition">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Add Open Modal Button (in nav or sidebar) -->
+<script>
+  function addSpecRow() {
+    const container = document.getElementById('specs-container');
+    const newRow = document.createElement('div');
+    newRow.className = 'spec-row grid grid-cols-2 gap-2';
+    newRow.innerHTML = `
+      <input type="text" name="spec-key" placeholder="Key (e.g., Base)" class="bg-surface-container-low border border-outline rounded px-4 py-2"/>
+      <input type="text" name="spec-value" placeholder="Value (e.g., E12)" class="bg-surface-container-low border border-outline rounded px-4 py-2"/>
+    `;
+    container.appendChild(newRow);
+  }
+
+  function addImageInput() {
+    const container = document.getElementById('images-container');
+    const newLabel = document.createElement('div');
+    newLabel.className = 'mt-2';
+    newLabel.innerHTML = `
+      <label class="text-xs text-secondary">Additional Image</label>
+      <input type="file" name="images" accept="image/*" class="w-full bg-surface-container-low border border-outline rounded px-4 py-2 mt-1"/>
+    `;
+    container.appendChild(newLabel);
+  }
+
+  // Optional: Add button to open form (uncomment if needed)
+  // Add this to your admin panel or nav
+  function openProductForm() {
+    document.getElementById('productFormModal').style.display = 'flex';
+  }
+</script>
+
 <!-- Footer -->
 <<footer class="w-full py-16 px-8 mt-auto bg-zinc-50 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800/50">
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto font-['Manrope']">
