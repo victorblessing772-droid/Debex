@@ -96,7 +96,7 @@
         const grid = document.querySelector(".grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3");
         if (!grid) return;
         grid.innerHTML = "";
-        products.filter(p => (p.category || '').toLowerCase() === 'professional-tools').forEach((product) => {
+        products.filter(p => (p.category || '').toLowerCase() === 'professional').forEach((product) => {
           const article = document.createElement("article");
           article.className = "group";
           article.innerHTML = `

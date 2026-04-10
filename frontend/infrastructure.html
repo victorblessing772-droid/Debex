@@ -92,7 +92,7 @@
         const grid = document.querySelector(".grid.grid-cols-1.md\\:grid-cols-2.xl\\:grid-cols-3");
         if (!grid) return;
         grid.innerHTML = "";
-        products.forEach((product) => {
+        products.filter(p => (p.category || '').toLowerCase() === 'infrastructure').forEach((product) => {
           const article = document.createElement("article");
           article.className = "group";
           article.innerHTML = `

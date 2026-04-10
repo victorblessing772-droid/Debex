@@ -103,7 +103,7 @@
         const grid = document.querySelector(".grid.grid-cols-1.lg\\:grid-cols-2");
         if (!grid) return;
         grid.innerHTML = "";
-        products.filter(p => (p.category || '').toLowerCase() === 'power-switches').forEach((product) => {
+        products.filter(p => (p.category || '').toLowerCase() === 'power').forEach((product) => {
           const article = document.createElement("article");
           article.className = "group";
           article.innerHTML = `

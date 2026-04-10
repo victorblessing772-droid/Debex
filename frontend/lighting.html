@@ -96,7 +96,10 @@
         const grid = document.getElementById("product-grid");
         if (!grid) return;
         grid.innerHTML = "";
-        products.filter(p => (p.category || '').toLowerCase() === 'lighting').forEach((product) => {
+        products.filter(p => {
+          const cat = (p.category || '').toLowerCase();
+          return cat === 'chandelier' || cat === 'classy' || cat === 'vintage';
+        }).forEach((product) => {
           const article = document.createElement("article");
           article.className = "group";
           article.innerHTML = `
