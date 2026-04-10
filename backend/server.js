@@ -19,7 +19,12 @@ const app = express();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // 🔐 middleware
-app.use(cors());
+app.use(cors({
+  origin: '*',
+  credentials: false,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 // 📁 Serve static files from frontend folder
