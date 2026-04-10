@@ -69,42 +69,41 @@
             borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
           },
         },
-      }
-    </script>
+      }<script>
+async function fetchData(url) {
+  try {
+    const response = await fetch(url);
 
-    try {
-      const contentLength = response.headers.get('content-length');
-      const contentType = response.headers.get('content-type');
-      
-      if (contentLength === '0' || contentLength === 0) {
-        console.warn('Response has no content (content-length: 0)');
-        return null;
-      }
+    const contentLength = response.headers.get('content-length');
+    const contentType = response.headers.get('content-type');
 
-      if (!contentType || !contentType.includes('application/json')) {
-        console.warn('Response is not JSON:', contentType);
-        return null;
-      }
-
-      const text = await response.text();
-      
-      if (!text || text.trim() === '') {
-        console.warn('Response body is empty');
-        return null;
-      }
-
-      return JSON.parse(text);
-
-    } catch (error) {
-      if (error instanceof SyntaxError) {
-        console.error('Invalid JSON in response:', error.message);
-        return null;
-      }
-      throw error;
+    if (contentLength === '0' || contentLength === 0) {
+      console.warn('Response has no content');
+      return null;
     }
+
+    if (!contentType || !contentType.includes('application/json')) {
+      console.warn('Response is not JSON:', contentType);
+      return null;
+    }
+
+    const text = await response.text();
+
+    if (!text || text.trim() === '') {
+      console.warn('Response body is empty');
+      return null;
+    }
+
+    return JSON.parse(text);
+
+  } catch (error) {
+    if (error instanceof SyntaxError) {
+      console.error('Invalid JSON:', error.message);
+      return null;
+    }
+    throw error;
   }
-
-
+}
 </script>
 </div>
 <!-- Pagination / More -->
@@ -149,6 +148,7 @@
           <input type="number" name="price" required step="0.01" min="0" placeholder="e.g., 24.00" class="w-full bg-surface-container-low border border-outline rounded px-4 py-2 focus:outline-none focus:border-primary"/>
         </div>
       </div>
+
 
       <div>
         <label class="block text-sm font-bold text-secondary mb-2">Description</label>
