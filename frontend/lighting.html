@@ -104,26 +104,7 @@
     }
   }
 
-  // Product form submission handler
-  const productFormElement = document.getElementById('productForm');
-  if (productFormElement) {
-    productFormElement.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      try {
-        const result = await submitProductForm('productForm', '/products');
-        console.log('Product created:', result);
-        alert('Product created successfully!');
-        e.target.reset();
-        // Reload products
-        fetchProducts();
-        // Close modal if exists
-        const modal = document.getElementById('productFormModal');
-        if (modal) modal.style.display = 'none';
-      } catch (error) {
-        alert(`Error: ${error.message}`);
-      }
-    });
-  }
+
 </script>
 </div>
 <!-- Pagination / More -->
