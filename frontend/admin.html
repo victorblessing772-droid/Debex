@@ -146,7 +146,7 @@
 <div class="space-y-4">
 <div>
 <label class="block text-[11px] font-bold uppercase tracking-tighter text-secondary mb-2 font-label">Product Title</label>
-<input id="product-title" class="w-full bg-surface-container-lowest border-none focus:ring-0 focus:border-b-2 focus:border-primary rounded-md p-4 text-on-background placeholder:text-outline-variant/50 transition-all" placeholder="e.g. Filament Zenith Pendant - Brass" type="text" required/>
+<input id="product-title" class="w-full bg-surface-container-lowest border-none focus:ring-0 focus:border-b-2 focus:border-primary rounded-md p-4 text-on-background placeholder:text-outline-variant/50 transition-all" placeholder="Product name..." type="text" required/>
 </div>
 <div class="grid grid-cols-2 gap-4">
 <div>
@@ -170,7 +170,7 @@
 </div>
 <div>
 <label class="block text-[11px] font-bold uppercase tracking-tighter text-secondary mb-2 font-label">Product Description</label>
-<textarea id="product-description" class="w-full bg-surface-container-lowest border-none focus:ring-0 rounded-md p-4 text-on-background placeholder:text-outline-variant/50 resize-none" placeholder="Describe the material quality, light distribution, and architectural intent..." rows="4" required></textarea>
+<textarea id="product-description" class="w-full bg-surface-container-lowest border-none focus:ring-0 rounded-md p-4 text-on-background placeholder:text-outline-variant/50 resize-none" placeholder="Product description..." rows="4" required></textarea>
 </div>
 </div>
 </section>
@@ -206,10 +206,10 @@
 <div class="space-y-3">
 <div class="grid grid-cols-12 gap-4">
 <div class="col-span-5">
-<input class="w-full bg-surface-container-lowest border-none focus:ring-0 rounded-md p-3 text-xs font-label" placeholder="Label (e.g. Voltage)" type="text"/>
+<input class="w-full bg-surface-container-lowest border-none focus:ring-0 rounded-md p-3 text-xs font-label" placeholder="Label..." type="text"/>
 </div>
 <div class="col-span-6">
-<input class="w-full bg-surface-container-lowest border-none focus:ring-0 rounded-md p-3 text-xs font-label" placeholder="Value (e.g. 120V / 60Hz)" type="text"/>
+<input class="w-full bg-surface-container-lowest border-none focus:ring-0 rounded-md p-3 text-xs font-label" placeholder="Value..." type="text"/>
 </div>
 <div class="col-span-1 flex items-center justify-center">
 <button class="text-outline-variant hover:text-error transition-colors">
@@ -219,10 +219,10 @@
 </div>
 <div class="grid grid-cols-12 gap-4">
 <div class="col-span-5">
-<input class="w-full bg-surface-container-lowest border-none focus:ring-0 rounded-md p-3 text-xs font-label" placeholder="Label (e.g. Wattage)" type="text"/>
+<input class="w-full bg-surface-container-lowest border-none focus:ring-0 rounded-md p-3 text-xs font-label" placeholder="Label..." type="text"/>
 </div>
 <div class="col-span-6">
-<input class="w-full bg-surface-container-lowest border-none focus:ring-0 rounded-md p-3 text-xs font-label" placeholder="Value (e.g. 60W Equivalent)" type="text"/>
+<input class="w-full bg-surface-container-lowest border-none focus:ring-0 rounded-md p-3 text-xs font-label" placeholder="Value..." type="text"/>
 </div>
 <div class="col-span-1 flex items-center justify-center">
 <button class="text-outline-variant hover:text-error transition-colors">
@@ -247,40 +247,40 @@
 <!-- Preview Card -->
 <div class="p-0">
 <div class="relative aspect-[4/5] bg-surface-container-low overflow-hidden group">
-<img alt="Preview Product" class="w-full h-full object-cover" data-alt="minimalist architectural pendant light with gold filament bulb hanging in a dark moody concrete interior with dramatic shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKm88q-hn7qi5k9ApTmzndJ7ZVjfxAE6WaYCLpX8xfYqnK_uAmVLUGbd7fLR052vkoNirhYGxlV_3JWiLbWEIsLyiCqVs3AID2ncUIEsKvR50q4MSEJXUKD46U4GzoMDt6u_elo_z-Cig7pOOG-DKHTR7m3hhx4VOOpH-p_EFXcW9XkdKV9KTG-l1rrNJRK_PbUzf-U6tWzs8tGhLVHn5mpPGj8s5vGeUHuH2ZWVfm4W2xEYR1qXsB6d_-mXbwLzaVO2WOrPN7fII"/>
+<img alt="Preview Product" class="w-full h-full object-cover" style="display: none;" src=""/>
 <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-<div class="absolute top-6 right-6">
+<div class="absolute top-6 right-6" style="display: none;">
 <span class="bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-primary shadow-sm">New Collection</span>
 </div>
 </div>
 <div class="p-8 space-y-6">
 <div class="flex justify-between items-start">
 <div>
-<h3 class="text-2xl font-extrabold tracking-tighter font-headline mb-1">Architectural Zenith Pendant</h3>
-<p class="text-xs text-secondary uppercase tracking-[0.15em]">Lighting / Hand-Blown Glass</p>
+<h3 class="text-2xl font-extrabold tracking-tighter font-headline mb-1" id="preview-title">Product Name</h3>
+<p class="text-xs text-secondary uppercase tracking-[0.15em]" id="preview-category">Category</p>
 </div>
-<span class="text-xl font-medium text-primary tracking-tighter">$425.00</span>
+<span class="text-xl font-medium text-primary tracking-tighter" id="preview-price">$0.00</span>
 </div>
 <div class="space-y-4">
-<p class="text-sm text-on-surface/70 leading-relaxed font-body">
-                                        Experience precision luminescence with our signature Zenith series. Each unit is calibrated for optimal warmth and atmospheric depth.
+<p class="text-sm text-on-surface/70 leading-relaxed font-body" id="preview-description">
+                                        Product description will appear here.
                                     </p>
-<div class="grid grid-cols-2 gap-y-4 border-t border-surface-container-low pt-6">
+<div class="grid grid-cols-2 gap-y-4 border-t border-surface-container-low pt-6" id="preview-specs" style="display: none;">
 <div>
-<p class="text-[9px] uppercase tracking-widest text-secondary mb-1">Illumination</p>
-<p class="text-xs font-bold">2700K Warm Glow</p>
+<p class="text-[9px] uppercase tracking-widest text-secondary mb-1">Spec 1</p>
+<p class="text-xs font-bold">Value 1</p>
 </div>
 <div>
-<p class="text-[9px] uppercase tracking-widest text-secondary mb-1">Material</p>
-<p class="text-xs font-bold">Brushed Brass &amp; Steel</p>
+<p class="text-[9px] uppercase tracking-widest text-secondary mb-1">Spec 2</p>
+<p class="text-xs font-bold">Value 2</p>
 </div>
 <div>
-<p class="text-[9px] uppercase tracking-widest text-secondary mb-1">Voltage</p>
-<p class="text-xs font-bold">120V Technical Grade</p>
+<p class="text-[9px] uppercase tracking-widest text-secondary mb-1">Spec 3</p>
+<p class="text-xs font-bold">Value 3</p>
 </div>
 <div>
-<p class="text-[9px] uppercase tracking-widest text-secondary mb-1">Longevity</p>
-<p class="text-xs font-bold">50,000 Hours</p>
+<p class="text-[9px] uppercase tracking-widest text-secondary mb-1">Spec 4</p>
+<p class="text-xs font-bold">Value 4</p>
 </div>
 </div>
 </div>
@@ -317,6 +317,25 @@
   let selectedImageBase64 = '';
 
   document.addEventListener('DOMContentLoaded', () => {
+    // Preview update function
+    const updatePreview = () => {
+      const title = document.getElementById('product-title').value || 'Product Name';
+      const category = document.getElementById('category-select').value || 'Category';
+      const price = document.getElementById('product-price').value || '0.00';
+      const description = document.getElementById('product-description').value || 'Product description will appear here.';
+      
+      document.getElementById('preview-title').textContent = title;
+      document.getElementById('preview-category').textContent = category.charAt(0).toUpperCase() + category.slice(1);
+      document.getElementById('preview-price').textContent = '$' + price;
+      document.getElementById('preview-description').textContent = description;
+    };
+    
+    // Add event listeners for preview updates
+    document.getElementById('product-title').addEventListener('input', updatePreview);
+    document.getElementById('category-select').addEventListener('change', updatePreview);
+    document.getElementById('product-price').addEventListener('input', updatePreview);
+    document.getElementById('product-description').addEventListener('input', updatePreview);
+
     // Image upload handling
     const imageInput = document.getElementById('image-input');
     const uploadArea = document.getElementById('image-upload-area');
