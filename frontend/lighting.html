@@ -84,7 +84,6 @@
     </style>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-
     // Fetch and display only 'lighting' products
     fetch("https://debex-7ixn.onrender.com/api/products")
       .then((response) => response.json())
@@ -92,41 +91,50 @@
         const grid = document.getElementById("product-grid");
         if (!grid) return;
         grid.innerHTML = "";
-        products.filter(p => {
-          const cat = (p.category || '').toLowerCase();
-          return cat === 'chandelier' || cat === 'classy' || cat === 'vintage';
-        }).forEach((product) => {
+        // Only show products with category 'lighting'
+        products.filter(p => (p.category || '').toLowerCase() === 'lighting').forEach((product) => {
           const article = document.createElement("article");
-          article.className = "group";
+          article.className = "group bg-surface-container-lowest p-6 transition-all duration-300 hover:shadow-[0_8px_24px_rgba(25,28,29,0.06)] flex flex-col h-full";
           article.innerHTML = `
-            <div class="aspect-square bg-surface-container-low rounded-xl mb-6 relative overflow-hidden transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-black/5">
-              <img alt="${product.name}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="${product.image || 'https://via.placeholder.com/300x300?text=No+Image'}"/>
-              <button class="absolute bottom-4 right-4 filament-gradient text-on-primary p-3 rounded-full opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-lg add-to-cart">
-                <span class="material-symbols-outlined">add_shopping_cart</span>
-              </button>
+            <div class="relative aspect-[4/5] overflow-hidden bg-surface-container mb-6">
+              <img alt="${product.name}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="${product.image || 'https://via.placeholder.com/300x300?text=No+Image'}"/>
             </div>
-            <div class="space-y-2">
-              <div class="flex justify-between items-start">
-                <h3 class="font-headline font-bold text-lg leading-tight tracking-tight">${product.name}</h3>
+            <div class="flex-1">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="font-headline text-xl font-bold tracking-tight text-on-surface group-hover:text-primary transition-colors">${product.name}</h3>
                 <span class="font-label text-sm font-semibold">$${product.price}</span>
               </div>
-              <p class="text-xs text-secondary font-label uppercase tracking-widest">${product.description || ''}</p>
-              <div class="pt-4 flex items-center gap-4 text-[10px] font-label font-medium text-on-surface-variant">
-                <span class="bg-surface-container px-2 py-1">${product.category || ''}</span>
-                <span class="bg-surface-container px-2 py-1">${product.brand || ''}</span>
+              <p class="text-xs text-secondary font-label uppercase tracking-widest mb-2">${product.description || ''}</p>
+              <div class="flex gap-2 mb-4">
+                <span class="bg-surface-container px-2 py-1 text-[10px] font-label font-medium text-on-surface-variant">${product.brand || ''}</span>
               </div>
+              <button class="w-full py-3 bg-filament-glow text-on-primary font-manrope text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-all rounded-md flex items-center justify-center gap-2 add-to-cart">
+                Add to Cart
+                <span class="material-symbols-outlined text-sm">add_shopping_cart</span>
+              </button>
             </div>
           `;
-          grid.appendChild(article);
-        });
-
-        // Add to Cart button logic
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-          button.addEventListener('click', (e) => {
+          // Add product data for cart
+          article.querySelector('.add-to-cart').addEventListener('click', (e) => {
             e.preventDefault();
+            // Save to localStorage cart
+            const cart = JSON.parse(localStorage.getItem('debex-cart') || '[]');
+            const existing = cart.find(item => item.name === product.name);
+            if (existing) {
+              existing.quantity += 1;
+            } else {
+              cart.push({
+                name: product.name,
+                price: product.price,
+                image: product.image,
+                quantity: 1
+              });
+            }
+            localStorage.setItem('debex-cart', JSON.stringify(cart));
             alert('Item added to cart!');
             window.location.href = 'checkout.html';
           });
+          grid.appendChild(article);
         });
       })
       .catch((err) => {
