@@ -311,11 +311,6 @@
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const API_BASE = 'https://debex-7ixn.onrender.com/api';
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      window.location.replace("index.html");
-    }
 
     // Display cart items
     function displayCart() {
