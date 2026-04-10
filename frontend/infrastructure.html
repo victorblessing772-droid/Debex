@@ -113,9 +113,26 @@
         });
 
         // Add to Cart button logic
-        document.querySelectorAll('.add-to-cart').forEach(button => {
+        document.querySelectorAll('.add-to-cart').forEach((button, idx) => {
           button.addEventListener('click', (e) => {
             e.preventDefault();
+            // Find the product for this button
+            const product = products.filter(p => (p.category || '').toLowerCase() === 'infrastructure')[idx];
+            if (!product) return;
+            // Save to localStorage cart
+            const cart = JSON.parse(localStorage.getItem('debex-cart') || '[]');
+            const existing = cart.find(item => item.name === product.name);
+            if (existing) {
+              existing.quantity += 1;
+            } else {
+              cart.push({
+                name: product.name,
+                price: product.price,
+                image: product.image,
+                quantity: 1
+              });
+            }
+            localStorage.setItem('debex-cart', JSON.stringify(cart));
             alert('Item added to cart!');
             window.location.href = 'checkout.html';
           });
