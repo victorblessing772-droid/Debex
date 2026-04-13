@@ -5,8 +5,14 @@ const DARAJA_URL = 'https://sandbox.safaricom.co.ke';
 const CONSUMER_KEY = process.env.DARAJA_CONSUMER_KEY;
 const CONSUMER_SECRET = process.env.DARAJA_CONSUMER_SECRET;
 const SHORTCODE = process.env.DARAJA_SHORTCODE || '174379';
-const PASSKEY = process.env.DARAJA_PASSKEY || '';
+const PASSKEY = process.env.DARAJA_PASSKEY || 'bfb279f9ba9b9d4858f26b5b14ce40934';
 const CALLBACK_URL = process.env.CALLBACK_URL || 'https://debex-7ixn.onrender.com/api/payment/callback';
+
+console.log('M-Pesa Configuration:');
+console.log('- SHORTCODE:', SHORTCODE);
+console.log('- PASSKEY:', PASSKEY ? '(set)' : '(not set)');
+console.log('- CONSUMER_KEY:', CONSUMER_KEY ? '(set)' : '(not set)');
+console.log('- CONSUMER_SECRET:', CONSUMER_SECRET ? '(set)' : '(not set)');
 
 // Get OAuth token
 const getAccessToken = async () => {
@@ -17,10 +23,11 @@ const getAccessToken = async () => {
         Authorization: `Basic ${auth}`,
       },
     });
+    console.log('Access token obtained successfully');
     return response.data.access_token;
   } catch (error) {
-    console.error('Error getting access token:', error.message);
-    throw new Error('Failed to get Daraja token');
+    console.error('Error getting access token:', error.response?.data || error.message);
+    throw new Error('Failed to get Daraja token: ' + (error.response?.data?.error_description || error.message));
   }
 };
 
@@ -83,10 +90,10 @@ export const initiateMpesaPayment = async (req, res) => {
       orderData: orderData, // Return order data for reference
     });
   } catch (error) {
-    console.error('Error initiating M-Pesa payment:', error.message);
+    console.error('Error initiating M-Pesa payment:', error.response?.data || error.message);
     return res.status(500).json({
       error: 'Failed to initiate payment',
-      details: error.message,
+      details: error.response?.data || error.message,
     });
   }
 };
