@@ -465,9 +465,9 @@ function logoutUser() {
           console.log('Products loaded:', products);
           
           // Filter products by category and dynamically add to page
-          const chandelier = products.filter(p => p.category === 'chandelier');
-          const classy = products.filter(p => p.category === 'classy');
-          const vintage = products.filter(p => p.category === 'vintage');
+          const chandelier = products.filter(p => (p.category || '').toLowerCase() === 'chandelier');
+          const classy = products.filter(p => (p.category || '').toLowerCase() === 'classy');
+          const vintage = products.filter(p => (p.category || '').toLowerCase() === 'vintage');
           
           // Add products to their respective sections
           addProductsToSection('chandelier', chandelier);
