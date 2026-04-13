@@ -174,43 +174,38 @@
 <section>
 <div class="flex items-center gap-4 mb-8">
 <span class="bg-surface-container-highest text-on-surface-variant w-8 h-8 flex items-center justify-center rounded-full font-label font-bold text-xs">03</span>
-<h2 class="text-2xl font-headline font-bold tracking-tight">Payment Details</h2>
+<h2 class="text-2xl font-headline font-bold tracking-tight">Payment Method</h2>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-<button class="flex flex-col items-center justify-center py-6 border-2 border-primary bg-surface-container-lowest gap-2">
-<span class="material-symbols-outlined text-primary" data-icon="credit_card">credit_card</span>
+<button id="mpesa-btn" class="flex flex-col items-center justify-center py-6 border-2 border-primary bg-surface-container-lowest gap-2 payment-method" data-method="mpesa">
+<span class="material-symbols-outlined text-primary" data-icon="phone_android">phone_android</span>
+<span class="font-label text-xs font-bold uppercase tracking-widest">M-Pesa</span>
+</button>
+<button class="flex flex-col items-center justify-center py-6 bg-surface-container-low hover:bg-surface-container-high gap-2 payment-method opacity-50 cursor-not-allowed" disabled>
+<span class="material-symbols-outlined text-secondary" data-icon="credit_card">credit_card</span>
 <span class="font-label text-xs font-bold uppercase tracking-widest">Credit Card</span>
 </button>
-<button class="flex flex-col items-center justify-center py-6 bg-surface-container-low hover:bg-surface-container-high gap-2">
+<button class="flex flex-col items-center justify-center py-6 bg-surface-container-low hover:bg-surface-container-high gap-2 payment-method opacity-50 cursor-not-allowed" disabled>
 <span class="material-symbols-outlined text-secondary" data-icon="account_balance_wallet">account_balance_wallet</span>
 <span class="font-label text-xs font-bold uppercase tracking-widest">PayPal</span>
 </button>
-<button class="flex flex-col items-center justify-center py-6 bg-surface-container-low hover:bg-surface-container-high gap-2">
-<span class="material-symbols-outlined text-secondary" data-icon="receipt_long">receipt_long</span>
-<span class="font-label text-xs font-bold uppercase tracking-widest">Pro-Invoice</span>
-</button>
 </div>
-<div class="bg-surface-container-lowest p-8 space-y-6">
-<div class="space-y-1">
-<label class="font-label text-xs uppercase tracking-widest text-secondary font-semibold">Cardholder Name</label>
-<input class="w-full bg-surface-container-low border-none rounded-none py-3 px-4 focus:ring-0 uppercase tracking-widest" placeholder="JULIAN VANDERVILT" type="text"/>
-</div>
-<div class="space-y-1 relative">
-<label class="font-label text-xs uppercase tracking-widest text-secondary font-semibold">Card Number</label>
-<input class="w-full bg-surface-container-low border-none rounded-none py-3 px-4 focus:ring-0" placeholder="**** **** **** 4421" type="text"/>
-<div class="absolute right-4 bottom-3 flex gap-2">
-<span class="material-symbols-outlined text-secondary text-lg" data-icon="credit_card">credit_card</span>
-</div>
-</div>
-<div class="grid grid-cols-2 gap-6">
-<div class="space-y-1">
-<label class="font-label text-xs uppercase tracking-widest text-secondary font-semibold">Expiry Date</label>
-<input class="w-full bg-surface-container-low border-none rounded-none py-3 px-4 focus:ring-0" placeholder="MM / YY" type="text"/>
+<div id="mpesa-form" class="bg-surface-container-lowest p-8 space-y-6">
+<div class="bg-primary/10 border border-primary/20 rounded-lg p-4 mb-6">
+<p class="text-sm font-label text-primary font-semibold">📱 M-Pesa Payment (1 KES for all orders)</p>
+<p class="text-xs text-secondary mt-2">Enter your Kenyan phone number (254XXXXXXXXX or 07XXXXXXXXX)</p>
 </div>
 <div class="space-y-1">
-<label class="font-label text-xs uppercase tracking-widest text-secondary font-semibold">CVV</label>
-<input class="w-full bg-surface-container-low border-none rounded-none py-3 px-4 focus:ring-0" placeholder="***" type="text"/>
+<label class="font-label text-xs uppercase tracking-widest text-secondary font-semibold">Phone Number</label>
+<input id="phone-input" class="w-full bg-surface-container-low border-none rounded-none py-3 px-4 focus:ring-0" placeholder="+254 712 345 678" type="tel"/>
 </div>
+<div class="space-y-1">
+<label class="font-label text-xs uppercase tracking-widest text-secondary font-semibold">Full Name</label>
+<input id="fullname-input" class="w-full bg-surface-container-low border-none rounded-none py-3 px-4 focus:ring-0" placeholder="Your Full Name" type="text"/>
+</div>
+<div class="space-y-1">
+<label class="font-label text-xs uppercase tracking-widest text-secondary font-semibold">Email Address</label>
+<input id="email-input" class="w-full bg-surface-container-low border-none rounded-none py-3 px-4 focus:ring-0" placeholder="example@email.com" type="email"/>
 </div>
 </div>
 </section>
@@ -230,19 +225,19 @@
 <div class="space-y-3 pt-6 border-t border-surface-container-high">
 <div class="flex justify-between text-sm">
 <span class="text-secondary">Subtotal</span>
-<span id="subtotal" class="font-bold">$0.00</span>
+<span id="subtotal" class="font-bold">KES 0.00</span>
 </div>
 <div class="flex justify-between text-sm">
-<span class="text-secondary">Precision Shipping</span>
-<span id="shipping" class="font-bold">$0.00</span>
+<span class="text-secondary">Shipping</span>
+<span id="shipping" class="font-bold">KES 0.00</span>
 </div>
 <div class="flex justify-between text-sm">
-<span class="text-secondary">Architectural Tax (8%)</span>
-<span id="tax" class="font-bold">$0.00</span>
+<span class="text-secondary">Tax (8%)</span>
+<span id="tax" class="font-bold">KES 0.00</span>
 </div>
 <div class="flex justify-between text-lg pt-4 border-t border-surface-container-high">
-<span class="font-headline font-bold">Total</span>
-<span id="total" class="font-headline font-extrabold text-primary">$0.00</span>
+<span class="font-headline font-bold">Fixed Price</span>
+<span id="total" class="font-headline font-extrabold text-primary">KES 1.00</span>
 </div>
 </div>
 <!-- CTA -->
@@ -311,6 +306,7 @@
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const API_BASE = 'https://debex-7ixn.onrender.com/api';
+    const MPESA_AMOUNT = 1; // 1 KES fixed price
 
     // Display cart items
     function displayCart() {
@@ -321,10 +317,10 @@
       if (cart.length === 0) {
         cartItems.innerHTML = '';
         emptyCart.style.display = 'block';
-        document.getElementById('subtotal').textContent = '$0.00';
-        document.getElementById('shipping').textContent = '$0.00';
-        document.getElementById('tax').textContent = '$0.00';
-        document.getElementById('total').textContent = '$0.00';
+        document.getElementById('subtotal').textContent = 'KES 0.00';
+        document.getElementById('shipping').textContent = 'KES 0.00';
+        document.getElementById('tax').textContent = 'KES 0.00';
+        document.getElementById('total').textContent = 'KES 1.00';
         return;
       }
       
@@ -343,8 +339,8 @@
             </div>
             <div class="flex-grow">
               <p class="font-headline font-bold text-sm leading-tight">${item.name}</p>
-              <p class="text-xs text-secondary mt-1 font-label">$${item.price.toFixed(2)} each</p>
-              <p class="text-sm font-bold mt-2">$${itemTotal.toFixed(2)}</p>
+              <p class="text-xs text-secondary mt-1 font-label">KES ${item.price.toFixed(2)} each</p>
+              <p class="text-sm font-bold mt-2">KES ${itemTotal.toFixed(2)}</p>
               <button data-index="${index}" class="remove-item text-primary text-xs font-bold mt-2 hover:underline">Remove</button>
             </div>
           </div>
@@ -363,69 +359,106 @@
         });
       });
       
-      // Calculate totals
-      const shipping = cart.length > 0 ? 45 : 0;
-      const tax = subtotal * 0.08;
-      const total = subtotal + shipping + tax;
-      
-      document.getElementById('subtotal').textContent = '$' + subtotal.toFixed(2);
-      document.getElementById('shipping').textContent = '$' + shipping.toFixed(2);
-      document.getElementById('tax').textContent = '$' + tax.toFixed(2);
-      document.getElementById('total').textContent = '$' + total.toFixed(2);
+      // Show item details but charge fixed 1 KES
+      document.getElementById('subtotal').textContent = 'KES ' + subtotal.toFixed(2);
+      document.getElementById('shipping').textContent = 'KES 0.00';
+      document.getElementById('tax').textContent = 'KES 0.00';
+      document.getElementById('total').textContent = 'KES ' + MPESA_AMOUNT.toFixed(2);
     }
     
     displayCart();
 
-    // Handle checkout/order submission
-    const checkoutForm = document.querySelector('form');
-    if (checkoutForm) {
-      checkoutForm.addEventListener('submit', async (e) => {
+    // Handle M-Pesa payment
+    const placeOrderBtn = document.querySelector('button:has(span:contains("Place"))') || 
+                          Array.from(document.querySelectorAll('button')).find(btn => btn.textContent.includes('Place'));
+    
+    if (placeOrderBtn) {
+      placeOrderBtn.addEventListener('click', async (e) => {
         e.preventDefault();
+        
         const cart = JSON.parse(localStorage.getItem('debex-cart') || '[]');
         
         if (cart.length === 0) {
           alert('Your cart is empty!');
           return;
         }
-        
-        const orderData = {
-          items: cart,
-          total: document.getElementById('total').textContent,
-          customerEmail: document.querySelector('input[type="email"]')?.value,
-          address: document.querySelector('input[placeholder*="Address"]')?.value
-        };
+
+        const phoneInput = document.getElementById('phone-input');
+        const fullnameInput = document.getElementById('fullname-input');
+        const emailInput = document.getElementById('email-input');
+
+        if (!phoneInput.value.trim() || !fullnameInput.value.trim() || !emailInput.value.trim()) {
+          alert('Please fill in all payment details');
+          return;
+        }
 
         try {
-          const response = await fetch(API_BASE + '/orders', {
+          // Show loading state
+          placeOrderBtn.disabled = true;
+          placeOrderBtn.textContent = 'Processing...';
+
+          const orderData = {
+            items: cart,
+            customerName: fullnameInput.value,
+            customerEmail: emailInput.value,
+            customerPhone: phoneInput.value,
+            total: MPESA_AMOUNT,
+          };
+
+          // Initiate M-Pesa payment
+          const response = await fetch(API_BASE + '/payment/initiate', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(orderData)
+            body: JSON.stringify({
+              phoneNumber: phoneInput.value,
+              amount: MPESA_AMOUNT,
+              orderData: orderData
+            })
           });
 
-          if (response.ok) {
-            alert('Order placed successfully!');
-            localStorage.removeItem('debex-cart');
-            window.location.href = 'home.html';
+          const result = await response.json();
+          placeOrderBtn.disabled = false;
+          placeOrderBtn.innerHTML = `
+            Place Secure Order
+            <span class="material-symbols-outlined" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
+          `;
+
+          if (response.ok && result.success) {
+            alert('M-Pesa prompt sent to ' + phoneInput.value + '\nBased on Test Credentials:\nTest Phone: 254708374149\nTest PIN: 12345\n\nEnter PIN on your phone to complete payment.');
+            
+            // Clear cart and redirect after 3 seconds
+            setTimeout(() => {
+              localStorage.removeItem('debex-cart');
+              window.location.href = 'home.html';
+            }, 3000);
           } else {
-            alert('Error placing order');
+            alert('Payment initiation failed: ' + (result.error || 'Unknown error'));
           }
         } catch (error) {
           console.error('Error:', error);
-          alert('Error connecting to server');
+          placeOrderBtn.disabled = false;
+          placeOrderBtn.innerHTML = `
+            Place Secure Order
+            <span class="material-symbols-outlined" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
+          `;
+          alert('Error connecting to payment gateway');
         }
       });
     }
 
-    // Handle checkout buttons
-    document.querySelectorAll('button').forEach(btn => {
-      if (btn.textContent.includes('Place') || btn.textContent.includes('Order')) {
-        btn.addEventListener('click', (e) => {
-          if (checkoutForm) {
-            e.preventDefault();
-            checkoutForm.dispatchEvent(new Event('submit'));
-          }
-        });
-      }
+    // Handle payment method selection
+    document.querySelectorAll('.payment-method').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (!btn.disabled) {
+          document.querySelectorAll('.payment-method').forEach(b => {
+            b.classList.remove('border-primary', 'bg-surface-container-lowest');
+            b.classList.add('bg-surface-container-low', 'hover:bg-surface-container-high');
+          });
+          btn.classList.add('border-primary', 'bg-surface-container-lowest');
+          btn.classList.remove('bg-surface-container-low', 'hover:bg-surface-container-high');
+        }
+      });
     });
   });
 </script>
