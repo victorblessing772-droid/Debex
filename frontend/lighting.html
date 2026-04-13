@@ -97,7 +97,9 @@
           return cat === 'chandelier' || cat === 'classy' || cat === 'vintage';
         }).forEach((product) => {
           const article = document.createElement("article");
+          const category = (product.category || '').toLowerCase();
           article.className = "group";
+          article.setAttribute('data-category', category);
           article.innerHTML = `
             <div class="aspect-[4/5] bg-surface-container-low rounded-xl mb-6 relative overflow-hidden transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-black/5">
               <img alt="${product.name}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="${product.image || 'https://via.placeholder.com/300x300?text=No+Image'}"/>
@@ -118,6 +120,23 @@
             </div>
           `;
           grid.appendChild(article);
+        });
+
+        // Setup sidebar filters
+        const filterButtons = document.querySelectorAll('.sidebar-filter');
+        filterButtons.forEach(btn => {
+          btn.addEventListener('click', function() {
+            const filterCategory = btn.getAttribute('data-filter');
+            const products = grid.querySelectorAll('article[data-category]');
+            products.forEach(product => {
+              const productCategory = product.getAttribute('data-category');
+              if (filterCategory === 'all' || productCategory === filterCategory) {
+                product.style.display = '';
+              } else {
+                product.style.display = 'none';
+              }
+            });
+          });
         });
 
         // Add to Cart button logic

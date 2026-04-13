@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container": "#edeeef",
+              "on-secondary-fixed": "#1b1c1c",
+              "secondary-container": "#e3e2e2",
+              "tertiary-fixed-dim": "#4cd6ff",
+              "tertiary-fixed": "#b7eaff",
+              "surface": "#f8f9fa",
+              "secondary-fixed": "#e3e2e2",
+              "on-error": "#ffffff",
+              "on-tertiary-fixed": "#001f28",
+              "on-surface-variant": "#524533",
+              "on-primary": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "on-primary-fixed-variant": "#614000",
+              "surface-container-low": "#f3f4f5",
+              "on-secondary-container": "#646464",
+              "on-background": "#191c1d",
+              "surface-container-lowest": "#ffffff",
+              "surface-variant": "#e1e3e4",
+              "on-primary-fixed": "#281800",
+              "error-container": "#ffdad6",
+              "surface-container-highest": "#e1e3e4",
+              "inverse-surface": "#2e3132",
+              "background": "#f8f9fa",
+              "inverse-primary": "#ffba43",
+              "primary-fixed-dim": "#ffba43",
+              "on-tertiary-fixed-variant": "#004e60",
+              "error": "#ba1a1a",
+              "primary-container": "#ffb000",
+              "outline-variant": "#d7c4ac",
+              "on-error-container": "#93000a",
+              "secondary-fixed-dim": "#c7c6c6",
+              "tertiary": "#00677f",
+              "on-surface": "#191c1d",
+              "surface-dim": "#d9dadb",
+              "tertiary-container": "#00d0fe",
+              "surface-bright": "#f8f9fa",
+              "primary": "#805600",
+              "on-secondary-fixed-variant": "#464747",
+              "surface-tint": "#805600",
+              "primary-fixed": "#ffddaf",
+              "inverse-on-surface": "#f0f1f2",
+              "on-secondary": "#ffffff",
+              "surface-container-high": "#e7e8e9",
+              "on-tertiary-container": "#00556a",
+              "on-primary-container": "#6a4700",
+              "outline": "#847560",
+              "secondary": "#5e5e5e"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Manrope"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #d7c4ac33;
+        border-radius: 10px;
+      }
+      .filament-glow {
+        background: linear-gradient(135deg, #805600 0%, #ffb000 100%);
+      }
+    </style>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+
+    // Fetch and display only 'power-switches' products
+    fetch("https://debex-7ixn.onrender.com/api/products")
+      .then((response) => response.json())
+      .then((products) => {
+        const grid = document.querySelector(".grid.grid-cols-1.lg\\:grid-cols-2");
+        if (!grid) return;
+        grid.innerHTML = "";
+        products.filter(p => (p.category || '').toLowerCase() === 'power').forEach((product) => {
+          const article = document.createElement("article");
+          article.className = "group";
+          article.innerHTML = `
+            <div class=\"aspect-square bg-surface-container-low rounded-xl mb-6 relative overflow-hidden transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-black/5\">
+              <img alt=\"${product.name}\" class=\"absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110\" src=\"${product.image || 'https://via.placeholder.com/300x300?text=No+Image'}\"/>
+              <button class=\"absolute bottom-4 right-4 filament-gradient text-on-primary p-3 rounded-full opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-lg add-to-cart\">
+                <span class=\"material-symbols-outlined\">add_shopping_cart</span>
+              </button>
+            </div>
+            <div class=\"space-y-2\">
+              <div class=\"flex justify-between items-start\">
+                <h3 class=\"font-headline font-bold text-lg leading-tight tracking-tight\">${product.name}</h3>
+                <span class=\"font-label text-sm font-semibold\">$${product.price}</span>
+              </div>
+              <p class=\"text-xs text-secondary font-label uppercase tracking-widest\">${product.description || ''}</p>
+              <div class=\"pt-4 flex items-center gap-4 text-[10px] font-label font-medium text-on-surface-variant\">
+                <span class=\"bg-surface-container px-2 py-1\">${product.category || ''}</span>
+                <span class=\"bg-surface-container px-2 py-1\">${product.brand || ''}</span>
+              </div>
+            </div>
+          `;
+          grid.appendChild(article);
+        });
+
+        // Add to Cart button logic
+        document.querySelectorAll('.add-to-cart').forEach((button, idx) => {
+          button.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Find the product for this button
+            const product = products.filter(p => (p.category || '').toLowerCase() === 'power')[idx];
+            if (!product) return;
+            // Save to localStorage cart
+            const cart = JSON.parse(localStorage.getItem('debex-cart') || '[]');
+            const existing = cart.find(item => item.name === product.name);
+            if (existing) {
+              existing.quantity += 1;
+            } else {
+              cart.push({
+                name: product.name,
+                price: product.price,
+                image: product.image,
+                quantity: 1
+              });
+            }
+            localStorage.setItem('debex-cart', JSON.stringify(cart));
+            alert('Item added to cart!');
+            window.location.href = 'checkout.html';
+          });
+        });
+      })
+      .catch((err) => {
+        console.error("Failed to fetch products:", err);
+      });
+  });
+</script>
+</head>
+<body class="bg-surface text-on-background font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Top Navigation Shell -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm dark:shadow-none">
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md shadow-sm border-b border-zinc-100 dark:border-zinc-800/50">
+<div class="flex justify-between items-center px-8 h-16 max-w-full mx-auto font-['Manrope'] antialiased">
+<div class="flex items-center gap-12">
+<span class="text-xl font-extrabold tracking-tighter text-zinc-900 dark:text-zinc-100 uppercase">Debex Electronics</span>
+<div class="hidden md:flex gap-8 tracking-tight text-sm font-medium">
+<a class="text-amber-700 dark:text-amber-400 border-b-2 border-amber-500 pb-1 transition-colors duration-200" href="home.html">Home</a> 
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="lighting.html">Lighting</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="power-switches.html">Power &amp; Switches</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="professional-tools.html">Professional Tools</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-1０ transition-colors duration-2００" href="infrastructure.html">Infrastructure</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<a href="checkout.html" class="material-symbols-outlined text-slate-600 hover:bg-slate-50/50 p-2 rounded-full transition-all active:scale-95">shopping_cart</a>
+<button class="material-symbols-outlined text-slate-600 hover:bg-slate-50/50 p-2 rounded-full transition-all active:scale-95" onclick="logoutUser()">person</button>
+<script>
+function logoutUser() {
+  localStorage.removeItem('token');
+  window.location.href = 'index.html';
+}
+</script>
+</div>
+</nav>
+<div class="bg-slate-100 dark:bg-slate-800 h-[1px] w-full"></div>
+</header>
+<main class="pt-24 pb-16 px-8 max-w-screen-2xl mx-auto flex flex-col md:flex-row gap-12">
+<!-- Sidebar Filter -->
+<aside class="w-full md:w-64 flex-shrink-0 space-y-10">
+<section>
+<h3 class="font-headline font-bold text-on-background text-lg mb-6 tracking-tight">Refine Collection</h3>
+<!-- Filter Group: Gang -->
+<div class="mb-8">
+<label class="font-label text-xs uppercase tracking-widest text-secondary mb-4 block">Gang Configuration</label>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded-sm border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<span class="font-body text-sm text-on-surface-variant group-hover:text-on-surface transition-colors">1 Gang</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded-sm border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<span class="font-body text-sm text-on-surface-variant group-hover:text-on-surface transition-colors">2 Gang</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded-sm border-outline-variant text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<span class="font-body text-sm text-on-surface-variant group-hover:text-on-surface transition-colors">3 Gang</span>
+</label>
+</div>
+</div>
+<!-- Filter Group: Finish -->
+<!-- Filter Group: Voltage -->
+<div>
+<label class="font-label text-xs uppercase tracking-widest text-secondary mb-4 block">Voltage Rating</label>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="border-outline-variant text-primary focus:ring-primary w-4 h-4" name="voltage" type="radio"/>
+<span class="font-body text-sm text-on-surface-variant group-hover:text-on-surface transition-colors">230V Standard</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="border-outline-variant text-primary focus:ring-primary w-4 h-4" name="voltage" type="radio"/>
+<span class="font-body text-sm text-on-surface-variant group-hover:text-on-surface transition-colors">110V Industrial</span>
+</label>
+</div>
+</div>
+</section>
+<!-- Technical Detail Box -->
+
+</aside>
+<!-- Product Content Area -->
+<section class="flex-1">
+<!-- Editorial Header -->
+<div class="mb-12">
+<span class="font-label text-xs uppercase tracking-[0.3em] text-primary mb-4 block">Curated Hardware</span>
+<h1 class="font-headline text-5xl font-extrabold text-on-background tracking-tighter mb-4 leading-none">Switches &amp; Power Sockets</h1>
+<p class="font-body text-lg text-secondary max-w-2xl leading-relaxed">Elevate every interaction. Our range of architectural switches and sockets combines modernist aesthetics with industrial-grade engineering.</p>
+</div>
+<!-- Product Grid - Populated by API -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-12">
+<!-- Products will load here from API -->
+</div>
+<!-- Pagination/Footer Context -->
+<div class="mt-20 pt-12 border-t border-surface-container-highest flex justify-between items-center">
+<span class="font-label text-xs text-secondary">Showing 4 of 28 Architectural Hardware Items</span>
+<div class="flex gap-4">
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant/30 text-on-background hover:bg-surface-container-low transition-colors rounded-sm">1</button>
+<button class="w-10 h-10 flex items-center justify-center text-secondary hover:text-on-background transition-colors">2</button>
+<button class="w-10 h-10 flex items-center justify-center text-secondary hover:text-on-background transition-colors">3</button>
+<button class="material-symbols-outlined w-10 h-10 flex items-center justify-center text-on-background">chevron_right</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="w-full py-16 px-8 mt-auto bg-zinc-50 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800/50">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto font-['Manrope']">
+<div class="space-y-4">
+<div class="text-lg font-bold text-zinc-900 dark:text-zinc-100 uppercase">Debex Electronics</div>
+<p class="text-zinc-500 dark:text-zinc-400 text-sm">Affordable pricing without compromising on quality.</p>
+</div>
+<div>
+<h4 class="text-xs uppercase tracking-widest font-semibold text-amber-600 mb-6">Catalog</h4>
+<div class="flex flex-col gap-3 text-xs tracking-wide uppercase">
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Lighting</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Power &amp; Switches</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Professional Tools</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Infrastructure</a>
+</div>
+</div>
+<div>
+<h4 class="text-xs uppercase tracking-widest font-semibold text-amber-600 mb-6">Resources</h4>
+<div class="flex flex-col gap-3 text-xs tracking-wide uppercase">
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Technical Specs</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Pro Portal</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Compliance</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Supply Chain</a>
+</div>
+
+<footer class="w-full py-8 px-8 bg-white border-t border-surface-container-high">
+<div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="font-manrope text-sm tracking-wide text-stone-500">
+                © 2026 Debex Electronics. All rights reserved.
+            </span>
+
+
+</div>
+<div>
+<h4 class="text-xs uppercase tracking-widest font-semibold text-amber-600 mb-6">Connect</h4>
+<div class="flex flex-col gap-3 text-xs tracking-wide uppercase">
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Contact</a>
+<div class="flex gap-4 pt-2">
+<span class="material-symbols-outlined text-zinc-400 cursor-pointer hover:text-amber-500">language</span>
+<span class="material-symbols-outlined text-zinc-400 cursor-pointer hover:text-amber-500">share</span>
+</div>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-800/50 text-center">
+<p class="text-xs uppercase tracking-widest font-semibold text-zinc-500 dark:text-zinc-400">
+                © 2026 Debex Electronics. All rights reserved.
+            </p>
+</div>
+</footer>
+</body></html>
