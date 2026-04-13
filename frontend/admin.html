@@ -381,6 +381,12 @@
         uploadArea.querySelector('.material-symbols-outlined').style.display = 'none';
         uploadArea.querySelector('p').style.display = 'none';
         uploadArea.querySelectorAll('p')[1].style.display = 'none';
+        // Also update the preview card image
+        const previewCardImage = document.querySelector('.col-span-12.lg\:col-span-5 .aspect-\[4\/5\] img');
+        if (previewCardImage) {
+          previewCardImage.src = selectedImageBase64;
+          previewCardImage.style.display = 'block';
+        }
       };
       reader.readAsDataURL(file);
     }

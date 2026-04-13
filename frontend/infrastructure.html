@@ -113,9 +113,26 @@
         });
 
         // Add to Cart button logic
-        document.querySelectorAll('.add-to-cart').forEach(button => {
+        document.querySelectorAll('.add-to-cart').forEach((button, idx) => {
           button.addEventListener('click', (e) => {
             e.preventDefault();
+            // Find the product for this button
+            const product = products.filter(p => (p.category || '').toLowerCase() === 'infrastructure')[idx];
+            if (!product) return;
+            // Save to localStorage cart
+            const cart = JSON.parse(localStorage.getItem('debex-cart') || '[]');
+            const existing = cart.find(item => item.name === product.name);
+            if (existing) {
+              existing.quantity += 1;
+            } else {
+              cart.push({
+                name: product.name,
+                price: product.price,
+                image: product.image,
+                quantity: 1
+              });
+            }
+            localStorage.setItem('debex-cart', JSON.stringify(cart));
             alert('Item added to cart!');
             window.location.href = 'checkout.html';
           });
@@ -153,29 +170,32 @@
 </head>
 <body class="bg-surface text-on-background font-body min-h-screen flex flex-col">
 <!-- TopNavBar (Based on COMPONENTS_31) -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md shadow-sm border-b border-zinc-100 dark:border-zinc-800/50">
 <nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md shadow-sm border-b border-zinc-100 dark:border-zinc-800/50">
-<div class="flex justify-between items-center px-8 h-16 max-w-full mx-auto">
-<div class="text-xl font-extrabold tracking-tighter text-zinc-900 dark:text-zinc-100 font-headline uppercase">
-                Lumen &amp; Lead
-            </div>
-<div class="hidden md:flex items-center space-x-8 font-['Manrope'] antialiased tracking-tight text-sm font-medium">
-<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="#">Lighting</a>
-<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="#">Power &amp; Switches</a>
-<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="#">Professional Tools</a>
-<a class="text-amber-700 dark:text-amber-400 border-b-2 border-amber-500 pb-1" href="#">Infrastructure</a>
+<div class="flex justify-between items-center px-8 h-16 max-w-full mx-auto font-['Manrope'] antialiased">
+<div class="flex items-center gap-12">
+<span class="text-xl font-extrabold tracking-tighter text-zinc-900 dark:text-zinc-100 uppercase">Debex Electronics</span>
+<div class="hidden md:flex gap-8 tracking-tight text-sm font-medium">
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="home.html">Home</a> 
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="lighting.html">Lighting</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="power-switches.html">Power &amp; Switches</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200" href="professional-tools.html">Professional Tools</a>
+<a class="text-amber-700 dark:text-amber-400 border-b-2 border-amber-500 pb-1 transition-colors duration-200" href="infrastructure.html">Infrastructure</a>
 </div>
-<div class="flex items-center space-x-6">
-<div class="relative hidden lg:block">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 text-lg">search</span>
-<input class="bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary w-64 transition-all" placeholder="Search components..." type="text"/>
 </div>
-<div class="flex items-center space-x-4">
-<a href="checkout.html" class="material-symbols-outlined text-zinc-600 hover:text-amber-600 transition-transform scale-95 active:scale-90">shopping_cart</a>
-<button class="material-symbols-outlined text-zinc-600 hover:text-amber-600 transition-transform scale-95 active:scale-90">person</button>
-</div>
+<div class="flex items-center gap-6">
+<a href="checkout.html" class="material-symbols-outlined text-zinc-600 hover:bg-zinc-50 p-2 rounded-full transition-all scale-95 active:scale-90">shopping_cart</a>
+<button class="material-symbols-outlined text-zinc-600 hover:bg-zinc-50 p-2 rounded-full transition-all scale-95 active:scale-90" onclick="logoutUser()">person</button>
+<script>
+function logoutUser() {
+  localStorage.removeItem('token');
+  window.location.href = 'index.html';
+}
+</script>
 </div>
 </div>
 </nav>
+</header>
 <main class="pt-24 pb-20 flex-grow">
 <!-- Hero Header -->
 <header class="max-w-screen-2xl mx-auto px-8 mb-16">
