@@ -99,9 +99,9 @@
           const article = document.createElement("article");
           article.className = "group";
           article.innerHTML = `
-            <div class="aspect-square bg-surface-container-low rounded-xl mb-6 relative overflow-hidden transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-black/5">
+            <div class="aspect-[4/5] bg-surface-container-low rounded-xl mb-6 relative overflow-hidden transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-black/5">
               <img alt="${product.name}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="${product.image || 'https://via.placeholder.com/300x300?text=No+Image'}"/>
-              <button class="absolute bottom-4 right-4 filament-gradient text-on-primary p-3 rounded-full opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-lg add-to-cart">
+              <button class="absolute bottom-4 right-4 filament-gradient text-on-primary p-3 rounded-full opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-lg add-to-cart" data-product-name="${product.name}" data-product-price="${product.price}" data-product-image="${product.image || 'https://via.placeholder.com/300x300?text=No+Image'}">
                 <span class="material-symbols-outlined">add_shopping_cart</span>
               </button>
             </div>
@@ -124,6 +124,26 @@
         document.querySelectorAll('.add-to-cart').forEach(button => {
           button.addEventListener('click', (e) => {
             e.preventDefault();
+            const productName = button.dataset.productName;
+            const productPrice = parseFloat(button.dataset.productPrice);
+            const productImage = button.dataset.productImage;
+            
+            // Save to cart
+            const cart = JSON.parse(localStorage.getItem('debex-cart') || '[]');
+            const existingItem = cart.find(item => item.name === productName);
+            
+            if (existingItem) {
+              existingItem.quantity += 1;
+            } else {
+              cart.push({
+                name: productName,
+                price: productPrice,
+                quantity: 1,
+                image: productImage
+              });
+            }
+            
+            localStorage.setItem('debex-cart', JSON.stringify(cart));
             alert('Item added to cart!');
             window.location.href = 'checkout.html';
           });
