@@ -434,7 +434,9 @@
               window.location.href = 'home.html';
             }, 3000);
           } else {
-            alert('Payment initiation failed: ' + (result.error || 'Unknown error'));
+            const errorMsg = result.details || result.error || 'Unknown error';
+            console.error('Payment error details:', result);
+            alert('Payment initiation failed:\n' + errorMsg);
           }
         } catch (error) {
           console.error('Error:', error);
