@@ -444,15 +444,26 @@
               window.location.href = 'home.html';
             }, 3000);
           } else {
-            const errorMsg = result.details || result.error || 'Unknown error';
             console.error('Payment error details:', result);
             
-            // Format error message if it's an object
+            // Format error message - handle nested objects
             let displayError = '';
-            if (typeof errorMsg === 'object') {
-              displayError = JSON.stringify(errorMsg, null, 2);
+            if (result.details) {
+              if (typeof result.details === 'object') {
+                // If it's an object, stringify it
+                displayError = JSON.stringify(result.details, null, 2);
+              } else {
+                displayError = String(result.details);
+              }
+            } else if (result.error) {
+              displayError = String(result.error);
             } else {
-              displayError = String(errorMsg);
+              displayError = 'Unknown error';
+            }
+            
+            // Add status code if available
+            if (result.status) {
+              displayError = `Status ${result.status}:\n` + displayError;
             }
             
             alert('Payment initiation failed:\n' + displayError);

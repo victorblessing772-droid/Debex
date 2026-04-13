@@ -10,9 +10,10 @@ const CALLBACK_URL = process.env.CALLBACK_URL || 'https://debex-7ixn.onrender.co
 
 console.log('M-Pesa Configuration:');
 console.log('- SHORTCODE:', SHORTCODE);
-console.log('- PASSKEY:', PASSKEY ? '(set)' : '(not set)');
-console.log('- CONSUMER_KEY:', CONSUMER_KEY ? '(set)' : '(not set)');
-console.log('- CONSUMER_SECRET:', CONSUMER_SECRET ? '(set)' : '(not set)');
+console.log('- PASSKEY exists:', !!PASSKEY);
+console.log('- CONSUMER_KEY exists:', !!CONSUMER_KEY);
+console.log('- CONSUMER_SECRET exists:', !!CONSUMER_SECRET);
+console.log('- CALLBACK_URL:', CALLBACK_URL);
 
 // Get OAuth token
 const getAccessToken = async () => {
@@ -43,15 +44,24 @@ export const initiateMpesaPayment = async (req, res) => {
 
     console.log('Initiating M-Pesa payment for:', phoneNumber, 'Amount:', amount);
 
-    // Check credentials
-    if (!CONSUMER_KEY || !CONSUMER_SECRET) {
-      console.error('Missing Daraja credentials');
-      return res.status(400).json({ 
-        error: 'Missing Daraja credentials', 
+    // Check all required credentials
+    const missingCreds = [];
+    if (!CONSUMER_KEY) missingCreds.push('CONSUMER_KEY');
+    if (!CONSUMER_SECRET) missingCreds.push('CONSUMER_SECRET');
+    if (!PASSKEY) missingCreds.push('PASSKEY');
+    if (!SHORTCODE) missingCreds.push('SHORTCODE');
+
+    if (missingCreds.length > 0) {
+      console.error('Missing credentials:', missingCreds);
+      return res.status(500).json({ 
+        error: 'Server configuration error',
         success: false,
-        details: 'CONSUMER_KEY or CONSUMER_SECRET not configured'
+        details: 'Missing environment variables: ' + missingCreds.join(', '),
+        missingVars: missingCreds
       });
     }
+
+    console.log('All credentials present, proceeding...');
 
     // Format phone number - remove +/0 and ensure starts with 254
     let formattedPhone = phoneNumber.replace(/\D/g, '');
@@ -117,15 +127,21 @@ export const initiateMpesaPayment = async (req, res) => {
     });
   } catch (error) {
     console.error('Error initiating M-Pesa payment:');
+    console.error('Error type:', error.constructor.name);
     console.error('Status:', error.response?.status);
-    console.error('Data:', error.response?.data);
+    console.error('Response data:', error.response?.data);
     console.error('Message:', error.message);
+    console.error('Full error:', error);
+    
+    // Extract details from different error sources
+    let errorDetails = error.response?.data || error.message;
     
     return res.status(500).json({
       error: 'Failed to initiate payment',
       success: false,
-      details: error.response?.data || error.message,
-      status: error.response?.status
+      details: errorDetails,
+      status: error.response?.status || 500,
+      errorType: error.constructor.name
     });
   }
 };
