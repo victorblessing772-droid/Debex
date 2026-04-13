@@ -235,7 +235,7 @@
 </form>
 <!-- Right Column: Product Preview (Editorial Style) -->
 <div class="col-span-12 lg:col-span-5 sticky top-8">
-<div class="bg-surface-container-lowest rounded-xl shadow-2xl overflow-hidden border border-surface-container-low">
+<div class="bg-surface-container-lowest rounded-xl shadow-2xl overflow-hidden border border-surface-container-low max-w-sm">
 <div class="bg-surface p-4 flex justify-between items-center border-b border-surface-container-low">
 <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-secondary">Customer View Preview</span>
 <div class="flex gap-1.5">
@@ -284,8 +284,8 @@
 </div>
 </div>
 </div>
-<button class="w-full py-4 custom-glow-button text-on-primary font-bold uppercase tracking-widest text-xs rounded-md shadow-lg opacity-50 cursor-not-allowed">
-                                    Add to Project (Preview)
+<button id="add-to-cart-preview" class="w-full py-4 custom-glow-button text-on-primary font-bold uppercase tracking-widest text-xs rounded-md shadow-lg">
+                                    Add to Cart (Preview)
                                 </button>
 </div>
 </div>
@@ -335,6 +335,35 @@
     document.getElementById('category-select').addEventListener('change', updatePreview);
     document.getElementById('product-price').addEventListener('input', updatePreview);
     document.getElementById('product-description').addEventListener('input', updatePreview);
+
+    // Add to Cart (Preview) button handler
+    document.getElementById('add-to-cart-preview').addEventListener('click', () => {
+      const title = document.getElementById('product-title').value;
+      const price = parseFloat(document.getElementById('product-price').value);
+      const image = selectedImageBase64;
+      
+      if (!title || !price) {
+        alert('Please enter product title and price');
+        return;
+      }
+      
+      const cart = JSON.parse(localStorage.getItem('debex-cart') || '[]');
+      const existing = cart.find(item => item.name === title);
+      
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({
+          name: title,
+          price: price,
+          image: image || 'https://via.placeholder.com/300x300?text=No+Image',
+          quantity: 1
+        });
+      }
+      
+      localStorage.setItem('debex-cart', JSON.stringify(cart));
+      alert('Item added to cart! Navigate to checkout.html to view.');
+    });
 
     // Image upload handling
     const imageInput = document.getElementById('image-input');
