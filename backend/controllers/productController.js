@@ -19,3 +19,31 @@ export const getProducts = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// 🗑️ Delete product by ID
+export const deleteProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await Product.findByIdAndDelete(id);
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+    res.json({ message: "Product deleted successfully", product });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// 🗑️ Delete products by category
+export const deleteByCategory = async (req, res) => {
+  try {
+    const { category } = req.params;
+    const result = await Product.deleteMany({ category: category.toLowerCase() });
+    res.json({ 
+      message: `Deleted ${result.deletedCount} products from category: ${category}`,
+      deletedCount: result.deletedCount
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
