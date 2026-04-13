@@ -417,7 +417,17 @@
             })
           });
 
-          const result = await response.json();
+          let result;
+          try {
+            result = await response.json();
+          } catch (parseError) {
+            console.error('Failed to parse JSON response:', parseError);
+            result = { 
+              error: 'Server error', 
+              details: 'Invalid response from server: ' + response.statusText 
+            };
+          }
+
           console.log('Payment response:', result);
           placeOrderBtn.disabled = false;
           placeOrderBtn.innerHTML = `
@@ -436,7 +446,16 @@
           } else {
             const errorMsg = result.details || result.error || 'Unknown error';
             console.error('Payment error details:', result);
-            alert('Payment initiation failed:\n' + errorMsg);
+            
+            // Format error message if it's an object
+            let displayError = '';
+            if (typeof errorMsg === 'object') {
+              displayError = JSON.stringify(errorMsg, null, 2);
+            } else {
+              displayError = String(errorMsg);
+            }
+            
+            alert('Payment initiation failed:\n' + displayError);
           }
         } catch (error) {
           console.error('Error:', error);
@@ -445,7 +464,7 @@
             Place Secure Order
             <span class="material-symbols-outlined" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
           `;
-          alert('Error connecting to payment gateway: ' + error.message);
+          alert('Error connecting to payment gateway:\n' + error.message);
         }
       });
     } else {
