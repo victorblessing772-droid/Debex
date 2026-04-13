@@ -19,6 +19,9 @@ console.log('- CALLBACK_URL:', CALLBACK_URL);
 const getAccessToken = async () => {
   try {
     const auth = Buffer.from(`${CONSUMER_KEY}:${CONSUMER_SECRET}`).toString('base64');
+    console.log('Auth string:', auth);
+    console.log('Requesting token from:', `${DARAJA_URL}/oauth/v1/generate?grant_type=client_credentials`);
+    
     const response = await axios.get(`${DARAJA_URL}/oauth/v1/generate?grant_type=client_credentials`, {
       headers: {
         Authorization: `Basic ${auth}`,
@@ -27,7 +30,10 @@ const getAccessToken = async () => {
     console.log('Access token obtained successfully');
     return response.data.access_token;
   } catch (error) {
-    console.error('Error getting access token:', error.response?.data || error.message);
+    console.error('Error getting access token:');
+    console.error('  Status:', error.response?.status);
+    console.error('  Data:', error.response?.data);
+    console.error('  Message:', error.message);
     throw new Error('Failed to get Daraja token: ' + (error.response?.data?.error_description || error.message));
   }
 };
