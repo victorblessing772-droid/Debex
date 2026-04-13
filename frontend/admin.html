@@ -247,7 +247,7 @@
 <!-- Preview Card -->
 <div class="p-0">
 <div class="relative aspect-[4/5] bg-surface-container-low overflow-hidden group">
-<img alt="Preview Product" class="w-full h-full object-cover" style="display: none;" src=""/>
+<img alt="Preview Product" id="preview-card-image" class="w-full h-full object-cover" style="display: none;" src=""/>
 <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
 <div class="absolute top-6 right-6" style="display: none;">
 <span class="bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-primary shadow-sm">New Collection</span>
@@ -382,7 +382,7 @@
         uploadArea.querySelector('p').style.display = 'none';
         uploadArea.querySelectorAll('p')[1].style.display = 'none';
         // Also update the preview card image
-        const previewCardImage = document.querySelector('.col-span-12.lg\:col-span-5 .aspect-\[4\/5\] img');
+        const previewCardImage = document.getElementById('preview-card-image');
         if (previewCardImage) {
           previewCardImage.src = selectedImageBase64;
           previewCardImage.style.display = 'block';
