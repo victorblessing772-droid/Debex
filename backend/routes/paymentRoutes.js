@@ -9,7 +9,7 @@ router.get('/config-check', (req, res) => {
   const hasSecret = !!process.env.DARAJA_CONSUMER_SECRET;
   const hasPasskey = !!process.env.DARAJA_PASSKEY;
   const hasShortcode = !!process.env.DARAJA_SHORTCODE;
-  
+
   return res.json({
     configStatus: {
       CONSUMER_KEY: hasKey,
