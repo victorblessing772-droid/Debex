@@ -1,5 +1,8 @@
+import express from "express";
 import Order from "../models/orderModel.js";
 import { sendSMS } from "../services/smsService.js";
+
+const router = express.Router();
 
 // CREATE ORDER + SEND SMS
 export const createOrder = async (req, res) => {
@@ -115,4 +118,15 @@ export const getAllOrders = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+};
+
+// SETUP ROUTES
+router.post("/", createOrder);
+router.get("/", getUserOrders);
+router.get("/:id", getOrderById);
+router.put("/:id", updateOrderStatus);
+router.delete("/:id", deleteOrder);
+router.get("/admin/all", getAllOrders);
+
+export default router;
 };
