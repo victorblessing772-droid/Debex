@@ -1,6 +1,7 @@
 import express from "express";
 import Order from "../models/orderModel.js";
 import { sendSMS } from "../services/smsService.js";
+import protect from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
@@ -129,11 +130,11 @@ export const getAllOrders = async (req, res) => {
 };
 
 // SETUP ROUTES
-router.post("/", createOrder);
-router.get("/", getUserOrders);
-router.get("/:id", getOrderById);
-router.put("/:id", updateOrderStatus);
-router.delete("/:id", deleteOrder);
-router.get("/admin/all", getAllOrders);
+router.post("/", protect, createOrder);
+router.get("/", protect, getUserOrders);
+router.get("/admin/all", protect, getAllOrders);
+router.get("/:id", protect, getOrderById);
+router.put("/:id", protect, updateOrderStatus);
+router.delete("/:id", protect, deleteOrder);
 
 export default router;
