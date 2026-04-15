@@ -15,8 +15,12 @@ export const createOrder = async (req, res) => {
       address,
     } = req.body;
 
+    if (!req.userId) {
+      return res.status(401).json({ message: "User not authenticated" });
+    }
+
     const order = await Order.create({
-      userId: req.user._id,
+      userId: req.userId,
       items,
       total,
       customerEmail,
@@ -51,7 +55,11 @@ export const createOrder = async (req, res) => {
 // GET USER ORDERS
 export const getUserOrders = async (req, res) => {
   try {
-    const orders = await Order.find({ userId: req.user._id });
+    if (!req.userId) {
+      return res.status(401).json({ message: "User not authenticated" });
+    }
+
+    const orders = await Order.find({ userId: req.userId });
     res.json(orders);
   } catch (error) {
     res.status(500).json({ message: error.message });
