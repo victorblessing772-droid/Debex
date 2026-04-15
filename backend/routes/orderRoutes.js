@@ -129,4 +129,3 @@ router.delete("/:id", deleteOrder);
 router.get("/admin/all", getAllOrders);
 
 export default router;
-};
