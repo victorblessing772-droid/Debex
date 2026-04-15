@@ -306,7 +306,6 @@
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const API_BASE = 'https://debex-7ixn.onrender.com/api';
-    const MPESA_AMOUNT = 1; // 1 KES fixed price
 
     // Display cart items
     function displayCart() {
@@ -320,7 +319,7 @@
         document.getElementById('subtotal').textContent = 'KES 0.00';
         document.getElementById('shipping').textContent = 'KES 0.00';
         document.getElementById('tax').textContent = 'KES 0.00';
-        document.getElementById('total').textContent = 'KES 1.00';
+        document.getElementById('total').textContent = 'KES 0.00';
         return;
       }
       
@@ -359,23 +358,27 @@
         });
       });
       
-      // Show item details but charge fixed 1 KES
+      // Calculate tax (8%) and show correct total
+      const tax = subtotal * 0.08;
+      const shipping = 0;
+      const total = subtotal + tax + shipping;
+      
       document.getElementById('subtotal').textContent = 'KES ' + subtotal.toFixed(2);
-      document.getElementById('shipping').textContent = 'KES 0.00';
-      document.getElementById('tax').textContent = 'KES 0.00';
-      document.getElementById('total').textContent = 'KES ' + MPESA_AMOUNT.toFixed(2);
+      document.getElementById('shipping').textContent = 'KES ' + shipping.toFixed(2);
+      document.getElementById('tax').textContent = 'KES ' + tax.toFixed(2);
+      document.getElementById('total').textContent = 'KES ' + total.toFixed(2);
     }
     
     displayCart();
 
-    // Handle M-Pesa payment
+    // Handle confirm order
     const placeOrderBtn = document.getElementById('place-order-btn');
     
     if (placeOrderBtn) {
-      console.log('Place order button found');
+      console.log('Confirm order button found');
       placeOrderBtn.addEventListener('click', async (e) => {
         e.preventDefault();
-        console.log('Place order button clicked');
+        console.log('Confirm order button clicked');
         
         const cart = JSON.parse(localStorage.getItem('debex-cart') || '[]');
         
@@ -389,31 +392,45 @@
         const emailInput = document.getElementById('email-input');
 
         if (!phoneInput.value.trim() || !fullnameInput.value.trim() || !emailInput.value.trim()) {
-          alert('Please fill in all payment details');
+          alert('Please fill in all details');
           return;
         }
 
         try {
           // Show loading state
           placeOrderBtn.disabled = true;
-          placeOrderBtn.textContent = 'Processing...';
+          placeOrderBtn.innerHTML = 'Processing...';
 
-          const orderData = {
-            items: cart,
-            customerName: fullnameInput.value,
-            customerEmail: emailInput.value,
-            customerPhone: phoneInput.value,
-            total: MPESA_AMOUNT,
-          };
+          // Calculate total
+          let subtotal = 0;
+          cart.forEach(item => {
+            subtotal += item.price * item.quantity;
+          });
+          const tax = subtotal * 0.08;
+          const total = subtotal + tax;
 
-          // Initiate M-Pesa payment
-          const response = await fetch(API_BASE + '/payment/initiate', {
+          // Get auth token
+          const token = localStorage.getItem('token');
+          
+          if (!token) {
+            alert('Please login first');
+            window.location.href = 'index.html';
+            return;
+          }
+
+          // Create order
+          const response = await fetch(API_BASE + '/orders', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
             body: JSON.stringify({
-              phoneNumber: phoneInput.value,
-              amount: MPESA_AMOUNT,
-              orderData: orderData
+              items: cart,
+              total: total.toFixed(2),
+              customerEmail: emailInput.value,
+              customerPhoneNumber: phoneInput.value,
+              address: 'Nairobi'  // You can add address input if needed
             })
           });
 
@@ -428,15 +445,15 @@
             };
           }
 
-          console.log('Payment response:', result);
+          console.log('Order response:', result);
           placeOrderBtn.disabled = false;
           placeOrderBtn.innerHTML = `
             Confirm Order
             <span class="material-symbols-outlined" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
           `;
 
-          if (response.ok && result.success) {
-            alert('M-Pesa prompt sent to ' + phoneInput.value + '\nBased on Test Credentials:\nTest Phone: 254708374149\nTest PIN: 12345\n\nEnter PIN on your phone to complete payment.');
+          if (response.ok && result._id) {
+            alert('✅ Order confirmed!\n\nOrder ID: ' + result._id + '\n\nYou will receive an SMS confirmation shortly.');
             
             // Clear cart and redirect after 3 seconds
             setTimeout(() => {
@@ -444,29 +461,8 @@
               window.location.href = 'home.html';
             }, 3000);
           } else {
-            console.error('Payment error details:', result);
-            
-            // Format error message - handle nested objects
-            let displayError = '';
-            if (result.details) {
-              if (typeof result.details === 'object') {
-                // If it's an object, stringify it
-                displayError = JSON.stringify(result.details, null, 2);
-              } else {
-                displayError = String(result.details);
-              }
-            } else if (result.error) {
-              displayError = String(result.error);
-            } else {
-              displayError = 'Unknown error';
-            }
-            
-            // Add status code if available
-            if (result.status) {
-              displayError = `Status ${result.status}:\n` + displayError;
-            }
-            
-            alert('Payment initiation failed:\n' + displayError);
+            console.error('Order error details:', result);
+            alert('Order creation failed: ' + (result.message || 'Unknown error'));
           }
         } catch (error) {
           console.error('Error:', error);
@@ -475,11 +471,11 @@
             Confirm Order
             <span class="material-symbols-outlined" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
           `;
-          alert('Error connecting to payment gateway:\n' + error.message);
+          alert('Error creating order:\n' + error.message);
         }
       });
     } else {
-      console.error('Place order button not found');
+      console.error('Confirm order button not found');
     }
 
     // Handle payment method selection
