@@ -1,6 +1,6 @@
 import Order from "../models/orderModel.js";
 import { sendSMS } from "../services/smsService.js";
-
+import express from "express";
 // CREATE ORDER + SEND SMS
 export const createOrder = async (req, res) => {
   try {
@@ -117,5 +117,4 @@ export const getAllOrders = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-};
-export default { createOrder, getUserOrders, getOrderById, updateOrderStatus, deleteOrder, getAllOrders };
+}
