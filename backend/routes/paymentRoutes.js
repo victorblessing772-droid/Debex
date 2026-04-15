@@ -6,7 +6,7 @@ const router = express.Router();
 // Initiate M-Pesa payment
 router.post('/initiate', initiateMpesaPayment);
 
-// Payment callback endpoint (called by Daraja)
+// Payment callback endpoint
 router.post('/callback', paymentCallback);
 
 // Query payment status
