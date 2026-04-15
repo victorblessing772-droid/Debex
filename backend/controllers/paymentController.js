@@ -1,5 +1,6 @@
 import axios from 'axios';
 import moment from 'moment';
+import { sendSMS } from '../services/smsService.js';
 
 const DARAJA_URL = 'https://sandbox.safaricom.co.ke';
 const CONSUMER_KEY = process.env.DARAJA_CONSUMER_KEY;
@@ -153,7 +154,7 @@ export const initiateMpesaPayment = async (req, res) => {
 };
 
 // Payment callback from Daraja
-export const paymentCallback = (req, res) => {
+export const paymentCallback = async (req, res) => {
   try {
     const callbackData = req.body;
     console.log('Payment Callback:', JSON.stringify(callbackData, null, 2));
@@ -162,25 +163,56 @@ export const paymentCallback = (req, res) => {
     if (callbackData.Body.stkCallback.ResultCode === 0) {
       // Payment successful
       const metadata = callbackData.Body.stkCallback.CallbackMetadata.Item;
+      const phoneNumber = metadata.find(item => item.Name === 'PhoneNumber')?.Value || '';
+      const mpesaCode = metadata.find(item => item.Name === 'MpesaReceiptNumber')?.Value || '';
+      const amount = metadata.find(item => item.Name === 'Amount')?.Value || '';
+      
       console.log('Payment Successful:', metadata);
       
-      // TODO: Update order status in database
-      // TODO: Send confirmation email
+      // Send SMS notification for successful payment
+      if (phoneNumber) {
+        const smsMessage = `Payment successful! Reference: ${mpesaCode}. Amount: KES ${amount}. Your order is being processed.`;
+        const smsResult = await sendSMS(phoneNumber, smsMessage, 'Debex');
+        
+        if (smsResult.success) {
+          console.log(`[Payment Callback] SMS sent successfully to ${phoneNumber}`);
+        } else {
+          console.warn(`[Payment Callback] Failed to send SMS: ${smsResult.error}`);
+        }
+      }
+      
+      // TODO: Update order status to 'paid' in database
       
       return res.status(200).json({
         success: true,
         message: 'Payment received',
+        mpesaReference: mpesaCode,
       });
     } else {
       // Payment failed
-      console.log('Payment Failed:', callbackData.Body.stkCallback.ResultDesc);
+      const resultDesc = callbackData.Body.stkCallback.ResultDesc;
+      const phoneNumber = callbackData.Body.stkCallback.PhoneNumber || '';
       
-      // TODO: Update order status to failed
+      console.log('Payment Failed:', resultDesc);
+      
+      // Send SMS notification for failed payment
+      if (phoneNumber) {
+        const smsMessage = `Payment failed: ${resultDesc}. Please try again or contact support.`;
+        const smsResult = await sendSMS(phoneNumber, smsMessage, 'Debex');
+        
+        if (smsResult.success) {
+          console.log(`[Payment Callback] Failure SMS sent successfully to ${phoneNumber}`);
+        } else {
+          console.warn(`[Payment Callback] Failed to send SMS: ${smsResult.error}`);
+        }
+      }
+      
+      // TODO: Update order status to 'failed' in database
       
       return res.status(200).json({
         success: false,
         message: 'Payment failed',
-        reason: callbackData.Body.stkCallback.ResultDesc,
+        reason: resultDesc,
       });
     }
   } catch (error) {

@@ -3,28 +3,6 @@ import { initiateMpesaPayment, paymentCallback, queryMpesaStatus } from '../cont
 
 const router = express.Router();
 
-// Test endpoint to verify configuration
-router.get('/config-check', (req, res) => {
-  const hasKey = !!process.env.DARAJA_CONSUMER_KEY;
-  const hasSecret = !!process.env.DARAJA_CONSUMER_SECRET;
-  const hasPasskey = !!process.env.DARAJA_PASSKEY;
-  const hasShortcode = !!process.env.DARAJA_SHORTCODE;
-
-  return res.json({
-    configStatus: {
-      CONSUMER_KEY: hasKey,
-      CONSUMER_SECRET: hasSecret,
-      PASSKEY: hasPasskey,
-      SHORTCODE: hasShortcode,
-      allSet: hasKey && hasSecret && hasPasskey && hasShortcode
-    },
-    values: {
-      SHORTCODE: process.env.DARAJA_SHORTCODE,
-      CALLBACK_URL: process.env.CALLBACK_URL
-    }
-  });
-});
-
 // Initiate M-Pesa payment
 router.post('/initiate', initiateMpesaPayment);
 
