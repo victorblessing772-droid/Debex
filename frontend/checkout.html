@@ -101,6 +101,14 @@
 </div>
 </nav>
 <main class="pt-28 pb-20 px-6 max-w-7xl mx-auto">
+<!-- ORDER HISTORY SECTION -->
+<div id="order-history-section" class="mb-16 hidden">
+<h2 class="text-2xl font-headline font-bold tracking-tight mb-6">Your Orders</h2>
+<div id="order-history-list" class="grid grid-cols-1 gap-6">
+<!-- Orders will be populated here -->
+</div>
+</div>
+
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
 <!-- Left Column: Checkout Forms -->
 <div class="lg:col-span-8 space-y-16">
@@ -305,6 +313,98 @@
   document.addEventListener("DOMContentLoaded", () => {
     const API_BASE = 'https://debex-7ixn.onrender.com/api';
 
+    // Load order history
+    async function loadOrderHistory() {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          return; // User not logged in
+        }
+
+        const response = await fetch(API_BASE + '/orders', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (!response.ok) {
+          console.log('Failed to fetch orders');
+          return;
+        }
+
+        const orders = await response.json();
+
+        if (!orders || orders.length === 0) {
+          document.getElementById('order-history-section').style.display = 'none';
+          return;
+        }
+
+        // Display orders
+        const orderHistoryList = document.getElementById('order-history-list');
+        let html = '';
+
+        orders.forEach((order) => {
+          const orderDate = new Date(order.createdAt).toLocaleDateString();
+          const statusColor = {
+            'pending': 'bg-yellow-100 text-yellow-800',
+            'paid': 'bg-green-100 text-green-800',
+            'delivered': 'bg-blue-100 text-blue-800',
+            'cancelled': 'bg-red-100 text-red-800'
+          }[order.status] || 'bg-gray-100 text-gray-800';
+
+          html += `
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <p class="text-sm text-gray-600">Order ID</p>
+                  <p class="font-bold text-gray-800">${order._id.slice(-8).toUpperCase()}</p>
+                </div>
+                <span class="px-3 py-1 rounded-full text-sm font-semibold ${statusColor}">
+                  ${order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+                </span>
+              </div>
+              
+              <div class="grid grid-cols-2 gap-4 mb-4 text-sm">
+                <div>
+                  <p class="text-gray-600">Date</p>
+                  <p class="font-semibold text-gray-800">${orderDate}</p>
+                </div>
+                <div>
+                  <p class="text-gray-600">Amount</p>
+                  <p class="font-semibold text-gray-800">KES ${parseFloat(order.total).toFixed(2)}</p>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <p class="text-sm text-gray-600 mb-2">Items (${order.items.length})</p>
+                <div class="space-y-1">
+                  ${order.items.map(item => `
+                    <p class="text-sm text-gray-700">${item.name} × ${item.quantity}</p>
+                  `).join('')}
+                </div>
+              </div>
+
+              <div class="pt-4 border-t border-gray-200 text-sm">
+                <p class="text-gray-600 mb-1">Delivery to: <span class="font-semibold">${order.address}</span></p>
+                <p class="text-gray-600">Phone: <span class="font-semibold">${order.customerPhoneNumber}</span></p>
+              </div>
+            </div>
+          `;
+        });
+
+        orderHistoryList.innerHTML = html;
+        document.getElementById('order-history-section').style.display = 'block';
+
+      } catch (error) {
+        console.error('Error loading order history:', error);
+      }
+    }
+
+    // Load order history on page load
+    loadOrderHistory();
+
     // Display cart items
     function displayCart() {
       const cart = JSON.parse(localStorage.getItem('debex-cart') || '[]');
@@ -413,6 +513,9 @@
               
               alert('✅ Payment confirmed!\n\nOrder ID: ' + orderId + '\n\nThank you for your purchase!');
               
+              // Reload order history to show updated order
+              loadOrderHistory();
+              
               // Redirect to home after 3 seconds
               setTimeout(() => {
                 localStorage.removeItem('currentOrderId');
@@ -515,6 +618,12 @@
             
             // Clear cart
             localStorage.removeItem('debex-cart');
+            
+            // Reload order history to show new order
+            loadOrderHistory();
+            
+            // Reload cart display
+            displayCart();
             
             // Start polling for payment status
             startPaymentPolling(result._id, token);

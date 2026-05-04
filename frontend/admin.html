@@ -85,7 +85,7 @@
         }
     </style>
 </head>
-<body class="bg-background font-body text-on-background min-h-screen flex">
+<body class="bg-background font-body text-on-background min-h-screen flex flex-col">
 <!-- SideNavBar Component -->
 <aside class="hidden lg:flex flex-col h-screen sticky top-0 p-4 gap-6 bg-zinc-100 dark:bg-zinc-900 h-full w-64 border-r-0 font-manrope text-sm font-medium">
 <div class="px-2 py-4">
@@ -111,7 +111,7 @@
 </nav>
 </aside>
 <!-- Main Content Canvas -->
-<main class="flex-1 overflow-y-auto bg-surface">
+<main class="flex-1 overflow-y-auto bg-surface flex flex-col">
 <div class="max-w-7xl mx-auto p-8 lg:p-12" id="listing-view">
 <!-- Header Section -->
 <header class="mb-12 flex justify-between items-end">
@@ -284,84 +284,81 @@
 </div>
 </div>
 </div>
-<!-- Footer (Hidden in standard workflow, but provided as per JSON for structure) -->
-<footer class="w-full py-16 px-8 mt-auto bg-zinc-50 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800/50">
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto font-['Manrope']">
-<div class="space-y-4">
-<div class="text-lg font-bold text-zinc-900 dark:text-zinc-100 uppercase">Debex Electronics</div>
-<p class="text-zinc-500 dark:text-zinc-400 text-sm">Affordable pricing without compromising on quality.</p>
-</div>
-<div>
-<h4 class="text-xs uppercase tracking-widest font-semibold text-amber-600 mb-6">Catalog</h4>
-<div class="flex flex-col gap-3 text-xs tracking-wide uppercase">
-<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Lighting</a>
-<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Power &amp; Switches</a>
-<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Professional Tools</a>
-<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Infrastructure</a>
-</div>
-</div>
-<div>
-<h4 class="text-xs uppercase tracking-widest font-semibold text-amber-600 mb-6">Resources</h4>
-<div class="flex flex-col gap-3 text-xs tracking-wide uppercase">
-<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Technical Specs</a>
-<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Pro Portal</a>
-<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Compliance</a>
-<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Supply Chain</a>
-</div>
-</div>
-<div>
-<h4 class="text-xs uppercase tracking-widest font-semibold text-amber-600 mb-6">Connect</h4>
-<div class="flex flex-col gap-3 text-xs tracking-wide uppercase">
-<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Contact</a>
-<div class="flex gap-4 pt-2">
-<span class="material-symbols-outlined text-zinc-400 cursor-pointer hover:text-amber-500">language</span>
-<span class="material-symbols-outlined text-zinc-400 cursor-pointer hover:text-amber-500">share</span>
-</div>
-</div>
-</div>
-</div>
-<div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-800/50 text-center">
-<p class="text-xs uppercase tracking-widest font-semibold text-zinc-500 dark:text-zinc-400">
-                © 2026 Debex Electronics. All rights reserved.
-            </p>
-</div>
+<!-- Footer (Sticky to bottom) -->
+<footer class="w-full py-10 px-8 mt-auto bg-zinc-50 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800/50">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto font-['Manrope']">
+    <div class="space-y-4">
+      <div class="text-lg font-bold text-zinc-900 dark:text-zinc-100 uppercase">Debex Electronics</div>
+      <p class="text-zinc-500 dark:text-zinc-400 text-sm">Affordable pricing without compromising on quality.</p>
+    </div>
+    <div>
+      <h4 class="text-xs uppercase tracking-widest font-semibold text-amber-600 mb-6">Catalog</h4>
+      <div class="flex flex-col gap-3 text-xs tracking-wide uppercase">
+        <a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Lighting</a>
+        <a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Power &amp; Switches</a>
+        <a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Professional Tools</a>
+        <a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Infrastructure</a>
+      </div>
+    </div>
+    <div>
+      <h4 class="text-xs uppercase tracking-widest font-semibold text-amber-600 mb-6">Resources</h4>
+      <div class="flex flex-col gap-3 text-xs tracking-wide uppercase">
+        <a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Technical Specs</a>
+        <a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Pro Portal</a>
+        <a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Compliance</a>
+        <a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Supply Chain</a>
+      </div>
+    </div>
+    <div>
+      <h4 class="text-xs uppercase tracking-widest font-semibold text-amber-600 mb-6">Connect</h4>
+      <div class="flex flex-col gap-3 text-xs tracking-wide uppercase">
+        <a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Contact</a>
+        <div class="flex gap-4 pt-2">
+          <span class="material-symbols-outlined text-zinc-400 cursor-pointer hover:text-amber-500">language</span>
+          <span class="material-symbols-outlined text-zinc-400 cursor-pointer hover:text-amber-500">share</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-800/50 text-center">
+    <p class="text-xs uppercase tracking-widest font-semibold text-zinc-500 dark:text-zinc-400">
+      &copy; 2026 Debex Electronics. All rights reserved.
+    </p>
+  </div>
 </footer>
+  <!-- Transactions View -->
+  <div id="transactions-view" class="hidden flex-1 overflow-y-auto bg-surface">
+    <div class="max-w-7xl mx-auto p-8 lg:p-12">
+      <header class="mb-12">
+        <div>
+          <h1 class="text-4xl font-extrabold tracking-tighter text-on-background font-headline mb-2">Transactions</h1>
+          <p class="text-secondary font-label uppercase tracking-[0.2em] text-[10px]">Order Management &amp; Payment Approval</p>
+        </div>
+      </header>
+      <div class="bg-white rounded-xl shadow-lg overflow-x-auto w-full max-w-full">
+        <table class="w-full min-w-[900px]">
+          <thead class="bg-surface-container-low border-b border-surface-container-high">
+            <tr>
+              <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Order ID</th>
+              <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Email</th>
+              <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Phone</th>
+              <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Amount</th>
+              <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Status</th>
+              <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Date &amp; Time</th>
+              <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Action</th>
+            </tr>
+          </thead>
+          <tbody id="transactions-table-body" class="divide-y divide-surface-container-low">
+            <!-- Populated by JavaScript -->
+          </tbody>
+        </table>
+        <div id="no-transactions" class="text-center py-12 text-secondary">
+          <p class="text-sm">No transactions yet</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </main>
-
-<!-- Transactions View -->
-<div id="transactions-view" class="hidden flex-1 overflow-y-auto bg-surface">
-<div class="max-w-7xl mx-auto p-8 lg:p-12">
-<header class="mb-12">
-<div>
-<h1 class="text-4xl font-extrabold tracking-tighter text-on-background font-headline mb-2">Transactions</h1>
-<p class="text-secondary font-label uppercase tracking-[0.2em] text-[10px]">Order Management &amp; Payment Approval</p>
-</div>
-</header>
-
-<div class="bg-white rounded-xl shadow-lg overflow-hidden">
-<div class="overflow-x-auto">
-<table class="w-full min-w-max">
-<thead class="bg-surface-container-low border-b border-surface-container-high">
-<tr>
-<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Order ID</th>
-<th class=\"px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary\">Email</th>
-<th class=\"px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary\">Phone</th>
-<th class=\"px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary\">Amount</th>
-<th class=\"px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary\">Status</th>
-<th class=\"px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary\">Date &amp; Time</th>
-<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Action</th>
-</tr>
-</thead>
-<tbody id="transactions-table-body" class="divide-y divide-surface-container-low">
-<!-- Populated by JavaScript -->
-</tbody>
-</table>
-<div id="no-transactions" class="text-center py-12 text-secondary">
-<p class="text-sm">No transactions yet</p>
-</div>
-</div>
-</div>
-</div>
 </body></html>
 <script>
   const API_BASE = 'https://debex-7ixn.onrender.com/api';
