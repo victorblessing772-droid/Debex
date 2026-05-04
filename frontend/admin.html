@@ -102,30 +102,17 @@
 </div>
 <nav class="flex flex-col gap-1 flex-grow">
 <!-- Active state determined by intent: Inventory (Managing listings) -->
-<a class="flex items-center gap-3 px-4 py-3 text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800/50 hover:translate-x-1 transition-transform duration-200 active:scale-98" href="#">
-<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-<span>Dashboard</span>
+<a id="nav-listing" class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-zinc-800 text-amber-700 dark:text-amber-400 rounded-lg shadow-sm font-bold hover:translate-x-1 transition-transform duration-200 active:scale-98 cursor-pointer" href="javascript:void(0);">
+<span>New listing</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-zinc-800 text-amber-700 dark:text-amber-400 rounded-lg shadow-sm font-bold hover:translate-x-1 transition-transform duration-200 active:scale-98" href="#">
-<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
-<span>Inventory</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800/50 hover:translate-x-1 transition-transform duration-200 active:scale-98" href="#">
-<span class="material-symbols-outlined" data-icon="settings_input_component">settings_input_component</span>
-<span>Technical Specs</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800/50 hover:translate-x-1 transition-transform duration-200 active:scale-98" href="#">
-<span class="material-symbols-outlined" data-icon="settings">settings</span>
-<span>Settings</span>
+<a id="nav-transactions" class="flex items-center gap-3 px-4 py-3 bg-zinc-200 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-400 rounded-lg shadow-sm font-bold hover:translate-x-1 transition-transform duration-200 active:scale-98 cursor-pointer" href="javascript:void(0);">
+<span>Transactions</span>
 </a>
 </nav>
-<button class="mt-auto custom-glow-button text-on-primary py-3 rounded-lg font-bold shadow-lg transition-all duration-300 hover:opacity-90 active:scale-95">
-            Create New Listing
-        </button>
 </aside>
 <!-- Main Content Canvas -->
 <main class="flex-1 overflow-y-auto bg-surface">
-<div class="max-w-7xl mx-auto p-8 lg:p-12">
+<div class="max-w-7xl mx-auto p-8 lg:p-12" id="listing-view">
 <!-- Header Section -->
 <header class="mb-12 flex justify-between items-end">
 <div>
@@ -298,25 +285,246 @@
 </div>
 </div>
 <!-- Footer (Hidden in standard workflow, but provided as per JSON for structure) -->
-<footer class="w-full pt-16 pb-8 bg-zinc-50 dark:bg-zinc-950 mt-20 border-t border-zinc-200 dark:border-zinc-800">
-<div class="w-full max-w-7xl mx-auto px-8 flex flex-col items-center">
-<div class="flex gap-8 mb-8">
-<a class="text-zinc-500 dark:text-zinc-500 font-manrope text-xs tracking-widest uppercase hover:text-amber-500 transition-colors opacity-70 hover:opacity-100" href="#">Technical Documentation</a>
-<a class="text-zinc-500 dark:text-zinc-500 font-manrope text-xs tracking-widest uppercase hover:text-amber-500 transition-colors opacity-70 hover:opacity-100" href="#">Architectural Partners</a>
-<a class="text-zinc-500 dark:text-zinc-500 font-manrope text-xs tracking-widest uppercase hover:text-amber-500 transition-colors opacity-70 hover:opacity-100" href="#">Shipping &amp; Returns</a>
-<a class="text-zinc-500 dark:text-zinc-500 font-manrope text-xs tracking-widest uppercase hover:text-amber-500 transition-colors opacity-70 hover:opacity-100" href="#">Sustainability</a>
+<footer class="w-full py-16 px-8 mt-auto bg-zinc-50 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800/50">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto font-['Manrope']">
+<div class="space-y-4">
+<div class="text-lg font-bold text-zinc-900 dark:text-zinc-100 uppercase">Debex Electronics</div>
+<p class="text-zinc-500 dark:text-zinc-400 text-sm">Affordable pricing without compromising on quality.</p>
 </div>
-<div class="text-lg font-bold text-zinc-900 dark:text-zinc-50 mb-2">Lumen &amp; Lead</div>
-<p class="text-zinc-500 dark:text-zinc-500 font-manrope text-xs tracking-widest uppercase">© 2024 Lumen &amp; Lead. Precision Luminescence.</p>
+<div>
+<h4 class="text-xs uppercase tracking-widest font-semibold text-amber-600 mb-6">Catalog</h4>
+<div class="flex flex-col gap-3 text-xs tracking-wide uppercase">
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Lighting</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Power &amp; Switches</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Professional Tools</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Infrastructure</a>
+</div>
+</div>
+<div>
+<h4 class="text-xs uppercase tracking-widest font-semibold text-amber-600 mb-6">Resources</h4>
+<div class="flex flex-col gap-3 text-xs tracking-wide uppercase">
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Technical Specs</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Pro Portal</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Compliance</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Supply Chain</a>
+</div>
+</div>
+<div>
+<h4 class="text-xs uppercase tracking-widest font-semibold text-amber-600 mb-6">Connect</h4>
+<div class="flex flex-col gap-3 text-xs tracking-wide uppercase">
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-amber-500 transition-colors" href="#">Contact</a>
+<div class="flex gap-4 pt-2">
+<span class="material-symbols-outlined text-zinc-400 cursor-pointer hover:text-amber-500">language</span>
+<span class="material-symbols-outlined text-zinc-400 cursor-pointer hover:text-amber-500">share</span>
+</div>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-800/50 text-center">
+<p class="text-xs uppercase tracking-widest font-semibold text-zinc-500 dark:text-zinc-400">
+                © 2026 Debex Electronics. All rights reserved.
+            </p>
 </div>
 </footer>
 </main>
+
+<!-- Transactions View -->
+<div id="transactions-view" class="hidden flex-1 overflow-y-auto bg-surface">
+<div class="max-w-7xl mx-auto p-8 lg:p-12">
+<header class="mb-12">
+<div>
+<h1 class="text-4xl font-extrabold tracking-tighter text-on-background font-headline mb-2">Transactions</h1>
+<p class="text-secondary font-label uppercase tracking-[0.2em] text-[10px]">Order Management &amp; Payment Approval</p>
+</div>
+</header>
+
+<div class="bg-white rounded-xl shadow-lg overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full min-w-max">
+<thead class="bg-surface-container-low border-b border-surface-container-high">
+<tr>
+<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Order ID</th>
+<th class=\"px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary\">Email</th>
+<th class=\"px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary\">Phone</th>
+<th class=\"px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary\">Amount</th>
+<th class=\"px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary\">Status</th>
+<th class=\"px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary\">Date &amp; Time</th>
+<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Action</th>
+</tr>
+</thead>
+<tbody id="transactions-table-body" class="divide-y divide-surface-container-low">
+<!-- Populated by JavaScript -->
+</tbody>
+</table>
+<div id="no-transactions" class="text-center py-12 text-secondary">
+<p class="text-sm">No transactions yet</p>
+</div>
+</div>
+</div>
+</div>
 </body></html>
 <script>
   const API_BASE = 'https://debex-7ixn.onrender.com/api';
   let selectedImageBase64 = '';
 
   document.addEventListener('DOMContentLoaded', () => {
+    // ===== VIEW TOGGLING =====
+    const navListing = document.getElementById('nav-listing');
+    const navTransactions = document.getElementById('nav-transactions');
+    const listingView = document.getElementById('listing-view');
+    const transactionsView = document.getElementById('transactions-view');
+
+    function showListingView() {
+      listingView.style.display = 'block';
+      transactionsView.style.display = 'none';
+      navListing.classList.add('bg-white', 'dark:bg-zinc-800', 'text-amber-700', 'dark:text-amber-400');
+      navListing.classList.remove('bg-zinc-200', 'dark:bg-zinc-700', 'text-zinc-600', 'dark:text-zinc-400');
+      navTransactions.classList.remove('bg-white', 'dark:bg-zinc-800', 'text-amber-700', 'dark:text-amber-400');
+      navTransactions.classList.add('bg-zinc-200', 'dark:bg-zinc-700', 'text-zinc-600', 'dark:text-zinc-400');
+    }
+
+    function showTransactionsView() {
+      listingView.style.display = 'none';
+      transactionsView.style.display = 'block';
+      navTransactions.classList.add('bg-white', 'dark:bg-zinc-800', 'text-amber-700', 'dark:text-amber-400');
+      navTransactions.classList.remove('bg-zinc-200', 'dark:bg-zinc-700', 'text-zinc-600', 'dark:text-zinc-400');
+      navListing.classList.remove('bg-white', 'dark:bg-zinc-800', 'text-amber-700', 'dark:text-amber-400');
+      navListing.classList.add('bg-zinc-200', 'dark:bg-zinc-700', 'text-zinc-600', 'dark:text-zinc-400');
+      loadTransactions();
+    }
+
+    navListing.addEventListener('click', showListingView);
+    navTransactions.addEventListener('click', showTransactionsView);
+
+    // ===== LOAD AND DISPLAY TRANSACTIONS =====
+    async function loadTransactions() {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        alert('Please login first');
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_BASE}/orders/admin/all`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (!response.ok) {
+          console.error('Failed to fetch orders:', response.status);
+          document.getElementById('transactions-table-body').innerHTML = '';
+          document.getElementById('no-transactions').style.display = 'block';
+          return;
+        }
+
+        const orders = await response.json();
+        
+        if (!Array.isArray(orders) || orders.length === 0) {
+          document.getElementById('transactions-table-body').innerHTML = '';
+          document.getElementById('no-transactions').style.display = 'block';
+          document.querySelector('.bg-white').style.display = 'none';
+          return;
+        }
+
+        document.querySelector('.bg-white').style.display = 'block';
+        document.getElementById('no-transactions').style.display = 'none';
+        
+        const tableBody = document.getElementById('transactions-table-body');
+        tableBody.innerHTML = '';
+
+        // Sort orders by latest first (most recent createdAt)
+        orders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+        orders.forEach(order => {
+          const row = document.createElement('tr');
+          const shortId = order._id.toString().slice(-6).toUpperCase();
+          const statusClass = order.status === 'paid' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800';
+          
+          // Format date and time
+          const createdDate = new Date(order.createdAt);
+          const formattedDate = createdDate.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+          });
+          const formattedTime = createdDate.toLocaleTimeString('en-US', {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+          });
+          
+          // Extract customer name from email or use placeholder
+          const customerName = order.customerEmail ? order.customerEmail.split('@')[0] : 'N/A';
+
+          row.innerHTML = `
+            <td class="px-6 py-4 text-sm font-mono font-bold text-on-background">${shortId}</td>
+            <td class="px-6 py-4 text-sm text-on-background font-semibold">${customerName}</td>
+            <td class="px-6 py-4 text-sm text-on-background">${order.customerEmail || 'N/A'}</td>
+            <td class="px-6 py-4 text-sm text-on-background">${order.customerPhoneNumber || 'N/A'}</td>
+            <td class="px-6 py-4 text-sm font-bold text-primary">KES ${order.total}</td>
+            <td class="px-6 py-4">
+              <span class="px-3 py-1 rounded-full text-xs font-bold uppercase ${statusClass}">
+                ${order.status}
+              </span>
+            </td>
+            <td class="px-6 py-4 text-sm text-secondary">${formattedDate} <br/> ${formattedTime}</td>
+            <td class="px-6 py-4 text-sm">
+              ${order.status === 'paid' ? 
+                '<span class="text-green-600 font-bold">✓ Paid</span>' :
+                `<button class="px-4 py-2 bg-green-600 text-white font-bold rounded-md hover:bg-green-700 transition-colors mark-paid-btn" data-order-id="${order._id}">Mark as Paid</button>`
+              }
+            </td>
+          `;
+          tableBody.appendChild(row);
+        });
+
+        // Add event listeners for "Mark as Paid" buttons
+        document.querySelectorAll('.mark-paid-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const orderId = btn.getAttribute('data-order-id');
+            markOrderAsPaid(orderId, token);
+          });
+        });
+
+      } catch (error) {
+        console.error('Error loading transactions:', error);
+        alert('Error loading transactions: ' + error.message);
+      }
+    }
+
+    // ===== MARK ORDER AS PAID =====
+    async function markOrderAsPaid(orderId, token) {
+      if (!confirm('Mark this order as paid?')) {
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_BASE}/orders/${orderId}`, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ status: 'paid' })
+        });
+
+        if (!response.ok) {
+          console.error('Failed to update order:', response.status);
+          alert('Failed to update order status');
+          return;
+        }
+
+        alert('Order marked as paid!');
+        loadTransactions(); // Reload the table
+
+      } catch (error) {
+        console.error('Error updating order:', error);
+        alert('Error updating order: ' + error.message);
+      }
+    }
     // Preview update function
     const updatePreview = () => {
       const title = document.getElementById('product-title').value || 'Product Name';
