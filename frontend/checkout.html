@@ -105,107 +105,47 @@
 <!-- Left Column: Checkout Forms -->
 <div class="lg:col-span-8 space-y-16">
 <!-- Section 1: Shipping -->
-<section>
-<div class="flex items-center gap-4 mb-8">
-<span class="bg-surface-container-highest text-on-surface-variant w-8 h-8 flex items-center justify-center rounded-full font-label font-bold text-xs">01</span>
-<h2 class="text-2xl font-headline font-bold tracking-tight">Shipping Address</h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="space-y-1">
-<label class="font-label text-xs uppercase tracking-widest text-secondary font-semibold">First Name</label>
-<input class="w-full bg-surface-container-low border-none rounded-none py-3 px-4 focus:ring-0" placeholder="Julian" type="text"/>
-</div>
-<div class="space-y-1">
-<label class="font-label text-xs uppercase tracking-widest text-secondary font-semibold">Last Name</label>
-<input class="w-full bg-surface-container-low border-none rounded-none py-3 px-4 focus:ring-0" placeholder="Vandervilt" type="text"/>
-</div>
-<div class="md:col-span-2 space-y-1">
-<label class="font-label text-xs uppercase tracking-widest text-secondary font-semibold">Street Address</label>
-<input class="w-full bg-surface-container-low border-none rounded-none py-3 px-4 focus:ring-0" placeholder="1242 Architectural Plaza, Suite 400" type="text"/>
-</div>
-<div class="space-y-1">
-<label class="font-label text-xs uppercase tracking-widest text-secondary font-semibold">City</label>
-<input class="w-full bg-surface-container-low border-none rounded-none py-3 px-4 focus:ring-0" placeholder="Chicago" type="text"/>
-</div>
-<div class="grid grid-cols-2 gap-4">
-<div class="space-y-1">
-<label class="font-label text-xs uppercase tracking-widest text-secondary font-semibold">State</label>
-<input class="w-full bg-surface-container-low border-none rounded-none py-3 px-4 focus:ring-0" placeholder="IL" type="text"/>
-</div>
-<div class="space-y-1">
-<label class="font-label text-xs uppercase tracking-widest text-secondary font-semibold">ZIP</label>
-<input class="w-full bg-surface-container-low border-none rounded-none py-3 px-4 focus:ring-0" placeholder="60601" type="text"/>
-</div>
-</div>
-</div>
-</section>
-<!-- Section 2: Delivery Method -->
-<section>
-<div class="flex items-center gap-4 mb-8">
-<span class="bg-surface-container-highest text-on-surface-variant w-8 h-8 flex items-center justify-center rounded-full font-label font-bold text-xs">02</span>
-<h2 class="text-2xl font-headline font-bold tracking-tight">Delivery Method</h2>
-</div>
-<div class="space-y-4">
-<label class="flex items-center justify-between p-6 bg-surface-container-lowest border-2 border-primary cursor-pointer transition-all duration-200">
-<div class="flex items-center gap-4">
-<span class="material-symbols-outlined text-primary" data-icon="local_shipping">local_shipping</span>
-<div>
-<p class="font-headline font-bold text-on-surface">Precision Logistics Express</p>
-<p class="text-sm text-secondary">Delivery within 24-48 hours. White-glove handling.</p>
-</div>
-</div>
-<div class="font-label font-bold text-primary">$45.00</div>
-<input checked="" class="hidden" name="delivery" type="radio"/>
-</label>
-<label class="flex items-center justify-between p-6 bg-surface-container-low hover:bg-surface-container-high transition-all cursor-pointer">
-<div class="flex items-center gap-4">
-<span class="material-symbols-outlined text-secondary" data-icon="inventory_2">inventory_2</span>
-<div>
-<p class="font-headline font-bold text-on-surface">Standard Architectural Ground</p>
-<p class="text-sm text-secondary">Delivery within 3-5 business days.</p>
-</div>
-</div>
-<div class="font-label font-bold text-on-surface">$12.00</div>
-<input class="hidden" name="delivery" type="radio"/>
-</label>
-</div>
-</section>
+
 <!-- Section 3: Payment -->
-<section>
-<div class="flex items-center gap-4 mb-8">
-<span class="bg-surface-container-highest text-on-surface-variant w-8 h-8 flex items-center justify-center rounded-full font-label font-bold text-xs">03</span>
-<h2 class="text-2xl font-headline font-bold tracking-tight">Payment Method</h2>
+<!-- Section 3: Payment -->
+<section class="checkout-card bg-white p-8">
+<div class="mb-6">
+<button
+    id="mpesa-btn"
+    class="w-full flex flex-col items-center justify-center py-8 px-6 gap-4 payment-method rounded-lg bg-[#00B300] text-white shadow-md hover:shadow-lg hover:bg-[#009900] transition-all duration-300"
+    data-method="mpesa"
+  >
+    <span class="material-symbols-outlined text-6xl">phone_android</span>
+    <div>
+      <div class="text-2xl font-bold">M-PESA</div>
+    </div>
+  </button>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-<button id="mpesa-btn" class="flex flex-col items-center justify-center py-6 border-2 border-primary bg-surface-container-lowest gap-2 payment-method" data-method="mpesa">
-<span class="material-symbols-outlined text-primary" data-icon="phone_android">phone_android</span>
-<span class="font-label text-xs font-bold uppercase tracking-widest">M-Pesa</span>
-</button>
-<button class="flex flex-col items-center justify-center py-6 bg-surface-container-low hover:bg-surface-container-high gap-2 payment-method opacity-50 cursor-not-allowed" disabled>
-<span class="material-symbols-outlined text-secondary" data-icon="credit_card">credit_card</span>
-<span class="font-label text-xs font-bold uppercase tracking-widest">Credit Card</span>
-</button>
-<button class="flex flex-col items-center justify-center py-6 bg-surface-container-low hover:bg-surface-container-high gap-2 payment-method opacity-50 cursor-not-allowed" disabled>
-<span class="material-symbols-outlined text-secondary" data-icon="account_balance_wallet">account_balance_wallet</span>
-<span class="font-label text-xs font-bold uppercase tracking-widest">PayPal</span>
-</button>
+
+<div id="mpesa-form" class="bg-gray-50 rounded-lg p-6 space-y-6">
+<div class="flex items-start gap-3 p-4 bg-[#00B300]/10 border border-[#00B300]/20 rounded-lg">
+<span class="material-symbols-outlined text-[#00B300] flex-shrink-0 mt-0.5">info</span>
+<div>
+<p class="text-sm font-semibold text-[#00B300]">M-Pesa Payment Information</p>
+<p class="text-xs text-gray-600 mt-1">Enter your Kenyan phone number (254XXXXXXXXX or 07XXXXXXXXX)</p>
 </div>
-<div id="mpesa-form" class="bg-surface-container-lowest p-8 space-y-6">
-<div class="bg-primary/10 border border-primary/20 rounded-lg p-4 mb-6">
-<p class="text-sm font-label text-primary font-semibold">📱 M-Pesa Payment (1 KES for all orders)</p>
-<p class="text-xs text-secondary mt-2">Enter your Kenyan phone number (254XXXXXXXXX or 07XXXXXXXXX)</p>
 </div>
-<div class="space-y-1">
-<label class="font-label text-xs uppercase tracking-widest text-secondary font-semibold">Phone Number</label>
-<input id="phone-input" class="w-full bg-surface-container-low border-none rounded-none py-3 px-4 focus:ring-0" placeholder="+254 712 345 678" type="tel"/>
+
+<div class="space-y-4">
+<div>
+<label class="block text-sm font-semibold text-gray-700 mb-2">Phone Number</label>
+<input id="phone-input" class="w-full bg-white border border-gray-300 rounded-lg py-3 px-4 text-base placeholder-gray-400 focus:outline-none transition-all" placeholder="+254 712 345 678" type="tel"/>
 </div>
-<div class="space-y-1">
-<label class="font-label text-xs uppercase tracking-widest text-secondary font-semibold">Full Name</label>
-<input id="fullname-input" class="w-full bg-surface-container-low border-none rounded-none py-3 px-4 focus:ring-0" placeholder="Your Full Name" type="text"/>
+
+<div>
+<label class="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
+<input id="fullname-input" class="w-full bg-white border border-gray-300 rounded-lg py-3 px-4 text-base placeholder-gray-400 focus:outline-none transition-all" placeholder="Your Full Name" type="text"/>
 </div>
-<div class="space-y-1">
-<label class="font-label text-xs uppercase tracking-widest text-secondary font-semibold">Email Address</label>
-<input id="email-input" class="w-full bg-surface-container-low border-none rounded-none py-3 px-4 focus:ring-0" placeholder="example@email.com" type="email"/>
+
+<div>
+<label class="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
+<input id="email-input" class="w-full bg-white border border-gray-300 rounded-lg py-3 px-4 text-base placeholder-gray-400 focus:outline-none transition-all" placeholder="example@email.com" type="email"/>
+</div>
 </div>
 </div>
 </section>
