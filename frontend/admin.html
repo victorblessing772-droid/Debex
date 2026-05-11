@@ -284,6 +284,45 @@
 </div>
 </div>
 </div>
+
+<!-- Transactions View -->
+<div id="transactions-view" class="hidden flex-1 overflow-y-auto bg-surface">
+<div class="max-w-7xl mx-auto p-4 lg:p-6">
+<header class="mb-6">
+<div>
+<h1 class="text-4xl font-extrabold tracking-tighter text-on-background font-headline mb-2">Transactions</h1>
+<p class="text-secondary font-label uppercase tracking-[0.2em] text-[10px]">Order Management &amp; Payment Approval</p>
+</div>
+</header>
+
+<div class="bg-white rounded-xl shadow-lg overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full min-w-max">
+<thead class="bg-surface-container-low border-b border-surface-container-high">
+<tr>
+<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Order ID</th>
+<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Customer Name</th>
+<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Phone</th>
+<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Transaction Code</th>
+<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Amount</th>
+<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Status</th>
+<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Date &amp; Time</th>
+<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Action</th>
+</tr>
+</thead>
+<tbody id="transactions-table-body" class="divide-y divide-surface-container-low">
+<!-- Populated by JavaScript -->
+</tbody>
+</table>
+<div id="no-transactions" class="text-center py-12 text-secondary">
+<p class="text-sm">No transactions yet</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
 <!-- Footer (Sticky to bottom) -->
 <footer class="w-full py-10 px-8 mt-auto bg-zinc-50 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800/50">
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto font-['Manrope']">
@@ -326,75 +365,6 @@
     </p>
   </div>
 </footer>
-  <!-- Transactions View -->
-  <div id="transactions-view" class="hidden flex-1 overflow-y-auto bg-surface">
-    <div class="max-w-7xl mx-auto p-8 lg:p-12">
-      <header class="mb-12">
-        <div>
-          <h1 class="text-4xl font-extrabold tracking-tighter text-on-background font-headline mb-2">Transactions</h1>
-          <p class="text-secondary font-label uppercase tracking-[0.2em] text-[10px]">Order Management &amp; Payment Approval</p>
-        </div>
-      </header>
-      <div class="bg-white rounded-xl shadow-lg overflow-x-auto w-full max-w-full">
-        <table class="w-full min-w-[900px]">
-          <thead class="bg-surface-container-low border-b border-surface-container-high">
-            <tr>
-              <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Order ID</th>
-              <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Email</th>
-              <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Phone</th>
-              <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Amount</th>
-              <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Status</th>
-              <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Date &amp; Time</th>
-              <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Action</th>
-            </tr>
-          </thead>
-          <tbody id="transactions-table-body" class="divide-y divide-surface-container-low">
-            <!-- Populated by JavaScript -->
-          </tbody>
-        </table>
-        <div id="no-transactions" class="text-center py-12 text-secondary">
-          <p class="text-sm">No transactions yet</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</main>
-
-<!-- Transactions View -->
-<div id="transactions-view" class="hidden flex-1 overflow-y-auto bg-surface">
-<div class="max-w-7xl mx-auto p-4 lg:p-6">
-<header class="mb-6">
-<div>
-<h1 class="text-4xl font-extrabold tracking-tighter text-on-background font-headline mb-2">Transactions</h1>
-<p class="text-secondary font-label uppercase tracking-[0.2em] text-[10px]">Order Management &amp; Payment Approval</p>
-</div>
-</header>
-
-<div class="bg-white rounded-xl shadow-lg overflow-hidden">
-<div class="overflow-x-auto">
-<table class="w-full min-w-max">
-<thead class="bg-surface-container-low border-b border-surface-container-high">
-<tr>
-<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Order ID</th>
-<th class=\"px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary\">Email</th>
-<th class=\"px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary\">Phone</th>
-<th class=\"px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary\">Transaction Code</th>
-<th class=\"px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary\">Amount</th>
-<th class=\"px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary\">Status</th>
-<th class=\"px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary\">Date &amp; Time</th>
-<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Action</th>
-</tr>
-</thead>
-<tbody id="transactions-table-body" class="divide-y divide-surface-container-low">
-<!-- Populated by JavaScript -->
-</tbody>
-</table>
-<div id="no-transactions" class="text-center py-12 text-secondary">
-<p class="text-sm">No transactions yet</p>
-</div>
-</div>
-</div>
-</div>
 
 </body></html>
 <script>
@@ -551,8 +521,8 @@
           return;
         }
 
-        alert('Order marked as paid!');
-        loadTransactions(); // Reload the table
+        console.log('Order marked as paid successfully');
+        loadTransactions(); // Reload the table without alert
 
       } catch (error) {
         console.error('Error updating order:', error);

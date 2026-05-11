@@ -20,6 +20,10 @@ const orderSchema = new mongoose.Schema(
       type: String,
       default: "pending",
     },
+    transactionCode: {
+      type: String,
+      default: null,
+    },
   },
   { timestamps: true }
 );

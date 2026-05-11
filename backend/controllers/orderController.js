@@ -99,13 +99,7 @@ export const getOrderById = async (req, res) => {
 // Update order status
 export const updateOrderStatus = async (req, res) => {
   try {
-    const { status } = req.body;
-
-    // Validate status
-    const validStatuses = ['pending', 'confirmed', 'processing', 'shipped', 'delivered', 'cancelled'];
-    if (!validStatuses.includes(status)) {
-      return res.status(400).json({ message: `Invalid status. Must be one of: ${validStatuses.join(', ')}` });
-    }
+    const { status, transactionCode } = req.body;
 
     const order = await Order.findById(req.params.id);
 
@@ -118,14 +112,27 @@ export const updateOrderStatus = async (req, res) => {
       return res.status(403).json({ message: 'Unauthorized' });
     }
 
-    const oldStatus = order.status;
-    order.status = status;
+    // Update transaction code if provided
+    if (transactionCode) {
+      order.transactionCode = transactionCode;
+      console.log(`[Order Controller] Transaction code added to order ${order._id}: ${transactionCode}`);
+    }
+
+    // Update status if provided and valid
+    if (status) {
+      const validStatuses = ['pending', 'confirmed', 'processing', 'shipped', 'delivered', 'cancelled', 'paid'];
+      if (!validStatuses.includes(status)) {
+        return res.status(400).json({ message: `Invalid status. Must be one of: ${validStatuses.join(', ')}` });
+      }
+      const oldStatus = order.status;
+      order.status = status;
+      console.log(`[Order Controller] Order ${order._id} status updated: ${oldStatus} → ${status}`);
+    }
+
     const updatedOrder = await order.save();
 
-    console.log(`[Order Controller] Order ${order._id} status updated: ${oldStatus} → ${status}`);
-
     // Send SMS notification on status change
-    if (order.customerPhoneNumber) {
+    if (status && order.customerPhoneNumber) {
       const statusMessages = {
         'confirmed': 'Your order has been confirmed. Preparation will start soon.',
         'processing': 'Your order is being processed and will be shipped shortly.',
