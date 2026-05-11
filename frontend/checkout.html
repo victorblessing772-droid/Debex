@@ -555,6 +555,65 @@
         }
       });
     });
+
+    // Handle submit payment code
+    const submitCodeBtn = document.getElementById('submit-code');
+    if (submitCodeBtn) {
+      submitCodeBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        
+        const transactionCode = document.getElementById('transaction-code').value.trim();
+        if (!transactionCode) {
+          alert('Please enter a transaction code');
+          return;
+        }
+
+        const token = localStorage.getItem('token');
+        const orderId = localStorage.getItem('currentOrderId');
+
+        if (!token || !orderId) {
+          alert('No active order. Please create an order first.');
+          return;
+        }
+
+        try {
+          submitCodeBtn.disabled = true;
+          submitCodeBtn.textContent = 'Processing...';
+
+          // Update order with transaction code
+          const response = await fetch(`${API_BASE}/orders/${orderId}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ 
+              transactionCode: transactionCode
+            })
+          });
+
+          if (!response.ok) {
+            throw new Error('Failed to submit transaction code');
+          }
+
+          const result = await response.json();
+          alert('✅ Transaction code submitted!\n\nCode: ' + transactionCode + '\n\nAdmin will verify your payment.');
+          
+          // Clear the input
+          document.getElementById('transaction-code').value = '';
+          
+          // Reset button
+          submitCodeBtn.disabled = false;
+          submitCodeBtn.textContent = 'Submit Payment Code';
+
+        } catch (error) {
+          console.error('Error:', error);
+          alert('Error submitting transaction code: ' + error.message);
+          submitCodeBtn.disabled = false;
+          submitCodeBtn.textContent = 'Submit Payment Code';
+        }
+      });
+    }
   });
 </script>
 </body></html>
