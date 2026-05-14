@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import Product from "./models/productModel.js";
+import Order from "./models/orderModel.js";
 
 dotenv.config();
 
@@ -16,8 +17,10 @@ const connectDB = async () => {
 
 const clearData = async () => {
   try {
-    const result = await Product.deleteMany({});
-    console.log(`✅ Deleted ${result.deletedCount} products from database`);
+    const productsResult = await Product.deleteMany({});
+    const ordersResult = await Order.deleteMany({});
+    console.log(`✅ Deleted ${productsResult.deletedCount} products from database`);
+    console.log(`✅ Deleted ${ordersResult.deletedCount} orders/transactions from database`);
     console.log("Database is now clean - ready for new products!");
     process.exit(0);
   } catch (error) {

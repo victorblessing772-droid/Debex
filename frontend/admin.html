@@ -112,6 +112,44 @@
 </aside>
 <!-- Main Content Canvas -->
 <main class="flex-1 overflow-y-auto bg-surface flex flex-col pt-0">
+<!-- Transactions View -->
+<div id="transactions-view" class="hidden flex-1 overflow-y-auto bg-surface">
+<div class="max-w-7xl mx-auto px-4 lg:px-6 py-0 w-full">
+<header class="mb-2">
+<div>
+<h1 class="text-4xl font-extrabold tracking-tighter text-on-background font-headline mb-0">Transactions</h1>
+<p class="text-secondary font-label uppercase tracking-[0.2em] text-[10px]">Order Management &amp; Payment Approval</p>
+</div>
+</header>
+
+<div class="bg-white rounded-xl shadow-lg overflow-hidden mt-0">
+<div class="overflow-x-auto">
+<table class="w-full min-w-max">
+<thead class="bg-surface-container-low border-b border-surface-container-high">
+<tr>
+<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Order ID</th>
+<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Customer Name</th>
+<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Phone</th>
+<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Transaction Code</th>
+<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Amount</th>
+<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Status</th>
+<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Date &amp; Time</th>
+<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Action</th>
+</tr>
+</thead>
+<tbody id="transactions-table-body" class="divide-y divide-surface-container-low">
+<!-- Populated by JavaScript -->
+</tbody>
+</table>
+<div id="no-transactions" class="text-center py-12 text-secondary">
+<p class="text-sm">No transactions yet</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Listing View (Create New Listing) -->
 <div class="max-w-7xl mx-auto px-4 lg:px-6 py-2 lg:py-3 w-full" id="listing-view">
 <!-- Header Section -->
 <header class="mb-6 flex justify-between items-end">
@@ -277,50 +315,7 @@
 </div>
 </div>
 </div>
-<div class="mt-6 flex items-center justify-center gap-4 text-[10px] font-bold uppercase tracking-widest text-outline">
-<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm" data-icon="devices">devices</span> Fully Responsive</span>
-<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm" data-icon="visibility">visibility</span> Live Updating</span>
-</div>
-</div>
-</div>
-</div>
 
-<!-- Transactions View -->
-<div id="transactions-view" class="hidden flex-1 overflow-y-auto bg-surface">
-<div class="max-w-7xl mx-auto px-4 lg:px-6 py-2 lg:py-3 w-full">
-<header class="mb-6">
-<div>
-<h1 class="text-4xl font-extrabold tracking-tighter text-on-background font-headline mb-2">Transactions</h1>
-<p class="text-secondary font-label uppercase tracking-[0.2em] text-[10px]">Order Management &amp; Payment Approval</p>
-</div>
-</header>
-
-<div class="bg-white rounded-xl shadow-lg overflow-hidden">
-<div class="overflow-x-auto">
-<table class="w-full min-w-max">
-<thead class="bg-surface-container-low border-b border-surface-container-high">
-<tr>
-<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Order ID</th>
-<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Customer Name</th>
-<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Phone</th>
-<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Transaction Code</th>
-<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Amount</th>
-<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Status</th>
-<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Date &amp; Time</th>
-<th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-widest text-secondary">Action</th>
-</tr>
-</thead>
-<tbody id="transactions-table-body" class="divide-y divide-surface-container-low">
-<!-- Populated by JavaScript -->
-</tbody>
-</table>
-<div id="no-transactions" class="text-center py-12 text-secondary">
-<p class="text-sm">No transactions yet</p>
-</div>
-</div>
-</div>
-</div>
-</div>
 </main>
 
 <!-- Footer (Sticky to bottom) -->
@@ -379,8 +374,8 @@
     const transactionsView = document.getElementById('transactions-view');
 
     function showListingView() {
-      listingView.style.display = 'block';
-      transactionsView.style.display = 'none';
+      listingView.classList.remove('hidden');
+      transactionsView.classList.add('hidden');
       navListing.classList.add('bg-white', 'dark:bg-zinc-800', 'text-amber-700', 'dark:text-amber-400');
       navListing.classList.remove('bg-zinc-200', 'dark:bg-zinc-700', 'text-zinc-600', 'dark:text-zinc-400');
       navTransactions.classList.remove('bg-white', 'dark:bg-zinc-800', 'text-amber-700', 'dark:text-amber-400');
@@ -388,8 +383,8 @@
     }
 
     function showTransactionsView() {
-      listingView.style.display = 'none';
-      transactionsView.style.display = 'block';
+      listingView.classList.add('hidden');
+      transactionsView.classList.remove('hidden');
       navTransactions.classList.add('bg-white', 'dark:bg-zinc-800', 'text-amber-700', 'dark:text-amber-400');
       navTransactions.classList.remove('bg-zinc-200', 'dark:bg-zinc-700', 'text-zinc-600', 'dark:text-zinc-400');
       navListing.classList.remove('bg-white', 'dark:bg-zinc-800', 'text-amber-700', 'dark:text-amber-400');
