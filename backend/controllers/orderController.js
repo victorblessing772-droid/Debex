@@ -116,6 +116,23 @@ export const updateOrderStatus = async (req, res) => {
     if (transactionCode) {
       order.transactionCode = transactionCode;
       console.log(`[Order Controller] Transaction code added to order ${order._id}: ${transactionCode}`);
+
+      // Notify admin(s) via SMS
+      try {
+        // Find all admin users
+        const admins = await User.find({ isAdmin: true, phoneNumber: { $ne: null } });
+        if (admins.length > 0) {
+          const adminPhones = admins.map(a => a.phoneNumber);
+          const shortOrderId = order._id.toString().slice(-6).toUpperCase();
+          const smsMessage = `New payment! Order ID: ${shortOrderId}. Transaction code: ${transactionCode}`;
+          await sendSMS(adminPhones, smsMessage, 'Debex');
+          console.log(`[Order Controller] Notified admin(s) of transaction code for order ${order._id}`);
+        } else {
+          console.warn('[Order Controller] No admin phone numbers found for notification');
+        }
+      } catch (err) {
+        console.error('[Order Controller] Failed to notify admin(s):', err);
+      }
     }
 
     // Update status if provided and valid
