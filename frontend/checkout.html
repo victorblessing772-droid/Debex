@@ -1,3 +1,9 @@
+                <p class="text-sm text-gray-600 mb-2">Items (${order.items.length})</p>
+                <p class="text-sm text-gray-700">${item.name} × ${item.quantity}</p>
+                <p class="text-xs text-secondary mt-1 font-label">KES ${item.price.toFixed(2)} each</p>
+                <p class="text-sm font-bold mt-2">KES ${itemTotal.toFixed(2)}</p>
+                <span class="font-bold text-gray-800">KES ${parseFloat(order.total).toFixed(2)}</span>
+                <span class="font-bold text-gray-800">KES ${item.price.toFixed(2)}</span>
 <!DOCTYPE html>
 
 <html class="light" lang="en"><head>
@@ -102,40 +108,177 @@
 </nav>
 <main class="pt-28 pb-20 px-6 max-w-7xl mx-auto">
 
-<!-- ORDER STATUS DISPLAY SECTION -->
-<div id="order-status-display" class="mb-8 hidden">
-  <div class="bg-gradient-to-r from-amber-50 to-orange-50 border-l-4 border-primary rounded-lg p-6 space-y-4">
-    <div class="flex items-center justify-between">
-      <h3 class="text-lg font-bold text-primary">Order Status</h3>
-      <div id="status-badge" class="px-4 py-2 rounded-full text-sm font-bold bg-yellow-100 text-yellow-800">Pending</div>
+<!-- COMPLETE ORDERS SECTION -->
+<div id="orders-section" class=" mb-16">
+
+<!-- COMPLETE ORDERS SECTION -->
+<div id="orders-section" class="mb-16">
+
+  <h2 class="text-3xl font-headline font-bold tracking-tight mb-8 text-primary">
+    Your Orders
+  </h2>
+
+  <!-- SINGLE ORDER CARD -->
+  <div id="order-history-list" class="space-y-6">
+
+    <div class="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
+
+      <!-- TOP HEADER -->
+      <div class="bg-gradient-to-r from-amber-50 to-orange-50 border-b border-gray-200 p-6">
+
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+
+          <div>
+            <p class="text-sm text-gray-500 uppercase tracking-wide">
+              Order ID
+            </p>
+
+            <h3 id="status-order-id"
+              class="text-2xl font-mono font-bold text-gray-800">
+              #ORD-1024
+            </h3>
+          </div>
+
+          <!-- STATUS BADGE -->
+          <div id="status-badge"
+            class="w-fit px-5 py-2 rounded-full text-sm font-bold bg-yellow-100 text-yellow-800">
+            Pending
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ORDER DETAILS -->
+      <div class="p-6">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          <!-- STATUS -->
+          <div class="bg-gray-50 rounded-xl p-4">
+            <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">
+              Order Status
+            </p>
+
+            <p id="status-status"
+              class="text-lg font-bold text-gray-800">
+              Pending
+            </p>
+          </div>
+
+          <!-- TRANSACTION -->
+          <div class="bg-gray-50 rounded-xl p-4">
+            <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">
+              Transaction Code
+            </p>
+
+            <p id="status-transaction"
+              class="text-lg font-mono font-bold text-primary">
+              QHG72JS9K
+            </p>
+          </div>
+
+          <!-- DATE -->
+          <div class="bg-gray-50 rounded-xl p-4">
+            <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">
+              Created
+            </p>
+
+            <p id="status-date"
+              class="text-lg font-semibold text-gray-800">
+              11 May 2026
+            </p>
+          </div>
+
+          <!-- TOTAL -->
+          <div class="bg-gray-50 rounded-xl p-4">
+            <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">
+              Total Amount
+            </p>
+
+            <p class="text-lg font-bold text-green-600">
+              KSh 12,500
+            </p>
+          </div>
+
+        </div>
+
+        <!-- ITEMS -->
+        <div class="mt-8">
+
+          <div class="flex items-center justify-between mb-4">
+            <h4 class="text-lg font-bold text-gray-800">
+              Ordered Items
+            </h4>
+
+            <span class="text-sm text-gray-500">
+              3 Items
+            </span>
+          </div>
+
+          <div class="space-y-4">
+
+            <!-- ITEM -->
+            <div class="flex items-center gap-4 border border-gray-100 rounded-xl p-4 hover:bg-gray-50 transition">
+
+              <img src="https://via.placeholder.com/80"
+                alt="Product"
+                class="w-20 h-20 rounded-lg object-cover border">
+
+              <div class="flex-1">
+
+                <h5 class="font-bold text-gray-800">
+                  JBL Bluetooth Speaker
+                </h5>
+
+                <p class="text-sm text-gray-500">
+                  Quantity: 1
+                </p>
+
+              </div>
+
+              <p class="font-bold text-primary">
+                KSh 4,500
+              </p>
+
+            </div>
+
+            <!-- ITEM -->
+            <div class="flex items-center gap-4 border border-gray-100 rounded-xl p-4 hover:bg-gray-50 transition">
+
+              <img src="https://via.placeholder.com/80"
+                alt="Product"
+                class="w-20 h-20 rounded-lg object-cover border">
+
+              <div class="flex-1">
+
+                <h5 class="font-bold text-gray-800">
+                  Wireless Headphones
+                </h5>
+
+                <p class="text-sm text-gray-500">
+                  Quantity: 2
+                </p>
+
+              </div>
+
+              <p class="font-bold text-primary">
+                KSh 8,000
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
-    <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
-      <div>
-        <p class="text-xs text-gray-600 uppercase tracking-wide">Order ID</p>
-        <p id="status-order-id" class="text-lg font-mono font-bold text-gray-800">N/A</p>
-      </div>
-      <div>
-        <p class="text-xs text-gray-600 uppercase tracking-wide">Status</p>
-        <p id="status-status" class="text-lg font-bold text-gray-800">Pending</p>
-      </div>
-      <div>
-        <p class="text-xs text-gray-600 uppercase tracking-wide">Transaction Code</p>
-        <p id="status-transaction" class="text-lg font-mono font-bold text-primary">Not Submitted</p>
-      </div>
-      <div>
-        <p class="text-xs text-gray-600 uppercase tracking-wide">Created</p>
-        <p id="status-date" class="text-lg font-mono font-bold text-gray-800">—</p>
-      </div>
-    </div>
+
   </div>
 </div>
 
-<!-- ORDER HISTORY SECTION -->
-<div id="order-history-section" class="mb-16 hidden">
-<h2 class="text-2xl font-headline font-bold tracking-tight mb-6">Your Orders</h2>
-<div id="order-history-list" class="grid grid-cols-1 gap-6">
-<!-- Orders will be populated here -->
-</div>
 </div>
 
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
@@ -340,6 +483,17 @@
 </footer>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
+    // Clear order/cart details if no active session/order
+    const token = localStorage.getItem('token');
+    const orderId = localStorage.getItem('currentOrderId');
+    if (!token) {
+      // Not logged in, clear all order/cart data
+      localStorage.removeItem('debex-cart');
+      localStorage.removeItem('currentOrderId');
+      sessionStorage.clear();
+      // Optionally reload to reset UI
+      window.location.reload();
+    }
     const API_BASE = 'https://debex-7ixn.onrender.com/api';
 
     // Load and display order status
@@ -421,9 +575,13 @@
 
         const orders = await response.json();
 
+
+        const ordersSection = document.getElementById('orders-section');
         if (!orders || orders.length === 0) {
-          document.getElementById('order-history-section').style.display = 'none';
+          if (ordersSection) ordersSection.style.display = 'none';
           return;
+        } else {
+          if (ordersSection) ordersSection.style.display = '';
         }
 
         // Display orders
@@ -617,6 +775,15 @@
     }
 
     // Handle confirm order
+    // Add a logout handler to clear everything and reload
+    const logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', () => {
+        localStorage.clear();
+        sessionStorage.clear();
+        window.location.reload();
+      });
+    }
     const placeOrderBtn = document.getElementById('place-order-btn');
     
     if (placeOrderBtn) {

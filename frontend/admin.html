@@ -148,10 +148,10 @@
 </select>
 </div>
 <div>
-<label class="block text-[11px] font-bold uppercase tracking-tighter text-secondary mb-2 font-label">Price (USD)</label>
+<label class="block text-[11px] font-bold uppercase tracking-tighter text-secondary mb-2 font-label">Price (KES)</label>
 <div class="relative">
-<span class="absolute left-4 top-4 text-outline-variant">$</span>
-<input id="product-price" class="w-full bg-surface-container-lowest border-none focus:ring-0 rounded-md p-4 pl-8 text-on-background placeholder:text-outline-variant/50" placeholder="0.00" type="number" step="0.01" required/>
+<span class="absolute left-4 top-4 text-outline-variant">KES</span>
+<input id="product-price" class="w-full bg-surface-container-lowest border-none focus:ring-0 rounded-md p-4 pl-12 text-on-background placeholder:text-outline-variant/50" placeholder="0.00" type="number" step="0.01" required/>
 </div>
 </div>
 </div>
@@ -246,7 +246,7 @@
 <h3 class="text-2xl font-extrabold tracking-tighter font-headline mb-1" id="preview-title">Product Name</h3>
 <p class="text-xs text-secondary uppercase tracking-[0.15em]" id="preview-category">Category</p>
 </div>
-<span class="text-xl font-medium text-primary tracking-tighter" id="preview-price">$0.00</span>
+<span class="text-xl font-medium text-primary tracking-tighter" id="preview-price">KES 0.00</span>
 </div>
 <div class="space-y-4">
 <p class="text-sm text-on-surface/70 leading-relaxed font-body" id="preview-description">
@@ -538,7 +538,7 @@
       
       document.getElementById('preview-title').textContent = title;
       document.getElementById('preview-category').textContent = category.charAt(0).toUpperCase() + category.slice(1);
-      document.getElementById('preview-price').textContent = '$' + price;
+      document.getElementById('preview-price').textContent = 'KES ' + price;
       document.getElementById('preview-description').textContent = description;
     };
     
